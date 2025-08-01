@@ -1,1 +1,1 @@
-web: gunicorn codestar.wsgi
+web: gunicorn inner_balance.wsgi --log-file -
