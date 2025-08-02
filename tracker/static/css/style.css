@@ -1,0 +1,16 @@
+/*Css Variable*/
+:root {
+    --primary-font: "Instrument Serif", serif;
+    --secondary-font: "";
+    --primary-color: #4B2E1E;
+    /* rich brown color */
+    --highlight-color: #A8C3A0;
+    /*eucalyptus color */
+    --highlight-color-light:
+}
+
+body {
+    background-color: #DDE6DE;
+    font-family: 'Instrument Serif', serif;
+    color: var(--primary-color);
+}

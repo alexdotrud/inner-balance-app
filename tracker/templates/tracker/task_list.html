@@ -7,20 +7,20 @@
 <h1>Your Tasks</h1>
 
 {% if tasks %}
-  <ul class="list-group">
+<ul class="list-group">
     {% for task in tasks %}
-      <li class="list-group-item d-flex justify-content-between align-items-center">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
         {{ task.title }}
         {% if task.done %}
-          <span class="badge bg-success">Done</span>
+        <span class="badge bg-success">Done</span>
         {% else %}
-          <span class="badge bg-warning text-dark">Pending</span>
+        <span class="badge bg-warning text-dark">Pending</span>
         {% endif %}
-      </li>
+    </li>
     {% endfor %}
-  </ul>
+</ul>
 {% else %}
-  <p>No tasks found. Add some!</p>
+<p>No tasks found. Add some!</p>
 {% endif %}
 
 {% endblock %}

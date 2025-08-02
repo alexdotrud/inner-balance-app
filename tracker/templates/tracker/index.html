@@ -8,38 +8,38 @@
 
 <!-- Tasks Section -->
 <section class="mb-4">
-  <h2>Today's Tasks</h2>
-  {% if tasks %}
+    <h2>Today's Tasks</h2>
+    {% if tasks %}
     <ul class="list-group">
-      {% for task in tasks %}
+        {% for task in tasks %}
         <li class="list-group-item d-flex justify-content-between align-items-center">
-          {{ task.title }}
-          {% if task.done %}
+            {{ task.title }}
+            {% if task.done %}
             <span class="badge bg-success">Done</span>
-          {% else %}
+            {% else %}
             <span class="badge bg-warning text-dark">Pending</span>
-          {% endif %}
+            {% endif %}
         </li>
-      {% endfor %}
+        {% endfor %}
     </ul>
-  {% else %}
+    {% else %}
     <p>No tasks for today. Enjoy your free time!</p>
-  {% endif %}
+    {% endif %}
 </section>
 
 <!-- Water Intake Section -->
 <section class="mb-4">
-  <h2>Water Intake</h2>
-  <p>Goal: {{ water_goal }} cups</p>
-  <p>Completed: {{ water_completed }} cups</p>
+    <h2>Water Intake</h2>
+    <p>Goal: {{ water_goal }} cups</p>
+    <p>Completed: {{ water_completed }} cups</p>
 
 </section>
 
 <!-- Sleep Hours Section -->
 <section class="mb-4">
-  <h2>Sleep Hours</h2>
-  <p>Goal: {{ sleep_goal }} hours</p>
-  <p>Completed: {{ sleep_completed }} hours</p>
+    <h2>Sleep Hours</h2>
+    <p>Goal: {{ sleep_goal }} hours</p>
+    <p>Completed: {{ sleep_completed }} hours</p>
 </section>
 
 {% endblock %}
