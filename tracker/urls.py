@@ -1,7 +1,6 @@
-from . import views
 from django.urls import path
-
+from .views import dashboard, TasksList
 
 urlpatterns = [
-    path('', views.TasksList.as_view(), name='home'),
+    path('', dashboard, name='dashboard'),  # homepage
 ]
