@@ -1,0 +1,88 @@
+/* Css Variable */
+:root {
+    --primary-font: "Instrument Serif", serif;
+    --primary-color: #4B2E1E;
+    /* rich brown color */
+    --highlight-color: #A8C3A0;
+    /*eucalyptus color */
+    --highlight-color-dark: #2D4739;
+    /* deep green color */
+
+}
+
+body {
+    min-height: 100vh;
+    background-color: #DDE6DE;
+    font-family: var(--primary-font);
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main.main-content {
+    flex: 1;
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.1rem;
+    background-color: var(--highlight-color);
+    color: var(--primary-color);
+    margin-top: 3rem;
+    border-top: 1px solid var(--highlight-color);
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--primary-font);
+    font-weight: 400;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+#main-container {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 2rem auto;
+    gap: 3rem;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #A8C3A0;
+}
+
+.navbar-brand,
+.nav-link {
+    color: var(--primary-color) !important;
+}
+
+.nav-link:hover {
+    color: var(--highlight-color-dark) !important
+}
+
+
+/* Dashboard styles*/
+
+.dashboard-title {
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 3rem;
+    margin-top: 3rem;
+    padding-right: 5rem;
+}
