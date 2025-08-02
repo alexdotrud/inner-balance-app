@@ -3,7 +3,8 @@
     --primary-font: "Instrument Serif", serif;
     --primary-color: #4B2E1E;
     /* rich brown color */
-    --highlight-color: #97ad97;
+    --secondary-color: #7C4F36;
+    --highlight-color: #aab9aa;
     /*eucalyptus color */
     --highlight-color-dark: #2D4739;
     /* deep green color */
@@ -69,12 +70,9 @@ h3 {
     font-weight: 400;
 }
 
-
 .banner-image {
     width: 100vw;
     height: auto;
-    overflow: hidden;
-    border-radius: 0;
 }
 
 .banner-image img {
@@ -95,13 +93,36 @@ h3 {
     text-align: center;
 }
 
+section {
+    padding: 3rem 1.5rem;
+    margin-bottom: 2rem;
+    /* Visually separating sections with border and shodow */
+    border-radius: 12px;
+    box-shadow: 0 4px 3px rgba(64, 58, 58, 0.05);
+}
+
+
 .app-benefits {
     margin-top: 3rem;
-
 }
 
 .benefits-list {
     list-style: none;
+}
+
+#login-signup h3 {
+    margin-top: 3rem;
+    margin-bottom: 0;
+    padding-bottom: 0.5rem;
+}
+
+/* Custom Links Styles */
+.custom-link {
+    color: var(--highlight-color-dark);
+}
+
+.custom-link:hover {
+    color: var(--secondary-color);
 }
 
 /* Dashboard styles*/
