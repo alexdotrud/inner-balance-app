@@ -5,5 +5,5 @@ app_name = 'tracker'
 
 urlpatterns = [
     path('', DashboardView.as_view(), name='home'),
-    path('dashboard/', TaskListView.as_view(), name='dashboarrd'),
+    path('dashboard/', DashboardView.as_view(), name='dashboard'),
 ]
