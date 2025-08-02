@@ -17,8 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("tracker.urls"), name="tracker-urls"),
+    path('', include('home_page.urls')),  # Homepage
+    path('tracker/', include('tracker.urls')),  # dashboard
 ]

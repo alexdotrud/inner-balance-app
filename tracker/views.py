@@ -1,13 +1,9 @@
-from django.shortcuts import render
-from django.views import generic
+from django.views.generic import TemplateView, ListView
 from .models import Task
 
-# Dashboard view 
-def dashboard(request):
-    return render(request, 'tracker/index.html')
+class DashboardView(TemplateView):
+    template_name = 'tracker/dashboard.html'
 
-# Tasks list page using Django's generic ListView
-class TasksList(generic.ListView):
+class TaskListView(ListView):
     model = Task
-    context_object_name = 'tasks'  # use 'tasks' in your template
-    template_name = 'tracker/task_list.html'  # optional if following naming convention
+    template_name = 'tracker/tasks.html'

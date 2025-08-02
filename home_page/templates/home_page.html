@@ -1,0 +1,25 @@
+{% load static %}
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+
+    <!-- Banner Image -->
+    <div class="banner-image">
+        <img src="{% static 'home_page/images/banner.jpg' %}" alt="Inner Balance Banner" class="banner-img" />
+    </div>
+
+    <!-- Description Section -->
+    <section class="app-description">
+        <h2>Welcome to Inner Balance</h2>
+        <p>
+            Inner Balance is your personal wellness tracker designed to help you create healthy habits effortlessly.
+            Whether you're tracking daily tasks, water intake, or sleep quality, our app provides simple tools and
+            motivating feedback.
+            What makes Inner Balance special is its focus on balance and mindfulness — not just tracking, but helping
+            you grow sustainably.
+        </p>
+    </section>
+
+</div>
+{% endblock %}
