@@ -1,16 +1,61 @@
-/*Css Variable*/
+/* Css Variable */
 :root {
     --primary-font: "Instrument Serif", serif;
-    --secondary-font: "";
     --primary-color: #4B2E1E;
     /* rich brown color */
     --highlight-color: #A8C3A0;
     /*eucalyptus color */
-    --highlight-color-light:
+    --highlight-color-dark: #2D4739;
+    /* deep green color */
+
 }
 
 body {
+    min-height: 100vh;
     background-color: #DDE6DE;
-    font-family: 'Instrument Serif', serif;
+    font-family: var(--primary-font);
+    font-size: 1.5rem;
     color: var(--primary-color);
+}
+
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.1rem;
+    background-color: var(--highlight-color);
+    color: var(--primary-color);
+    margin-top: 3rem;
+    border-top: 1px solid var(--highlight-color);
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--primary-font);
+    font-weight: 400;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #A8C3A0;
+}
+
+.navbar-brand,
+.nav-link {
+    color: var(--primary-color) !important;
+}
+
+.nav-link:hover {
+    color: var(--highlight-color-dark) !important
+}
+
+/* Dashboard Navigation */
+.dashboard-title {
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 2rem;
+    margin-top: 2rem;
 }
