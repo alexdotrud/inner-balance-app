@@ -9,22 +9,9 @@
 <!-- Tasks Section -->
 <section class="mb-4">
     <h2>Today's Tasks</h2>
-    {% if tasks %}
-    <ul class="list-group">
-        {% for task in tasks %}
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            {{ task.title }}
-            {% if task.done %}
-            <span class="badge bg-success">Done</span>
-            {% else %}
-            <span class="badge bg-warning text-dark">Pending</span>
-            {% endif %}
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No tasks for today. Enjoy your free time!</p>
-    {% endif %}
+
+    <p>Task list</p>
+    <p>Completed: {{ water_completed }} yes/no</p>
 </section>
 
 <!-- Water Intake Section -->
