@@ -1,22 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Views Part 1</title>
-</head>
+{% block title %}Tasks - Wellness App{% endblock %}
 
-<body>
-    <h1>My tasks</h1>
+{% block content %}
+<h1>Your Tasks</h1>
+
+{% if tasks %}
+  <ul class="list-group">
     {% for task in tasks %}
-        <h2>{{ task.title }}</h2>
-        <p>{{ task.description }}</p>
-        <p>Completed: {% if task.is_completed %}Yes{% else %}No{% endif %}</p>
-    {% empty %}
-        <p>No tasks found.</p>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ task.title }}
+        {% if task.done %}
+          <span class="badge bg-success">Done</span>
+        {% else %}
+          <span class="badge bg-warning text-dark">Pending</span>
+        {% endif %}
+      </li>
     {% endfor %}
-</body>
+  </ul>
+{% else %}
+  <p>No tasks found. Add some!</p>
+{% endif %}
 
-</html>
+{% endblock %}
