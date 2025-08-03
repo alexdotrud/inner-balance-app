@@ -107,11 +107,11 @@ h3 {
     object-fit: cover;
 }
 
-.home-container {
+#home-container {
     width: 80%;
     max-width: 1200px;
-    margin: 2rem auto;
-    padding: 1rem 0;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
     color: var(--primary-color);
     font-family: var(--primary-font);
     line-height: 1.6;
@@ -132,17 +132,24 @@ h3 {
     font-size: 1.8rem;
 }
 
-section {
-    padding: 3rem 1.5rem;
-    margin-bottom: 2rem;
-    /* Visually separating sections with border and shodow */
-    border-radius: 12px;
-    box-shadow: 0 4px 3px rgba(64, 58, 58, 0.05);
+.banner-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0.5rem;
+    width: 100%;
 }
 
-
+.app-description,
 .app-benefits {
-    margin-top: 3rem;
+    background-color: rgba(255, 255, 255, 0.326);
+    padding: 3rem 2rem;
+    margin: 3rem auto;
+    width: 90%;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .benefits-list {
@@ -181,23 +188,19 @@ section {
     margin-left: 1rem;
 }
 
-.banner-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 3rem;
-}
-
 .banner-btn {
     background-color: var(--highlight-color);
     color: var(--primary-color);
-    padding: 0.8rem 2.2rem;
+    padding: 0.7rem 2.2rem;
     border-radius: 20px;
     font-family: var(--primary-font);
     text-decoration: none;
     cursor: pointer;
+    margin-bottom: 0.7rem;
+    /* space below the button */
+    font-size: 1.3rem;
+    border: none;
+    transition: all 0.3s ease;
 }
 
 .banner-btn:hover {
@@ -214,6 +217,21 @@ section {
 
 .custom-link:hover {
     color: var(--secondary-color);
+}
+
+.arrow-link {
+    display: flex;
+    justify-content: center;
+    color: rgb(222, 229, 213);
+    font-size: 2rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.arrow-link:hover {
+    /* frowing effect */
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
 }
 
 /* Dashboard styles*/
