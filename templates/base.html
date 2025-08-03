@@ -37,20 +37,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
+                        {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="">Dashboard</a>
+                            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">My Profile</a>
+                            <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Notes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn nav-btn login-btn" href="">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn nav-btn signup-btn" href="">Sign Up</a>
                         </li>
                     </ul>
                 </div>
