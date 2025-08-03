@@ -4,13 +4,19 @@
 {% block content %}
 
 <!-- Banner Image -->
-<div class="banner-image">
-    <img src="{% static 'images/banner.jpg' %}" alt="Inner Balance Banner" class="banner-img" />
-</div>
+<section class="banner-section">
+    <div class="banner-text">
+        <h1>OGRANIZE YOU DAY</h1>
+        <p>Find balance between work and life with easy and effective daily tracking.</p>
+    </div>
+    <div class="banner-button">
+        <a href="#welcome" class="banner-btn">Get Started</a>
+    </div>
+</section>
 
-<div class="home-container">
+<section class="home-container">
     <!-- Description Section -->
-    <section class="app-description">
+    <div class="app-description">
         <h2>Welcome to <span class="project-name">INNER BALANCE</span></h2>
         <p>
             Inner Balance is your personal wellness tracker designed to help you create healthy habits effortlessly.
@@ -19,9 +25,9 @@
             What makes Inner Balance special is its focus on balance and mindfulness — not just tracking, but helping
             you grow sustainably.
         </p>
-    </section>
+    </div>
 
-    <section class="app-benefits">
+    <div class="app-benefits">
         <h3>Why Choose <span class="project-name">INNER BALANCE</span>?</h3>
         <ul class="benefits-list">
             <li>✔ Simple and intuitive daily tracking</li>
@@ -37,6 +43,6 @@
                 <a href="" class="login-link custom-link">log in</a> if you're already registered.
             </p>
         </div>
-    </section>
-</div>
+    </div>
+</section>
 {% endblock %}
