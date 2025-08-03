@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load account %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+<div class="container" id="login-signup">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 mt-4 text-center">
+            <h2 class="dashboard-title">{% trans "Sign In to Inner Balance" %}</h2>
+            <p>{% blocktrans %}Welcome! To manage your tasks and continue your journey to inner balance, please
+                sign in. If you don’t have an account yet, <a class="custom-link" href="{{ signup_url }}">sign up
+                    here</a>.{% endblocktrans %}</p>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6 offset-md-3">
+            <form method="POST" action="{% url 'account_login' %}" class="login-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+                {% endif %}
+                <button type="submit" class="btn btn-primary w-100">{% trans "Sign In" %}</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+
+{% block content %}
+<div class="container" id="login-signup">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 mt-4 text-center">
+            <h2 class="dashboard-title">{% trans "Ready to Log Out?" %}</h2>
+            <p>{% trans "Are you sure you want to sign out from your Inner Balance account?" %}</p>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6 offset-md-3">
+            <form method="post" action="{% url 'account_logout' %}">
+                {% csrf_token %}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+                {% endif %}
+                <button class="btn btn-danger w-100" type="submit">{% trans "Sign Out" %}</button>
+            </form>
+            <a href="{% url 'home' %}" class="btn btn-secondary w-100">{% trans "Cancel and stay" %}</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
