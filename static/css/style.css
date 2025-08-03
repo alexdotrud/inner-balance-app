@@ -170,7 +170,8 @@ h3 {
 }
 
 
-.banner-btn {
+.custom-btn {
+    max-width: fit-content;
     background-color: var(--highlight-color);
     color: var(--primary-color);
     padding: 0.7rem 2.2rem;
@@ -179,13 +180,12 @@ h3 {
     text-decoration: none;
     cursor: pointer;
     margin-bottom: 0.7rem;
-    /* space below the button */
     font-size: 1.3rem;
     border: none;
     transition: all 0.3s ease;
 }
 
-.banner-btn:hover {
+.custom-btn:hover {
     background-color: var(--highlight-color);
     color: var(--secondary-color);
     border-color: var(--secondary-color);
@@ -214,6 +214,28 @@ h3 {
     /* frowing effect */
     transform: scale(1.2);
     transition: transform 0.3s ease;
+}
+
+/* Login Page Styles */
+
+.login-container {
+    background: rgba(255, 255, 255, 0.479);
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 1200px;
+    margin: 7rem auto;
+    padding: 3rem 1.5rem;
+    color: var(--primary-color);
+    font-family: var(--primary-font);
+    line-height: 1.6;
+    text-align: center;
+}
+
+.form-group,
+.form-check {
+    padding: 1rem;
 }
 
 /* Dashboard styles*/
