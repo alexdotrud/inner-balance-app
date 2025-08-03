@@ -65,17 +65,8 @@ h3 {
 /* Navbar Styles */
 .navbar {
     background-color: var(--highlight-color);
-    padding: 1rem;
 }
 
-.navbar-brand,
-.nav-link {
-    color: var(--primary-color) !important;
-}
-
-.nav-link:hover {
-    color: var(--highlight-color-dark) !important
-}
 
 /* Home Page styles */
 
@@ -165,15 +156,10 @@ h3 {
 /* Custom Buttons Styles */
 .nav-btn {
     font-size: 1.3rem;
-    padding: 0.3rem 1rem;
-    color: var(--primary-color);
-    border: 2px ridge #dce2d3;
-    box-shadow: 0 6px 12px #d2d5d2;
-    border-radius: 6px;
-    font-family: var(--primary-font);
+    margin: 0 1rem;
+    padding: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin: 0 0.5rem;
 }
 
 .nav-btn:hover {
@@ -183,10 +169,6 @@ h3 {
     box-shadow: 0 6px 12px var(--primary-color);
 }
 
-.login-btn {
-    margin-right: 1rem;
-    margin-left: 1rem;
-}
 
 .banner-btn {
     background-color: var(--highlight-color);

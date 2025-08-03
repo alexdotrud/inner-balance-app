@@ -39,17 +39,17 @@
                     <ul class="navbar-nav ms-auto">
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                            <a class="nav-link nav-btn" href="{% url 'account_logout' %}">Logout</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                            <a class="nav-link nav-btn" href="{% url 'dashboard' %}">Dashboard</a>
                         </li>
                         {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                            <a class="nav-link nav-btn" href="{% url 'account_login' %}">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
+                            <a class="nav-link nav-btn" href="{% url 'account_signup' %}">Sign Up</a>
                         </li>
                         {% endif %}
                     </ul>
