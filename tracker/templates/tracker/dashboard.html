@@ -3,18 +3,30 @@
 
 {% block title %}Dashboard - INNER BALANCE {% endblock %}
 
-{% block content %}
-<div id="dashboard-container">
-    <h1 class="dashboard-title">Dashboard</h1>
 
-    <!-- Tasks Section -->
-    <section class="mb-4">
-        {% if task_count < 2 %}
-        <!-- show form and message -->
-        {% else %}
-        <!-- show dashboard -->
-        {% endif %}
-    </section>
+{% if task_count < 2 %}
+<div class="form-container">
+    <h2 class="dashboard-title">Welcome, {{ user.username }}!</h2>
 
+    {% if task_count < 2 %}
+    <p>You need to create at least 2 daily tasks.</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ task_form.as_p }}
+        <button type="submit" class="custom-btn">Add Task</button>
+    </form>
+
+    <p>You’ve created {{ task_count }} of 2 required tasks.</p>
+    {% else %}
+    <h3>Your Daily Tasks:</h3>
+    <ul class="list-group">
+        {% for task in tasks %}
+        <li class="list-group-item">
+            {{ task.title }}
+            <input type="checkbox" {% if task.is_completed %}checked{% endif %}>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 </div>
-{% endblock %}
