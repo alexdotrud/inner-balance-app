@@ -45,6 +45,10 @@
                 <a href="" class="signup-link custom-link">Sign up</a> if you're new, or
                 <a href="" class="login-link custom-link">log in</a> if you're already registered.
             </p>
+
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+            {% endif %}
         </div>
     </div>
 </section>

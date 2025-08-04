@@ -129,7 +129,8 @@ AUTHENTICATION_BACKENDS = [
 
 # Link for redirection after autentification
 
-LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_REDIRECT_URL = 'tracker:dashboard'
+ACCOUNT_SIGNUP_REDIRECT_URL = 'tracker:dashboard'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

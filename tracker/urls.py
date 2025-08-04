@@ -4,5 +4,6 @@ from .views import DashboardView, TaskListView
 app_name = 'tracker'
 
 urlpatterns = [
-    path('', DashboardView.as_view(), name='dashboard'),
+    path('dashboard/', DashboardView.as_view(), name='dashboard'),
+    path('tasks/', TaskListView.as_view(), name='task_list'),  
 ]
