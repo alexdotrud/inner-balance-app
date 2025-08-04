@@ -3,30 +3,35 @@
 
 {% block title %}Dashboard - INNER BALANCE {% endblock %}
 
+{% block content %}
+<div id="dashboard-container">
+    <h1 class="dashboard-title">Dashboard</h1>
 
-{% if task_count < 2 %}
-<div class="form-container">
-    <h2 class="dashboard-title">Welcome, {{ user.username }}!</h2>
+    <div class="form-container mt-5">
 
-    {% if task_count < 2 %}
-    <p>You need to create at least 2 daily tasks.</p>
+        {% if task_count < 1 %}
+        <p class="user-status">You are currently not logged in.</p>>
+        <p>You need to create at least 1 task to begin your day.</p>
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ task_form.as_p }}
-        <button type="submit" class="custom-btn">Add Task</button>
-    </form>
+        <form method="POST">
+            {% csrf_token %}
+            {{ task_form.as_p }}
+            <button type="submit" class="custom-btn">Add Task</button>
+        </form>
 
-    <p>You’ve created {{ task_count }} of 2 required tasks.</p>
-    {% else %}
-    <h3>Your Daily Tasks:</h3>
-    <ul class="list-group">
-        {% for task in tasks %}
-        <li class="list-group-item">
-            {{ task.title }}
-            <input type="checkbox" {% if task.is_completed %}checked{% endif %}>
-        </li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+        <p>You’ve created {{ task_count }} of 1 required task.</p>
+        {% else %}
+        <p class="user-status">Welcome, {{ user.username }}!</p>>
+        <h3>Your Daily Tasks:</h3>
+        <ul class="list-group">
+            {% for task in tasks %}
+            <li class="list-group-item">
+                <input type="checkbox" {% if task.is_completed %}checked{% endif %}>
+                {{ task.title }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
 </div>
+{% endblock %}
