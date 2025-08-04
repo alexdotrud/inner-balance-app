@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 
 class Task(models.Model):
@@ -17,6 +18,6 @@ class Task(models.Model):
         if not self.slug:
             self.slug = slugify(f"{self.user.username}-{self.title}") # automatically generates a slug
         super().save(*args, **kwargs) 
-        
+
     def __str__(self):
         return f"{self.title} ({'✓' if self.is_completed else '✗'})"
