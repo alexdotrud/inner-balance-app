@@ -5,9 +5,9 @@
 
 {% block content %}
 <div id="dashboard-container">
-    <h1 class="dashboard-title">Dashboard</h1>
+    <h1 class="title">Dashboard</h1>
 
-    <div class="form-container mt-5">
+    <div class="form-container">
 
         {% if task_count < 1 %}
         <p class="user-status">You are currently not logged in.</p>>
@@ -21,7 +21,7 @@
 
         <p>You’ve created {{ task_count }} of 1 required task.</p>
         {% else %}
-        <p class="user-status">Welcome, {{ user.username }}!</p>>
+        <p class="user-status">Welcome, {{ user.username }}!</p>
         <h3>Your Daily Tasks:</h3>
         <ul class="list-group">
             {% for task in tasks %}
