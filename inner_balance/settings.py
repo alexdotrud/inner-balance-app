@@ -29,7 +29,7 @@ SITE_ID = 1
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -120,11 +120,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Autentification
+
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',  # default
-    'allauth.account.auth_backends.AuthenticationBackend',  # allauth
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend', 
 ]
 
+# Link for redirection after autentification
+
+LOGIN_REDIRECT_URL = 'dashboard'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
