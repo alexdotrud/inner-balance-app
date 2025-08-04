@@ -9,10 +9,11 @@
 
     <!-- Tasks Section -->
     <section class="mb-4">
-        <h2>Today's Tasks</h2>
-
-        <p>Task list</p>
-        <p>Completed: {{ water_completed }} yes/no</p>
+        {% if task_count < 2 %}
+        <!-- show form and message -->
+        {% else %}
+        <!-- show dashboard -->
+        {% endif %}
     </section>
 
 </div>
