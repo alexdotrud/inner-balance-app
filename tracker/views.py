@@ -1,9 +1,11 @@
 from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.db import IntegrityError
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Task
 from .forms import TaskForm
 
@@ -56,7 +58,7 @@ class TaskUpdateView(SuccessMessageMixin, UpdateView):
         return reverse_lazy('tracker:dashboard')
     
 
-class TaskDeleteView(SuccesccMessageMixin, DeleteView):
+class TaskDeleteView(SuccessMessageMixin, DeleteView):
     model = Task
     template_name = 'tracker/task_confirm_delete.html'
     success_message = 'Task Deleted!'
