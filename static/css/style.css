@@ -190,6 +190,7 @@ h3 {
     padding: 3rem 1.5rem;
     line-height: 1.6;
     text-align: center;
+    position: relative;
 }
 
 .form-container form {
@@ -211,6 +212,20 @@ h3 {
 }
 
 /* Task List */
+.dropdown {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+}
+
+/* Move dropdown to top-right */
+.task-list-container .dropdown {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
 .list-group {
     width: 100%;
     max-width: 600px;
