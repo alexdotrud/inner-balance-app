@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Dashboard - INNER BALANCE {% endblock %}
+{% block title %}Dashboard - INNER BALANCE{% endblock %}
 
 {% block content %}
 <div id="dashboard-container">
@@ -18,7 +18,8 @@
             {% for message in messages %}
             <div
                 class="{% if message.tags == 'success' %}success-msg{% elif message.tags == 'error' %}error-msg{% else %}info-msg{% endif %}">
-                {{ message }}</div>
+                {{ message }}
+            </div>
             {% endfor %}
         </div>
         {% endif %}
@@ -35,26 +36,29 @@
         <p class="user-status">Welcome, {{ user.username }}!</p>
         <h3>Your Daily Tasks:</h3>
 
+        <!-- Global Dropdown Menu -->
+        <div class="dropdown text-end mb-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Edit</a></li>
+                <li><a class="dropdown-item" href="#">Delete</a></li>
+            </ul>
+        </div>
+
+        <!-- Task List -->
         <ul class="list-group">
             {% for task in tasks %}
             <li class="list-group-item">
                 <input type="checkbox" {% if task.is_completed %}checked{% endif %}>
-                {{ task.title }}
-
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle no-caret" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'tracker:task_edit' task.pk %}">Edit</a></li>
-                        <li><a class="dropdown-item" href="{% url 'tracker:task_delete' task.pk %}">Delete</a></li>
-                    </ul>
-                </div>
+                <span>{{ task.title }}</span>
             </li>
             {% endfor %}
         </ul>
         {% endif %}
+
     </div>
 </div>
 {% endblock %}
