@@ -203,6 +203,10 @@ h3 {
     ;
 }
 
+.dropdown-list {
+    list-style: none;
+}
+
 /* Custom Buttons Styles */
 
 .nav-btn {
