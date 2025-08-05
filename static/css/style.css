@@ -16,7 +16,7 @@
 header {
     position: fixed;
     width: 100%;
-    z-index: 1;
+    z-index: 2;
     border-bottom: 1px solid var(--highlight-color);
 }
 
@@ -36,7 +36,7 @@ main {
     flex: 1;
 }
 
-.footer {
+footer {
     width: 100%;
     text-align: center;
     padding: 1rem;
@@ -47,6 +47,10 @@ main {
     border-top: 1px solid var(--highlight-color);
     bottom: 0;
     z-index: 1;
+}
+
+div {
+    box-sizing: content-box;
 }
 
 h1,
@@ -62,6 +66,7 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 8rem;
 }
 
 
@@ -103,7 +108,7 @@ h3 {
 }
 
 #home-container {
-    width: 80%;
+    width: 60%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 3rem 1.5rem;
@@ -139,8 +144,8 @@ h3 {
 .app-description,
 .app-benefits {
     background-color: rgba(255, 255, 255, 0.326);
-    padding: 3rem 2rem;
-    margin: 3rem auto;
+    padding: 3rem 4rem;
+    margin-bottom: 3rem;
     width: 90%;
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
@@ -172,7 +177,6 @@ h3 {
     flex-direction: row;
     width: 80%;
     max-width: 1200px;
-    margin-top: 4rem;
     padding: 2rem 3rem;
     gap: 8rem;
     background-color: rgba(255, 255, 255, 0.395);
@@ -186,7 +190,7 @@ h3 {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     width: 70%;
     max-width: 1200px;
-    margin: 7rem auto;
+    margin: 0 auto;
     padding: 3rem 1.5rem;
     line-height: 1.6;
     text-align: center;
@@ -251,6 +255,7 @@ h3 {
 .dropdown {
     position: relative;
     display: inline-block;
+    z-index: 1;
 }
 
 .dropdown-toggle {
@@ -318,7 +323,6 @@ h3 {
     align-items: center;
     justify-content: center;
     padding: 4rem 2rem;
-    margin-top: 6rem;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 16px;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
