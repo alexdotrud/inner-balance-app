@@ -40,9 +40,9 @@
                     <i class="fa-solid fa-bars"></i>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="">Add</a></li>
-                    <li><a class="dropdown-item" href="">Edit</a></li>
-                    <li><a class="dropdown-item" href="">Delete</a></li>
+                    <li><a class="dropdown-item" href="#task-form">Add</a></li>
+                    <li><a class="dropdown-item" href="{% url 'tracker:task_edit' task.pk %}">Edit</a></li>
+                    <li><a class="dropdown-item" href="{% url 'tracker:task_delete' task.pk %}">Delete</a></li>
                 </ul>
             </div>
         </li>

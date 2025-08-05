@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.db import IntegrityError
 from django.contrib import messages
+from django.urls import reverse_lazy
 from .models import Task
 from .forms import TaskForm
 
@@ -41,3 +42,25 @@ class TaskListView(ListView):
     model = Task
     template_name = 'tracker/tasks.html'
 
+class TaskUpdateView(SuccessMessageMixin, UpdateView):
+    model = Task
+    fields = ['title', 'desription']
+    template_name = 'tracker/task_form.html'
+    success_message = 'Task updated!'
+    
+    #obly the author can edit his tasks
+    def get_queryset(self):
+        return Task.objects.filter(user=self.request.user)
+
+    def get_success_url(self):
+        return reverse_lazy('tracker:dashboard')
+    
+
+class TaskDeleteView(SuccesccMessageMixin, DeleteView):
+    model = Task
+    template_name = 'tracker/task_confirm_delete.html'
+    success_message = 'Task Deleted!'
+
+    #obly the author can edit his tasks
+    def get_queryset(self):
+        return Task.objects.filter(user=self.request.user)

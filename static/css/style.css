@@ -362,11 +362,6 @@ h3 {
     font-size: 1.1rem;
 }
 
-.login-container input,
-.login-container input,
-.login-container select,
-.login-container textarea {}
-
 .form-group,
 .form-check {
     padding: 1rem;
