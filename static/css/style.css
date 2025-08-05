@@ -198,6 +198,11 @@ h3 {
     align-items: center;
 }
 
+.error-msg {
+    color: rgb(189, 81, 81);
+    ;
+}
+
 /* Custom Buttons Styles */
 
 .nav-btn {
@@ -258,6 +263,16 @@ h3 {
     display: block;
     margin: 0 auto;
     padding: 0.9rem 2.5rem;
+}
+
+.logout-container .custom-btn {
+    width: 100%;
+    max-width: 280px;
+    display: block;
+}
+
+.logout-container .btn-danger {
+    background-color: rgb(189, 81, 81);
 }
 
 /* Custom Links Styles */
@@ -324,7 +339,16 @@ h3 {
 .signup-container input,
 .logout-container input,
 .signup-container select,
-.signup-container textarea,
+.signup-container textarea {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--highlight-color);
+    border-radius: 10px;
+    background-color: white;
+    font-size: 1.1rem;
+}
+
 .login-container input {
     padding: 1rem 1.2rem;
     margin-bottom: 1.5rem;

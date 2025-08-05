@@ -9,9 +9,19 @@
 
     <div class="form-container">
 
-        {% if task_count < 1 %}
+        {% if messages %}
+        <div class="message-block">
+            {% for message in messages %}
+            <div
+                class="{% if message.tags == 'success' %}success-msg{% elif message.tags == 'error' %}error-msg{% else %}info-msg{% endif %}">
+                {{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if task_count < 5 %}
         <p class="user-status">You are currently not logged in.</p>
-        <p>You need to create at least 1 task to begin your day.</p>
+        <p>You need to create at least 5 task to begin your jorney.</p>
 
         <form method="POST">
             {% csrf_token %}
@@ -19,7 +29,7 @@
             <button type="submit" class="custom-btn">Add Task</button>
         </form>
 
-        <p>You’ve created {{ task_count }} of 1 required task.</p>
+        <p>You’ve created {{ task_count }} of 5 tasks.</p>
         {% else %}
         <p class="user-status">Welcome, {{ user.username }}!</p>
         <h3>Your Daily Tasks:</h3>

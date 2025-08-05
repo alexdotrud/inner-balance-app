@@ -1,5 +1,8 @@
 from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
+from django.db import IntegrityError
+from django.contrib import messages
 from .models import Task
 from .forms import TaskForm
 
@@ -15,13 +18,23 @@ class DashboardView(LoginRequiredMixin, TemplateView):
             'task_count': tasks.count(),
             'task_form': TaskForm(),
         }
+    
     # If form submitted -redirects to dashboard.
     def post(self, request):
         form = TaskForm(request.POST)
         if form.is_valid():
             task = form.save(commit=False)
             task.user = request.user
-            task.save()
+            try:
+                task.save()
+                # Counts created tasks, after 5 shows a seccess message
+                task_count = Task.objects.filter(user=request.user).count()
+                if task_count == 5:
+                    messages.success(request, "You’ve created 5 daily tasks. Now you can start your tracking journey together with INNNER BALANCE")
+
+            except IntegrityError:
+                messages.error(request, "You already have a task with this title.")
+
         return redirect('tracker:dashboard')
 
 class TaskListView(ListView):
