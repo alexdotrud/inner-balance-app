@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.db import IntegrityError
 from django.contrib import messages
 from django.urls import reverse_lazy
@@ -43,6 +43,22 @@ class DashboardView(LoginRequiredMixin, TemplateView):
 class TaskListView(ListView):
     model = Task
     template_name = 'tracker/tasks.html'
+
+class TaskCreateView(SuccessMessageMixin, CreateView):
+    model = Task
+    fields = ['title', 'description']
+    template_name = 'tracker/task_form.html'
+    success_message = 'Task created!'
+
+  #set the user before saving
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('tracker:dashboard')
+
+
 
 class TaskUpdateView(SuccessMessageMixin, UpdateView):
     model = Task

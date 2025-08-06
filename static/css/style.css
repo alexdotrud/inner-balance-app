@@ -465,6 +465,10 @@ h3 {
     transition: all 0.3s ease;
 }
 
+.btn-start {
+    max-width: fit-content;
+}
+
 .custom-btn:hover {
     background-color: var(--highlight-color);
     color: var(--secondary-color);
