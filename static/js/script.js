@@ -59,3 +59,20 @@ $(document).ready(function () {
     });
 
 });
+
+$(document).ready(function () {
+    $('.toggle-arrow').on('click', function () {
+        const icon = $(this).find('i');
+        const taskList = $('#task-list');
+
+        // Opens Task List
+        taskList.slideToggle(200);
+
+        // Changing icons class
+        if (icon.hasClass('fa-chevron-down')) {
+            icon.removeClass('fa-chevron-down').addClass('fa-chevron-up');
+        } else {
+            icon.removeClass('fa-chevron-up').addClass('fa-chevron-down');
+        }
+    });
+});
