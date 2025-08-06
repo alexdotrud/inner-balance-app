@@ -21,29 +21,34 @@ function openTaskModal(id, title, description) {
     }
 }
 
-$(document).ready(function () {
-    // Count the procentage of checked checkboxes
+function Motivation() {
     var checkboxes = $('.list-group-item input[type="checkbox"]');
     var totalTasks = checkboxes.length;
     var completedTasks = checkboxes.filter(':checked').length;
     var percentage = (completedTasks / totalTasks) * 100;
 
-    var message = "😴 Time to start doing tasks!";
+    var message = "";
 
-    if (percentage === 100) {
+    if (totalTasks === 0) {
+        message = "📋 No tasks yet!";
+    } else if (percentage === 100) {
         message = "🎉 Amazing day! All tasks done!";
-    } else if (percentage >= 80 && percentage < 100) {
+    } else if (percentage >= 80) {
         message = "🔥 You're doing a good job!";
-    } else if (percentage >= 50 && percentage < 80) {
+    } else if (percentage >= 50) {
         message = "💪 You're on the right way!";
-    } else if (percentage >= 30 && percentage < 50) {
+    } else if (percentage >= 30) {
         message = "🏆 Push a bit harder!";
-    } else if (percentage >= 10 && percentage < 30) {
+    } else if (percentage >= 10) {
         message = "⚡ You can do better!";
     } else {
         message = "😴 You haven’t done anything yet... let's start!";
     }
 
-    // Show message
     $('#motivation-text').text(message);
+}
+
+
+$(".list-group-item input[type='checkbox']").on("change", function () {
+    Motivation();
 });
