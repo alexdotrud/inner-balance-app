@@ -77,6 +77,7 @@ class TaskUpdateView(SuccessMessageMixin, UpdateView):
 class TaskDeleteView(SuccessMessageMixin, DeleteView):
     model = Task
     template_name = 'tracker/task_confirm_delete.html'
+    success_url = reverse_lazy('tracker:dashboard')
     success_message = 'Task Deleted!'
 
     #obly the author can edit his tasks

@@ -5,13 +5,12 @@
 
 {% block content %}
 <div id="dashboard-container">
-    <h1 class="title">Dashboard</h1>
+    <div class="welcome-block">
+        <h1 class="title">Dashboard</h1>
+        <p class="welcome-user">Welcome back, {{ user.first_name|default:user.username }}!</p>
+    </div>
 
     <div class="form-container">
-
-        {% if task_count < 5 %}
-        <p class="user-status">You are logged in as {{ user.username }}.</p>
-        <p>You need to create at least 5 tasks to begin your journey.</p>
 
         {% if messages %}
         <div class="message-block">
@@ -24,6 +23,10 @@
         </div>
         {% endif %}
 
+        {% if task_count < 5 %}
+        <p class="user-status">You are logged in as {{ user.username }}.</p>
+        <p>You need to create at least 5 tasks to begin your journey.</p>
+
         <form method="POST">
             {% csrf_token %}
             {{ task_form.as_p }}
@@ -33,7 +36,6 @@
         <p>You’ve created {{ task_count }} of 5 tasks.</p>
 
         {% else %}
-        <p class="user-status">Welcome, {{ user.username }}!</p>
         <h3>Your Daily Tasks:</h3>
 
         <!-- Task List -->

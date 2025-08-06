@@ -165,11 +165,17 @@ h3 {
 .title {
     letter-spacing: 2px;
     text-transform: uppercase;
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin: 1rem;
 }
+
+.welcome-block {
+    margin: 1rem;
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+}
+
 
 #dashboard-container {
     display: flex;
