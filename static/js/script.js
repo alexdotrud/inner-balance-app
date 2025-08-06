@@ -10,8 +10,8 @@ function openTaskModal(id, title, description) {
     const deleteLink = document.getElementById('modalDeleteLink');
 
     // Creating a link
-    if (editLink) editLink.href = `/tracker/task/${taskId}/edit/`;
-    if (deleteLink) deleteLink.href = `/tracker/task/${taskId}/delete/`;
+    if (editLink) editLink.href = `/tracker/task/${id}/edit/`;
+    if (deleteLink) deleteLink.href = `/tracker/task/${id}/delete/`;
 
     // Shown a modal
     const modalElement = document.getElementById('taskModal');

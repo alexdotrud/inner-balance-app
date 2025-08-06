@@ -46,7 +46,7 @@ class TaskListView(ListView):
 
 class TaskUpdateView(SuccessMessageMixin, UpdateView):
     model = Task
-    fields = ['title', 'desription']
+    fields = ['title', 'description']
     template_name = 'tracker/task_form.html'
     success_message = 'Task updated!'
     

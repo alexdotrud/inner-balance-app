@@ -35,53 +35,52 @@
         {% else %}
         <p class="user-status">Welcome, {{ user.username }}!</p>
         <h3>Your Daily Tasks:</h3>
-        <div class="task-list-container">
-            <!-- Global Dropdown Menu -->
-            <div class="dropdown text-end mb-3">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                    <li><a class="dropdown-item" href="#">Delete</a></li>
-                </ul>
+
+        <!-- Task List -->
+        <ul class="list-group">
+            {% for task in tasks %}
+            <li class="list-group-item">
+                <input type="checkbox" {% if task.is_completed %}checked{% endif %}>
+                <a href="#"
+                    onclick="openTaskModal('{{ task.id }}', '{{ task.title|escapejs }}', '{{ task.description|escapejs }}')">
+                    {{ task.title }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Task Opening Modal -->
+<div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h3 id="modal-title" class="modal-title">Task Title</h3>
             </div>
 
-            <!-- Task List -->
-            <ul class="list-group">
-                {% for task in tasks %}
-                <li class="list-group-item">
-                    <a href="#"
-                        onclick="openTaskModal('{{ task.id }}', '{{ task.title|escapejs }}', '{{ task.description|escapejs }}')">
-                        {{ task.title }}
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-            {% endif %}
+            <div class="modal-body">
+                <p id="taskDescription">Task Description</p>
+            </div>
+
+            <div class="modal-footer justify-content-between">
+                <div class="modal-dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a id="modalEditLink" class="dropdown-item" href="#">Edit</a></li>
+                        <li><a id="modalDeleteLink" class="dropdown-item" href="#">Delete</a></li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-outline-secondary dropdown-button"
+                    data-bs-dismiss="modal">Close</button>
+            </div>
+
         </div>
     </div>
 </div>
 
-<!--Task Opening Modal-->
-<div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
-    <div class="modal-content">
-
-        <h3 id="modal-title"></h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
-        <p id="taskDescription"></p>
-        <div class="dropdown text-end mt-3">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a id="modalEditLink" class="dropdown-item" href="#">Edit</a></li>
-                <li><a id="modalDeleteLink" class="dropdown-item" href="#">Delete</a></li>
-            </ul>
-        </div>
-
-    </div>
-</div>
 {% endblock %}

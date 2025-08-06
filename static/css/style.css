@@ -193,7 +193,6 @@ h3 {
     padding: 3rem 1.5rem;
     line-height: 1.6;
     text-align: center;
-    position: relative;
 }
 
 .form-container form {
@@ -275,6 +274,18 @@ h3 {
     min-width: 150px;
 }
 
+.list-group-item a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--highlight-color-dark);
+}
+
+.list-group-item a:hover {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
 .dropdown-item {
     padding: 0.5rem 1.2rem;
     font-size: 1rem;
@@ -296,9 +307,8 @@ h3 {
 
 
 .list-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
+    margin: 1rem auto;
 }
 
 .error-msg {
@@ -306,11 +316,23 @@ h3 {
     ;
 }
 
-.dropdown-list {
-    list-style: none;
+/* Modal Styles */
+
+.modal-content {
+    position: relative;
 }
 
+.modal-dropdown {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+}
 
+.dropdown-button {
+    justify-content: flex-start !important;
+    padding-left: 1.5rem;
+}
 
 /* Login Page Styles */
 
