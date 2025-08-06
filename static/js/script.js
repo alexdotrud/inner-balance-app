@@ -1,6 +1,22 @@
 function openTaskModal(id, title, description) {
-    document.getElementById('taskModalLabel').textContent = title;
-    document.getElementById('taskModalDescription').textContent = description;
-    let modal = new bootstrap.Modal(document.getElementById('taskModal'));
-    modal.show();
+
+    const titleElement = document.getElementById('modal-title');
+    const descElement = document.getElementById('taskDescription');
+
+    if (titleElement) titleElement.textContent = title;
+    if (descElement) descElement.textContent = description;
+
+    const editLink = document.getElementById('modalEditLink');
+    const deleteLink = document.getElementById('modalDeleteLink');
+
+    // Creating a link
+    if (editLink) editLink.href = `/tracker/task/${taskId}/edit/`;
+    if (deleteLink) deleteLink.href = `/tracker/task/${taskId}/delete/`;
+
+    // Shown a modal
+    const modalElement = document.getElementById('taskModal');
+    if (modalElement) {
+        const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
+        modalInstance.show();
+    }
 }
