@@ -4,18 +4,18 @@
 {% block title %}Dashboard - INNER BALANCE{% endblock %}
 
 {% block content %}
-<div id="motivation">
-    <h2 id="motivation-text" class="motivation-text">Your daily progress:</h2>
-    <div class="progress-bar-container">
-        <div id="progress-bar-fill" class="progress-bar-fill"></div>
-    </div>
-</div>
-
 
 <div id="dashboard-container">
     <div class="welcome-block">
         <h1 class="title">Dashboard</h1>
         <p class="welcome-user">Welcome back, {{ user.first_name|default:user.username }}!</p>
+    </div>
+
+    <div id="motivation">
+        <h2 id="motivation-text" class="motivation-text">Your daily progress:</h2>
+        <div class="progress-bar-container">
+            <div id="progress-bar-fill" class="progress-bar-fill"></div>
+        </div>
     </div>
 
     <div class="form-container">
