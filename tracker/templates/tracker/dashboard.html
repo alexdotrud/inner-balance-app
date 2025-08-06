@@ -64,35 +64,25 @@
     </div>
 </div>
 
-<!-- Task Opening Modal-->
-<div id="taskModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
+<!--Task Opening Modal-->
+<div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+    <div class="modal-content">
 
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h3 class="modal-title">Task Title</h3>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title">
+            </h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
-                <!-- Dropdown in top-right corner -->
-                <div class="dropdown">
-                    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" id="modal-edit-link" href="#">Edit</a></li>
-                        <li><a class="dropdown-item" id="modal-delete-link" href="#">Delete</a></li>
-                    </ul>
-                </div>
+            <p id="taskDescription"></p>
+            <div class="dropdown text-end mt-3">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a id="modalEditLink" class="dropdown-item" href="#">Edit</a></li>
+                    <li><a id="modalDeleteLink" class="dropdown-item" href="#">Delete</a></li>
+                </ul>
             </div>
 
-            <!-- Modal Body -->
-            <div class="modal-body" id="taskModalDescription">
-                Description
-            </div>
-
-        </div>
     </div>
 </div>
-
 {% endblock %}
