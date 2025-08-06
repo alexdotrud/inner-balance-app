@@ -41,7 +41,7 @@
             {% for task in tasks %}
             <li class="list-group-item">
                 <input type="checkbox" {% if task.is_completed %}checked{% endif %}>
-                <a href="#"
+                <a href="#" class="task-title"
                     onclick="openTaskModal('{{ task.id }}', '{{ task.title|escapejs }}', '{{ task.description|escapejs }}')">
                     {{ task.title }}
                 </a>

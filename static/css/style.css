@@ -216,20 +216,21 @@ h3 {
 }
 
 /* Task List */
-.dropdown {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 10;
-}
 
+.task-title {
+    display: block;
+    max-width: 25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .list-group {
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     list-style: none;
     padding: 0;
     margin-top: 2rem;
+    text-align: right;
 }
 
 .list-group-item {
@@ -319,6 +320,9 @@ h3 {
 
 /* Modal Styles */
 
+.modal-title {
+    padding-right: 10rem;
+}
 
 .dropdown {
     position: relative;
