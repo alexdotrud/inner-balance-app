@@ -1,7 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from django.utils.timezone import now
 
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    last_reset = models.DateField(default=now)
+
+class DailyReset(models.Model):
+    last_reset = models.DateField(default=now)
 
 class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tasks")

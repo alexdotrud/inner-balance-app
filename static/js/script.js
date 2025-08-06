@@ -65,7 +65,7 @@ $(document).ready(function () {
         const icon = $(this).find('i');
         const taskList = $('#task-list');
 
-        // Opens Task List
+        // Opens and Closes Task List
         taskList.slideToggle(200);
 
         // Changing icons class

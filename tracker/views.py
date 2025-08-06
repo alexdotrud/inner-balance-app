@@ -2,12 +2,27 @@ from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect, render
+from django.utils import timezone
 from django.db import IntegrityError
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Task
+from .models import Task, DailyReset, UserProfile
 from .forms import TaskForm
+
+
+def reset_tasks_if_needed(user):
+    today = timezone.now().date()
+
+    # creating new database row with reset data
+    profile, created = UserProfile.objects.get_or_create(user=user)
+
+    if profile.last_reset != today:
+        Task.objects.filter(user=user).update(is_completed=False)
+        profile.last_reset = today
+        profile.save()
+
+
 
 
 class DashboardView(LoginRequiredMixin, TemplateView):
@@ -15,6 +30,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
     
     # Sending data to template
     def get_context_data(self, **kwargs):
+        reset_tasks_if_needed(self.request.user) 
         tasks = Task.objects.filter(user=self.request.user)
         return {
             'tasks': tasks,
@@ -23,6 +39,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         }
     
     # If form submitted -redirects to dashboard.
+    
     def post(self, request):
         form = TaskForm(request.POST)
         if form.is_valid():
