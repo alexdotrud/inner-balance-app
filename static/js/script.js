@@ -46,7 +46,7 @@ function Motivation() {
     }
 
     $('#motivation-text').text(message);
-    $('#progress-bar-fill').css('width', percentage + '%');
+    $('.progress-bar-fill').css('width', percentage + '%');
     $('#progress-percentage').text(Math.round(percentage) + '%');
 }
 

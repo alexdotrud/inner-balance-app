@@ -11,13 +11,13 @@
         <p class="welcome-user">Welcome back, {{ user.first_name|default:user.username }}!</p>
     </div>
 
-    <div id="motivation">
+    <section id="motivation">
         <h2 id="motivation-text" class="motivation-text">Your daily progress</h2>
         <p id="progress-percentage">0%</p>
         <div class="progress-bar">
             <div class="progress-bar-fill"></div>
         </div>
-    </div>
+    </section>
 
     <div class="form-container">
 
@@ -48,23 +48,30 @@
         <h3>Your Daily Tasks:</h3>
 
         <!-- Task List -->
-        <ul class="list-group">
-            {% for task in tasks %}
-            <li class="list-group-item">
-                <input type="checkbox" class="custom-checkbox" {% if task.is_completed %}checked{% endif %}>
-                <a href="#" class="task-title"
-                    onclick="openTaskModal('{{ task.id }}', '{{ task.title|escapejs }}', '{{ task.description|escapejs }}')">
-                    {{ task.title }}
-                </a>
-            </li>
-            {% endfor %}
-            <div class="add">
-                <a href="{% url 'tracker:task_create' %}" class="btn btn-add custom-btn">+ Add</a>
-            </div>
-        </ul>
-        {% endif %}
+        <section id="task-list">
+            <ul class="list-group">
+                {% for task in tasks %}
+                <li class="list-group-item">
+                    <input type="checkbox" class="custom-checkbox" {% if task.is_completed %}checked{% endif %}>
+                    <a href="#" class="task-title"
+                        onclick="openTaskModal('{{ task.id }}', '{{ task.title|escapejs }}', '{{ task.description|escapejs }}')">
+                        {{ task.title }}
+                    </a>
+                </li>
+                {% endfor %}
+                <div class="add">
+                    <a href="{% url 'tracker:task_create' %}" class="btn btn-add custom-btn">+ Add</a>
+                </div>
+            </ul>
+            {% endif %}
     </div>
 </div>
+</section>
+
+<section id="water"></section>
+
+<section id="sleep"></section>
+
 
 <!-- Task Opening Modal -->
 <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
