@@ -47,7 +47,9 @@
                 </a>
             </li>
             {% endfor %}
-            <a href="{% url 'tracker:task_create' %}" class="custom-btn">+ Add New Task</a>
+            <div class="add">
+                <a href="{% url 'tracker:task_create' %}" class="btn btn-add custom-btn">+ Add</a>
+            </div>
         </ul>
         {% endif %}
     </div>
@@ -66,9 +68,9 @@
                 <p id="taskDescription">Task Description</p>
             </div>
 
-            <div class="modal-footer justify-content-between">
+            <div class="modal-choices">
                 <div class="modal-dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         <i class="fa-solid fa-bars"></i>
                     </button>
                     <ul class="dropdown-menu">
@@ -76,7 +78,7 @@
                         <li><a id="modalDeleteLink" class="dropdown-item" href="#">Delete</a></li>
                     </ul>
                 </div>
-                <button type="button" class="btn btn-outline-secondary dropdown-button"
+                <button type="button" class="btn btn-outline-secondary custom-btn modal-closing"
                     data-bs-dismiss="modal">Close</button>
             </div>
 

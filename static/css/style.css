@@ -245,31 +245,6 @@ h3 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-    z-index: 1;
-}
-
-.dropdown-toggle {
-    background-color: var(--highlight-color);
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-.dropdown-menu {
-    background-color: white;
-    border: 1px solid var(--highlight-color);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 0.5rem 0;
-    min-width: 150px;
-}
-
 .list-group-item a {
     font-size: 1.5rem;
     text-decoration: none;
@@ -282,16 +257,8 @@ h3 {
     color: var(--secondary-color);
 }
 
-.dropdown-item {
-    padding: 0.5rem 1.2rem;
-    font-size: 1rem;
-    color: var(--primary-color);
-    text-decoration: none;
-}
-
-.dropdown-item:hover {
-    background-color: var(--highlight-color);
-    color: white;
+.add {
+    text-align: right;
 }
 
 .list-group-item input[type="checkbox"] {
@@ -313,6 +280,7 @@ h3 {
 }
 
 /* Delete/Edit Pages Styles */
+
 .delete-container,
 .create-form-container {
     display: flex;
@@ -351,6 +319,45 @@ h3 {
 
 /* Modal Styles */
 
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+
+.dropdown-toggle {
+    background-color: var(--highlight-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.dropdown-toggle:hover {
+    border-radius: 10px !important;
+    background-color: var(--secondary-color);
+}
+
+.dropdown-menu {
+    background-color: white;
+    border: 1px solid var(--highlight-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 0;
+    min-width: 150px;
+}
+
+.dropdown-item {
+    font-family: var(--primary-font);
+    color: var(--primary-color);
+}
+
+.dropdown-item:hover {
+    background-color: var(--highlight-color);
+}
+
 .modal-content {
     position: relative;
 }
@@ -361,12 +368,6 @@ h3 {
     right: 1rem;
     z-index: 10;
 }
-
-.dropdown-button {
-    justify-content: flex-start !important;
-    padding-left: 1.5rem;
-}
-
 
 /* Login Page Styles */
 
@@ -469,6 +470,11 @@ h3 {
     max-width: fit-content;
 }
 
+.btn-add {
+    margin-top: 1rem;
+    max-width: fit-content;
+}
+
 .custom-btn:hover {
     background-color: var(--highlight-color);
     color: var(--secondary-color);
@@ -506,6 +512,12 @@ h3 {
 
 .btn-danger {
     background-color: rgb(189, 81, 81);
+}
+
+.modal-closing {
+    max-width: fit-content;
+    margin-left: 1rem;
+    font-size: 1rem;
 }
 
 /* Custom Links Styles */
