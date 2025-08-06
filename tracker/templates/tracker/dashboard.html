@@ -52,8 +52,10 @@
             <ul class="list-group">
                 {% for task in tasks %}
                 <li class="list-group-item">
-                    <input type="checkbox" {% if task.is_completed %}checked{% endif %}>
-                    <span>{{ task.title }}</span>
+                    <a href="#"
+                        onclick="openTaskModal('{{ task.id }}', '{{ task.title|escapejs }}', '{{ task.description|escapejs }}')">
+                        {{ task.title }}
+                    </a>
                 </li>
                 {% endfor %}
             </ul>
@@ -61,4 +63,36 @@
         </div>
     </div>
 </div>
+
+<!-- Task Opening Modal-->
+<div id="taskModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h3 class="modal-title">Task Title</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                <!-- Dropdown in top-right corner -->
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" id="modal-edit-link" href="#">Edit</a></li>
+                        <li><a class="dropdown-item" id="modal-delete-link" href="#">Delete</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body" id="taskModalDescription">
+                Description
+            </div>
+
+        </div>
+    </div>
+</div>
+
 {% endblock %}
