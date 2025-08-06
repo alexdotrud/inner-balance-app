@@ -45,32 +45,58 @@
         <p>You’ve created {{ task_count }} of 5 tasks.</p>
 
         {% else %}
-        <h3>Your Daily Tasks:</h3>
 
         <!-- Task List -->
-        <section id="task-list">
-            <ul class="list-group">
-                {% for task in tasks %}
-                <li class="list-group-item">
-                    <input type="checkbox" class="custom-checkbox" {% if task.is_completed %}checked{% endif %}>
-                    <a href="#" class="task-title"
-                        onclick="openTaskModal('{{ task.id }}', '{{ task.title|escapejs }}', '{{ task.description|escapejs }}')">
-                        {{ task.title }}
-                    </a>
-                </li>
-                {% endfor %}
-                <div class="add">
-                    <a href="{% url 'tracker:task_create' %}" class="btn btn-add custom-btn">+ Add</a>
+        <section id="tracking-section">
+            <h3>📝 Daily Tasks</h3>
+            <span class="toggle-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            <div id="task-list hidden-list">
+                <ul class="list-group">
+                    {% for task in tasks %}
+                    <li class="list-group-item">
+                        <input type="checkbox" class="custom-checkbox" {% if task.is_completed %}checked{% endif %}>
+                        <a href="#" class="task-title"
+                            onclick="openTaskModal('{{ task.id }}', '{{ task.title|escapejs }}', '{{ task.description|escapejs }}')">
+                            {{ task.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                    <div class="add">
+                        <a href="{% url 'tracker:task_create' %}" class="btn btn-add custom-btn">+ Add</a>
+                    </div>
+                </ul>
+                {% endif %}
+                <div id="water">
+                    <h3>💧 Water</h3>
+                    <div id="progress-diagramm">
+
+                    </div>
+                    <div class="counter">
+                        <span><i class="fa-solid fa-glass-water custom-icon"></i></span>
+                        <button onclick="updateWater(-1)"><i class="fa-solid fa-minus custom-icon"></i></button>
+                        <span id="water-count">0</span> <i class="fa-solid fa-slash custom-icon"></i> <span
+                            id="water-goal">8</span>
+                        <button onclick="updateWater(1)"><i class="fa-solid fa-plus"></i></button>
+                    </div>
                 </div>
-            </ul>
-            {% endif %}
+
+                <div id="sleep">
+                    <h3>💤 Water</h3>
+                    <div id="progress-diagramm">
+
+                    </div>
+                    <div class="counter">
+                        <span><i class="fa-solid fa-bed"></i></span>
+                        <button onclick="updateSleep(-1)"><i class="fa-solid fa-minus custom-icon"></i></button>
+                        <span id="sleep-count">0</span> <i class="fa-solid fa-slash custom-icon"></i> <span
+                            id="sleep-goal">8</span>
+                        <button onclick="updateSleep(1)"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </div>
-</section>
-
-<section id="water"></section>
-
-<section id="sleep"></section>
 
 
 <!-- Task Opening Modal -->
