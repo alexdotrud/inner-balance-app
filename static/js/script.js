@@ -48,7 +48,11 @@ function Motivation() {
     $('#motivation-text').text(message);
 }
 
+$(document).ready(function () {
+    Motivation(); // Run on page load
 
-$(".list-group-item input[type='checkbox']").on("change", function () {
-    Motivation();
+    // Re-run every time checkbox is clicked
+    $(".list-group-item input[type='checkbox']").on("change", function () {
+        Motivation();
+    });
 });
