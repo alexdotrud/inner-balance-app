@@ -5,12 +5,13 @@
 {% block content %}
 <div class="create-form-container">
     <h2>{% if object %}Edit Task{% else %}Add Task{% endif %}</h2>
-
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">{% if object %}Update{% else %}Create{% endif %}</button>
-        <a href="{% url 'tracker:dashboard' %}" class="btn btn-secondary">Cancel</a>
+        <div class="create-choices"></div>
+        <button type="submit" class="btn custom-btn">{% if object %}Update{% else %}Create{% endif %}</button>
+        <a href="{% url 'tracker:dashboard' %}" class="btn custom-btn">Cancel</a>
     </form>
+</div>
 </div>
 {% endblock %}
