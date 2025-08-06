@@ -46,13 +46,16 @@ function Motivation() {
     }
 
     $('#motivation-text').text(message);
+    $('#progress-bar-fill').css('width', percentage + '%');
+    $('#progress-percentage').text(Math.round(percentage) + '%');
 }
 
 $(document).ready(function () {
-    Motivation(); // Run on page load
+    Motivation();
 
     // Re-run every time checkbox is clicked
-    $(".list-group-item input[type='checkbox']").on("change", function () {
+    $(".custom-checkbox").on("change", function () {
         Motivation();
     });
+
 });
