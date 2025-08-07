@@ -51,35 +51,29 @@ function Motivation() {
 }
 
 function waterSleepMotivation() {
-    var goalWater = ;
-    var waterIntake = ;
-    var sleepGoal = ;
-    var sleepHours = ;
-    successWater = ;
-    successSleep = ;
+    const waterGoal = parseInt(document.getElementById("water-goal").textContent);
+    const waterCount = parseInt(document.getElementById("water-count").textContent);
+    const waterPercentage = Math.min((waterCount / waterGoal) * 100, 100);
 
-    var message = " ";
+    const sleepGoal = parseFloat(document.getElementById("sleep-input"));
+    const sleepCount = parseFloat(document.getElementById("sleep-input").getAttribute("max"));
+    const sleepPercentage = Math.min((sleepCount / sleepGoal) * 100, 100);
 
-    if (totalTasks === 0) {
-        message = "📋 No tasks yet!";
-    } else if (percentage === 100) {
-        message = "🎉 Amazing day! All tasks done!";
-    } else if (percentage >= 80) {
-        message = "🔥 You're doing a good job!";
-    } else if (percentage >= 50) {
-        message = "💪 You're on the right way!";
-    } else if (percentage >= 30) {
-        message = "🏆 Push a bit harder!";
-    } else if (percentage >= 10) {
-        message = "⚡ You can do better!";
-    } else {
-        message = "😴 You haven’t done anything yet... let's start!";
+    function getMessage(percent) {
+        if (percent === 100) return "🎉 Perfect!";
+        if (percent >= 80) return "🔥 Great job!";
+        if (percent >= 50) return "💪 Keep going!";
+        if (percent >= 30) return "🏃 Push harder!";
+        if (percent >= 10) return "🌀 Just starting...";
+        return "😴 Not tracked yet.";
     }
 
-    $('#sleep-motivation').text(message);
-    $('#water-motivation').text(message);
-    $('.progress-bar-fill').css('width', percentage + '%');
-    $('#progress-percentage').text(Math.round(percentage) + '%');
+    $("#water-motivation").text(getMessage(waterPercentage));
+    $("#sleep-motivation").text(getMessage(sleepPercentage));
+
+    $("#water .progress-bar-fill").css("width", waterPercentage + "%");
+    $("#sleep .progress-bar-fill").css("width", sleepPercentage + "%");
+
 }
 
 $(document).ready(function () {
