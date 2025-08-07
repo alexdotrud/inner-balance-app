@@ -24,6 +24,10 @@ def reset_tasks_if_needed(user):
         profile.sleep_hours = 0.0
         profile.save()
 
+    return profile
+    
+
+
 
 def update_tasks(request):
     if request.method == 'POST':
@@ -42,12 +46,16 @@ class DashboardView(LoginRequiredMixin, TemplateView):
     
     # Sending data to template
     def get_context_data(self, **kwargs):
-        reset_tasks_if_needed(self.request.user) 
+        profile = reset_tasks_if_needed(self.request.user)
         tasks = Task.objects.filter(user=self.request.user)
         return {
             'tasks': tasks,
             'task_count': tasks.count(),
             'task_form': TaskForm(),
+            'water_count': profile.water_intake,
+            'water_goal': profile.water_goal,
+            'sleep_count': profile.sleep_hours,
+            'sleep_goal': profile.sleep_goal,
         }
     
     # If form submitted -redirects to dashboard.

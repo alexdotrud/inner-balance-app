@@ -9,6 +9,8 @@ class UserProfile(models.Model):
     last_reset = models.DateField(default=now)
     water_intake = models.IntegerField(default=0)
     sleep_hours = models.FloatField(default=0.0)
+    water_goal = models.IntegerField(default=8)
+    sleep_goal = models.FloatField(default=8.0)
 
 class DailyReset(models.Model):
     last_reset = models.DateField(default=now)

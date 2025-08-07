@@ -76,3 +76,17 @@ $(document).ready(function () {
         }
     });
 });
+
+function updateWater(change) {
+    const countElem = document.getElementById('water-count');
+    const inputElem = document.getElementById('water-input');
+
+    let count = parseInt(countElem.textContent) || 0;
+    count += change;
+
+    // Prevent negative count
+    if (count < 0) count = 0;
+
+    countElem.textContent = count;
+    inputElem.value = count;
+}
