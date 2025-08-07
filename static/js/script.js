@@ -63,7 +63,7 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('.toggle-arrow').on('click', function () {
         const icon = $(this).find('i');
-        const taskList = $('#task-list');
+        const taskList = $('.list-group');
 
         // Opens and Closes Task List
         taskList.slideToggle(200);
