@@ -46,21 +46,23 @@
 
         <!-- Task List -->
         <section id="tracking-section">
-            <h3>📝 Daily Tasks</h3>
-            <span class="toggle-arrow"><i class="fa-solid fa-chevron-down"></i></span>
-            <form method="POST" action="{% url 'tracker:update_tasks' %}" id="task-form">
-                {% csrf_token %}
-                <ul class="list-group">
-                    {% for task in tasks %}
-                    <li class="list-group-item">
-                        <input type="checkbox" name="task_{{ task.id }}" class="custom-checkbox"
-                            onchange="document.getElementById('task-form').submit();"
-                            {% if task.is_completed %}checked{% endif %}>
-                        <span class="task-title">{{ task.title }}</span>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </form>
+            <div id="task">
+                <h3>📝 Daily Tasks</h3>
+                <span class="toggle-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                <form method="POST" action="{% url 'tracker:update_tasks' %}" id="task-form">
+                    {% csrf_token %}
+                    <ul class="list-group">
+                        {% for task in tasks %}
+                        <li class="list-group-item">
+                            <input type="checkbox" name="task_{{ task.id }}" class="custom-checkbox"
+                                onchange="document.getElementById('task-form').submit();"
+                                {% if task.is_completed %}checked{% endif %}>
+                            <span class="task-title">{{ task.title }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </form>
+            </div>
 
             <form method="POST" action="{% url 'tracker:update_water_sleep' %}" id="water-sleep-form">
                 {% csrf_token %}

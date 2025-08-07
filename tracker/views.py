@@ -70,7 +70,7 @@ def update_water_sleep(request):
         return redirect('tracker:dashboard')
     
 
-    def reset_tasks_if_needed(user):
+def reset_tasks_if_needed(user):
     today = timezone.now().date()
 
     # creating new database row with reset data
@@ -82,7 +82,7 @@ def update_water_sleep(request):
         profile.water_intake = 0
         profile.sleep_hours = 0.0
         profile.save()
-
+        
     return profile
     
 
