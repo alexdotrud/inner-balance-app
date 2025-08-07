@@ -12,6 +12,14 @@
         <p>{% blocktrans %}Welcome! To manage your tasks and continue your journey to inner balance, please
             sign in. If you don’t have an account yet, <a class="custom-link" href="{{ signup_url }}">sign up
                 here</a>.{% endblocktrans %}</p>
+        {% if form.non_field_errors %}
+
+        <div class="error-message">
+            {% for error in form.non_field_errors %}
+            {{ error }}
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
     <div class="login-form">
         <form method="POST" action="{% url 'account_login' %}" class="login-form">

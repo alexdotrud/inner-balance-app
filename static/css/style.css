@@ -584,9 +584,9 @@ h3 {
 .error-message {
     color: red;
     font-size: 0.9rem;
-    margin-top: 4px;
+    margin: 2rem;
     list-style: none;
-    padding-left: 0;
+    text-align: center;
 }
 
 /* Custom Buttons Styles */
