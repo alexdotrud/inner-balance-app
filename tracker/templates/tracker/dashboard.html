@@ -56,7 +56,7 @@
                         <input type="checkbox" name="task_{{ task.id }}" class="custom-checkbox"
                             onchange="document.getElementById('task-form').submit();"
                             {% if task.is_completed %}checked{% endif %}>
-                        <a href="#" class="task-title">{{ task.title }}</a>
+                        <span class="task-title">{{ task.title }}</span>
                     </li>
                     {% endfor %}
                 </ul>

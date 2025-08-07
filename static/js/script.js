@@ -76,3 +76,16 @@ $(document).ready(function () {
         }
     });
 });
+
+// Save scroll position before checkbox form submits
+document.getElementById('task-form').addEventListener('submit', () => {
+    sessionStorage.setItem('scrollPosition', window.scrollY);
+});
+
+// When the page loads, go back to that scroll position
+window.addEventListener('load', () => {
+    const scroll = sessionStorage.getItem('scrollPosition');
+    if (scroll) {
+        window.scrollTo(0, scroll);
+    }
+});

@@ -23,6 +23,16 @@ def reset_tasks_if_needed(user):
         profile.save()
 
 
+def update_tasks(request):
+    if request.method == 'POST':
+        tasks = Task.objects.filter(user=request.user)
+        checked_ids = {int(key.split('_')[1]) for key in request.POST if key.startswith('task_')}
+
+        for task in tasks:
+            task.is_completed = task.id in checked_ids
+            task.save()
+
+    return redirect('tracker:dashboard')
 
 
 class DashboardView(LoginRequiredMixin, TemplateView):
