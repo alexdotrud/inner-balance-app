@@ -20,6 +20,8 @@ def reset_tasks_if_needed(user):
     if profile.last_reset != today:
         Task.objects.filter(user=user).update(is_completed=False)
         profile.last_reset = today
+        profile.water_intake = 0
+        profile.sleep_hours = 0.0
         profile.save()
 
 
