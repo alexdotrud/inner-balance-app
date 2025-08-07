@@ -17,7 +17,7 @@ header {
     position: fixed;
     width: 100%;
     z-index: 2;
-    border-bottom: 1px solid rgba(89, 92, 85, 0.63);
+    border-bottom: 1px solid rgba(91, 94, 91, 0.612);
     color: var(--primary-color);
 }
 
@@ -43,9 +43,9 @@ footer {
     padding: 1rem;
     font-size: 1.1rem;
     background-color: var(--highlight-color);
+    border-top: 1px solid rgba(83, 87, 83, 0.58);
     color: var(--primary-color);
     margin-top: 3rem;
-    border-top: 1px solid var(--highlight-color);
     bottom: 0;
     z-index: 1;
 }
@@ -73,6 +73,14 @@ h3 {
 /* Navbar Styles */
 .navbar {
     background-color: var(--highlight-color);
+}
+
+.navbar-brand {
+    color: var(--primary-color)
+}
+
+.nav-link {
+    color: var(--primary-color);
 }
 
 
