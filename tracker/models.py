@@ -7,6 +7,8 @@ from django.utils.timezone import now
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     last_reset = models.DateField(default=now)
+    water_intake = models.IntegerField(default=0)
+    sleep_hours = models.FloatField(default=0.0)
 
 class DailyReset(models.Model):
     last_reset = models.DateField(default=now)
