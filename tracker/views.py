@@ -28,7 +28,6 @@ def reset_tasks_if_needed(user):
     
 
 
-
 def update_tasks(request):
     if request.method == 'POST':
         tasks = Task.objects.filter(user=request.user)
@@ -76,6 +75,19 @@ class DashboardView(LoginRequiredMixin, TemplateView):
                 messages.error(request, "You already have a task with this title.")
 
         return redirect('tracker:dashboard')
+    
+def update_water_sleep(request):
+    profile, created = UserProfile.objects.get_or_create(user=request.user)
+
+    # Get values from form
+    water = int(request.POST.get('water', profile.water_intake or 0))
+    sleep = float(request.POST.get('sleep', profile.sleep_hours or 0.0))
+
+    profile.water_intake = water
+    profile.sleep_hours = sleep
+    profile.save()
+
+    return redirect('tracker:dashboard')
 
 class TaskListView(ListView):
     model = Task
