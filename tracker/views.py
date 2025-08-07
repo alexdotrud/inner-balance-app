@@ -11,35 +11,6 @@ from .models import Task, DailyReset, UserProfile
 from .forms import TaskForm
 
 
-def reset_tasks_if_needed(user):
-    today = timezone.now().date()
-
-    # creating new database row with reset data
-    profile, created = UserProfile.objects.get_or_create(user=user)
-
-    if profile.last_reset != today:
-        Task.objects.filter(user=user).update(is_completed=False)
-        profile.last_reset = today
-        profile.water_intake = 0
-        profile.sleep_hours = 0.0
-        profile.save()
-
-    return profile
-    
-
-
-def update_tasks(request):
-    if request.method == 'POST':
-        tasks = Task.objects.filter(user=request.user)
-        checked_ids = {int(key.split('_')[1]) for key in request.POST if key.startswith('task_')}
-
-        for task in tasks:
-            task.is_completed = task.id in checked_ids
-            task.save()
-
-    return redirect('tracker:dashboard')
-
-
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'tracker/dashboard.html'
     
@@ -77,21 +48,61 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         return redirect('tracker:dashboard')
     
 def update_water_sleep(request):
-    profile, created = UserProfile.objects.get_or_create(user=request.user)
+    if request.method == 'POST':
+        profile, _ = UserProfile.objects.get_or_create(user=request.user)
+        
+        water_value = request.POST.get('water')
+        if water_value and water_value.strip():
+            try:
+                profile.water_intake = int(water_value)
+            except ValueError:
+                pass
 
-    # Get values from form
-    water = int(request.POST.get('water', profile.water_intake or 0))
-    sleep = float(request.POST.get('sleep', profile.sleep_hours or 0.0))
+        sleep_value = request.POST.get('sleep')
+        if sleep_value and sleep_value.strip():
+            try:
+                sleep_hours = float(sleep_value)
+                profile.sleep_hours = min(sleep_hours, 20.0)  # Cap at 20
+            except ValueError:
+                pass 
 
-    profile.water_intake = water
-    profile.sleep_hours = sleep
-    profile.save()
+        profile.save()
+        return redirect('tracker:dashboard')
+    
+
+    def reset_tasks_if_needed(user):
+    today = timezone.now().date()
+
+    # creating new database row with reset data
+    profile, created = UserProfile.objects.get_or_create(user=user)
+
+    if profile.last_reset != today:
+        Task.objects.filter(user=user).update(is_completed=False)
+        profile.last_reset = today
+        profile.water_intake = 0
+        profile.sleep_hours = 0.0
+        profile.save()
+
+    return profile
+    
+
+
+def update_tasks(request):
+    if request.method == 'POST':
+        tasks = Task.objects.filter(user=request.user)
+        checked_ids = {int(key.split('_')[1]) for key in request.POST if key.startswith('task_')}
+
+        for task in tasks:
+            task.is_completed = task.id in checked_ids
+            task.save()
 
     return redirect('tracker:dashboard')
+
 
 class TaskListView(ListView):
     model = Task
     template_name = 'tracker/tasks.html'
+
 
 class TaskCreateView(SuccessMessageMixin, CreateView):
     model = Task
