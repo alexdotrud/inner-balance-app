@@ -575,8 +575,18 @@ h3 {
 }
 
 .form-group,
-.form-check {
+.form-check,
+.signup-form {
     padding: 1rem;
+    text-align: center;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 4px;
+    list-style: none;
+    padding-left: 0;
 }
 
 /* Custom Buttons Styles */
