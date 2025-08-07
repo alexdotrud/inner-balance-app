@@ -47,6 +47,17 @@ class DashboardView(LoginRequiredMixin, TemplateView):
 
         return redirect('tracker:dashboard')
     
+def populate_profile_on_signup(request, user, **kwargs):
+    water_goal = request.POST.get("water_goal")
+    sleep_goal = request.POST.get("sleep_goal")
+
+    profile, _ = UserProfile.objects.get_or_create(user=user)
+    if water_goal:
+        profile.water_goal = int(water_goal)
+    if sleep_goal:
+        profile.sleep_goal = float(sleep_goal)
+    profile.save()
+
 def update_water_sleep(request):
     if request.method == 'POST':
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
