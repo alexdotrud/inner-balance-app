@@ -50,6 +50,38 @@ function Motivation() {
     $('#progress-percentage').text(Math.round(percentage) + '%');
 }
 
+function waterSleepMotivation() {
+    var goalWater = ;
+    var waterIntake = ;
+    var sleepGoal = ;
+    var sleepHours = ;
+    successWater = ;
+    successSleep = ;
+
+    var message = " ";
+
+    if (totalTasks === 0) {
+        message = "📋 No tasks yet!";
+    } else if (percentage === 100) {
+        message = "🎉 Amazing day! All tasks done!";
+    } else if (percentage >= 80) {
+        message = "🔥 You're doing a good job!";
+    } else if (percentage >= 50) {
+        message = "💪 You're on the right way!";
+    } else if (percentage >= 30) {
+        message = "🏆 Push a bit harder!";
+    } else if (percentage >= 10) {
+        message = "⚡ You can do better!";
+    } else {
+        message = "😴 You haven’t done anything yet... let's start!";
+    }
+
+    $('#sleep-motivation').text(message);
+    $('#water-motivation').text(message);
+    $('.progress-bar-fill').css('width', percentage + '%');
+    $('#progress-percentage').text(Math.round(percentage) + '%');
+}
+
 $(document).ready(function () {
     Motivation();
 

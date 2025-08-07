@@ -326,6 +326,7 @@ h3 {
     align-items: center;
     justify-content: space-between;
     padding: 1rem 1.2rem;
+    color: var(--primary-color);
     border-bottom: 1px solid var(--highlight-color);
     background-color: white;
     border-radius: 10px;
@@ -336,13 +337,12 @@ h3 {
 .list-group-item a {
     font-size: 1.5rem;
     text-decoration: none;
-    color: var(--highlight-color-dark);
 }
 
 .list-group-item a:hover {
     font-size: 1.5rem;
     text-decoration: none;
-    color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 .add {
@@ -350,8 +350,8 @@ h3 {
 }
 
 .custom-checkbox {
-    accent-color: #537462;
-    width: 25px;
+    accent-color: #5bd39386;
+    min-width: 25px;
     height: 25px;
     margin-right: 10px;
 }
@@ -372,14 +372,24 @@ h3 {
 }
 
 /* Water/Sleep Styles */
-#water,
-#sleep {
+#water-sleep {
     width: 400px;
     background: rgba(255, 255, 255, 0.479);
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
     box-sizing: border-box;
+}
+
+#water {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #5bd39386;
+
+}
+
+#sleep input {
+    width: 5rem;
 }
 
 /* Delete/Edit Pages Styles */
