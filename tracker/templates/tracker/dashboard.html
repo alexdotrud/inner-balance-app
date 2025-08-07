@@ -57,7 +57,11 @@
                             <input type="checkbox" name="task_{{ task.id }}" class="custom-checkbox"
                                 onchange="document.getElementById('task-form').submit();"
                                 {% if task.is_completed %}checked{% endif %}>
-                            <span class="task-title">{{ task.title }}</span>
+                            <span class="task-title"
+                                onclick="openTaskModal('{{ task.id }}','{{ task.title|escapejs }}', '{{ task.description|escapejs }}')"
+                                style="cursor: pointer;">
+                                {{ task.title }}
+                            </span>
                         </li>
                         {% endfor %}
                     </ul>
