@@ -27,11 +27,6 @@
                 {{ form.password }}
             </div>
 
-            <div class="form-check">
-                {{ form.remember }}
-                {{ form.remember.label_tag }}
-            </div>
-
             {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
             {% endif %}

@@ -51,13 +51,12 @@ function Motivation() {
 }
 
 function waterSleepMotivation() {
-    const waterGoal = parseInt(document.getElementById("water-goal").textContent);
-    const waterCount = parseInt(document.getElementById("water-count").textContent);
+    const waterGoal = parseInt($("#water-goal").text());
+    const waterCount = parseInt($("#water-count").text());
     const waterPercentage = Math.min((waterCount / waterGoal) * 100, 100);
 
-    const sleepInput = document.getElementById("sleep-input");
-    const sleepGoal = parseFloat(sleepInput.getAttribute("max"));
-    const sleepCount = parseFloat(sleepInput.value);
+    const sleepGoal = parseFloat($("#sleep-input").attr("max")) || 8;
+    const sleepCount = parseFloat($("#sleep-input").val()) || 0;
     const sleepPercentage = Math.min((sleepCount / sleepGoal) * 100, 100);
 
     function getMessage(percent) {
@@ -87,8 +86,7 @@ $(document).ready(function () {
 
 });
 
-$("#water-sleep-form").on("submit", function (e) {
-    e.preventDefault(); // Stop form from refreshing
+$(document).ready(function () {
     waterSleepMotivation();
 });
 
