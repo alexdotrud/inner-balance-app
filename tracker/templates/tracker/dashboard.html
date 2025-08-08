@@ -12,84 +12,87 @@
         <p class="welcome-user">Welcome back, {{ user.first_name|default:user.username }}!</p>
     </div>
 
+    <!--Task Card-->
+    <div class="card ttacker-card"></div>
+    <h3>📝 Daily Tasks</h3>
+    <div id="motivation">
+        <h2 id="motivation-text" class="motivation-text">Your daily progress</h2>
+        <p id="progress-percentage">0%</p>
+        <div class="progress-bar">
+            <div class="progress-bar-fill"></div>
+        </div>
+    </div>
 
-    <div class="form-container">
+    <!-- Task List -->
+    <div class="card tracker-card">
+        <h3>📝 Daily Tasks</h3>
+        <p id="motivation-text" class="motivation-text">Your daily progress</p>
+        <p id="progress-percentage">0%</p>
+        <div class="progress-bar">
+            <div class="progress-bar-fill"></div>
+        </div>
 
-        <section id="motivation">
-            <h2 id="motivation-text" class="motivation-text">Your daily progress</h2>
-            <p id="progress-percentage">0%</p>
-            <div class="progress-bar">
-                <div class="progress-bar-fill"></div>
+        <form method="POST" action="{% url 'tracker:update_tasks' %}" id="task-form">
+            {% csrf_token %}
+            <ul class="list-group">
+                {% for task in tasks %}
+                <li class="list-group-item">
+                    <input type="checkbox" name="task_{{ task.id }}" class="custom-checkbox"
+                        onchange="document.getElementById('task-form').submit();"
+                        {% if task.is_completed %}checked{% endif %}>
+                    <span class="task-title"
+                        onclick="openTaskModal('{{ task.id }}','{{ task.title|escapejs }}', '{{ task.description|escapejs }}')"
+                        style="cursor: pointer;">
+                        {{ task.title }}
+                    </span>
+                </li>
+                {% endfor %}
+            </ul>
+        </form>
+        <div class="add-task">
+            <a href="{% url 'tracker:task_create' %}" class="btn custom-btn"> + Add</a>
+        </div>
+    </div>
+
+    <!--Water Card-->
+    <div class="card tracker-card">
+        <h3>💧 Water</h3>
+        <p class="motivation-text" id="water-motivation"></p>
+        <div class="water-progress-bar">
+            <div class="water-progress-bar-fill"></div>
+        </div>
+
+        <form method="POST" action="{% url 'tracker:update_water_sleep' %}">
+            {% csrf_token %}
+            <div class="counter">
+                <button type="button" onclick="updateWater(-1)"><i class="fa-solid fa-minus"></i></button>
+                <input type="hidden" name="water" id="water-input" value="{{ water_count|default:0 }}">
+                <span id="water-count">{{ water_count|default:0 }}</span>
+                / <span id="water-goal">{{ water_goal|default:8 }}</span>
+                <button type="button" onclick="updateWater(1)"><i class="fa-solid fa-plus"></i></button>
             </div>
-        </section>
+            <button type="submit" class="custom-btn small-btn">Save</button>
+        </form>
+    </div>
 
-        <!-- Task List -->
-        <section id="tracking-section">
-            <div id="task">
-                <h3>📝 Daily Tasks</h3>
-                <span class="toggle-arrow"><i class="fa-solid fa-chevron-down"></i></span>
-                <form method="POST" action="{% url 'tracker:update_tasks' %}" id="task-form">
-                    {% csrf_token %}
-                    <ul class="list-group">
-                        {% for task in tasks %}
-                        <li class="list-group-item">
-                            <input type="checkbox" name="task_{{ task.id }}" class="custom-checkbox"
-                                onchange="document.getElementById('task-form').submit();"
-                                {% if task.is_completed %}checked{% endif %}>
-                            <span class="task-title"
-                                onclick="openTaskModal('{{ task.id }}','{{ task.title|escapejs }}', '{{ task.description|escapejs }}')"
-                                style="cursor: pointer;">
-                                {{ task.title }}
-                            </span>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </form>
-                <div class="add-task">
-                    <a href="{% url 'tracker:task_create' %}" class="btn custom-btn"> + Add</a>
-                </div>
+
+    <!--Sleep Card-->
+    <div class="card tracker-card">
+        <h3>💤 Sleep</h3>
+        <p class="motivation-text" id="sleep-motivation"></p>
+        <div class="progress-bar">
+            <div class="sleep-progress-bar-fill"></div>
+        </div>
+
+        <form method="POST" action="{% url 'tracker:update_water_sleep' %}">
+            {% csrf_token %}
+            <div class="counter">
+                <input type="number" step="0.5" min="0" max="20" name="sleep" id="sleep-input"
+                    value="{{ sleep_count|default:'' }}" placeholder="e.g. 7.5">
+                <span>hours</span>
             </div>
-
-            <form method="POST" action="{% url 'tracker:update_water_sleep' %}" id="water-sleep-form">
-                {% csrf_token %}
-                <div id="water-sleep">
-                    <div id="water">
-                        <h3>💧 Water</h3>
-                        <div class="water-progress-bar">
-                            <div class="water-progress-bar-fill"></div>
-                        </div>
-                        <p id="water-motivation"></p>
-                        <div class="counter">
-                            <span><i class="fa-solid fa-glass-water custom-icon"></i></span>
-                            <button type="button" onclick="updateWater(-1)"><i
-                                    class="fa-solid fa-minus custom-icon"></i></button>
-                            <input type="hidden" name="water" id="water-input" value="{{ water_count|default:0 }}">
-                            <span id="water-count">{{ water_count|default:0 }}</span>
-                            <i class="fa-solid fa-slash custom-icon"></i>
-                            <span id="water-goal">{{ water_goal|default:8 }}</span>
-                            <button type="button" onclick="updateWater(1)"><i class="fa-solid fa-plus"></i></button>
-                        </div>
-                    </div>
-                    <div id="sleep">
-                        <h3>💤 Sleep</h3>
-                        <div class="progress-bar">
-                            <div class="sleep-progress-bar-fill"></div>
-                        </div>
-                        <p id="sleep-motivation"></p>
-                        <div class="counter">
-                            <span><i class="fa-solid fa-bed"></i></span>
-                            <label for="sleep-input" class="visually-hidden">Hours Slept</label>
-                            <input type="number" step="0.5" min="0" max="20" name="sleep" id="sleep-input"
-                                value="{{ sleep_count|default:'' }}" placeholder="e.g. 7.5">
-                            <span>hours</span>
-                        </div>
-                        <div style="margin-top: 1rem;">
-                            <button type="submit" class="custom-btn">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </section>
+            <button type="submit" class="custom-btn small-btn">Save</button>
+        </form>
     </div>
 </div>
 
