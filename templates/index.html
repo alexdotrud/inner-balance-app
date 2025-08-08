@@ -44,9 +44,10 @@
         </ul>
         <div id="login-signup">
             <h3>Ready to join?</h3>
-            <p>
-                <a href="{% url 'account_signup' %}" class="signup-link custom-link">Sign up</a>
-                <a href="{% url 'account_login' %}" class="login-link custom-link">log in</a>
+            <p><a href="{% url 'account_signup' %}" class="signup-link custom-link">Sign up</a> if you want to register
+                or
+                <a href="{% url 'account_login' %}" class="login-link custom-link">log in</a> if tou already have an
+                account.
             </p>
 
             {% if redirect_field_value %}

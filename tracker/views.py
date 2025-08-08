@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.views import View
 from django.shortcuts import redirect, render
 from django.utils import timezone
 from django.db import IntegrityError
@@ -47,6 +48,11 @@ class DashboardView(LoginRequiredMixin, TemplateView):
 
         return redirect('tracker:dashboard')
     
+
+class ProfileView(View):
+    def get(self, request):
+        return render(request, 'my_profile.html')
+
 def populate_profile_on_signup(request, user, **kwargs):
     water_goal = request.POST.get("water_goal")
     sleep_goal = request.POST.get("sleep_goal")
