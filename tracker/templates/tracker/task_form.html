@@ -5,6 +5,8 @@
 {% block content %}
 <form method="post">
     {% csrf_token %}
+
+
     {% if messages %}
     <ul class="error-messages">
         {% for message in messages %}

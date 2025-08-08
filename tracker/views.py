@@ -64,9 +64,24 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         return redirect('tracker:dashboard')
     
 
+def add_task(request):
+    if request.method == "POST":
+        title = request.POST.get("title", "").strip()
+        description = request.POST.get("description", "").strip()
+
+        if title and len(title) <= 50 and len(description) <= 200:
+            Task.objects.create(user=request.user, title=title, description=description)
+            return redirect("tracker:dashboard")
+        else:
+            messages.error(request, "Title (max 50 chars) and description (max 200 chars) are required.")
+
+    return render(request, "tracker/add_task.html")
+
+
 class ProfileView(View):
     def get(self, request):
         return render(request, 'my_profile.html')
+    
 
 def populate_profile_on_signup(request, user, **kwargs):
     water_goal = request.POST.get("water_goal")
@@ -78,6 +93,8 @@ def populate_profile_on_signup(request, user, **kwargs):
     if sleep_goal:
         profile.sleep_goal = float(sleep_goal)
     profile.save()
+
+
 
 def update_water_sleep(request):
     if request.method == 'POST':
