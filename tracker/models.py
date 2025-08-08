@@ -12,12 +12,16 @@ class UserProfile(models.Model):
     water_goal = models.IntegerField(default=8)
     sleep_goal = models.FloatField(default=8.0)
 
+
+
 class DailyReset(models.Model):
     last_reset = models.DateField(default=now)
 
+
+
 class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tasks")
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=200, blank=True)
     description = models.TextField()
     is_completed = models.BooleanField(default=False)

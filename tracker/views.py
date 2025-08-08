@@ -12,6 +12,22 @@ from .models import Task, DailyReset, UserProfile
 from .forms import TaskForm
 
 
+#Prevention of invalid unrealistic goals
+def clean_water_goal(self):
+    water_goal = self.cleaned_data.get("water_goal")
+    if water_goal is None or water_goal < 0 or water_goal > 20:
+        raise forms.ValidationError("Water goal must be between 0 and 20.")
+    return water_goal
+
+
+#Prevention of invalid unrealistic goals
+def clean_sleep_goal(self):
+    sleep_goal = self.cleaned_data.get("sleep_goal")
+    if sleep_goal is None or sleep_goal < 0 or sleep_goal > 20:
+        raise forms.ValidationError("Sleep goal must be between 0 and 20.")
+    return sleep_goal
+
+
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'tracker/dashboard.html'
     
@@ -30,7 +46,6 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         }
     
     # If form submitted -redirects to dashboard.
-    
     def post(self, request):
         form = TaskForm(request.POST)
         if form.is_valid():

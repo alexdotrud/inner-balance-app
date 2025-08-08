@@ -5,6 +5,7 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
 <div id="dashboard-container">
     <div class="welcome-block">
         <h1 class="title">Dashboard</h1>
@@ -44,6 +45,9 @@
                         {% endfor %}
                     </ul>
                 </form>
+                <div class="add-task">
+                    <a href="{% url 'tracker:task_create' %}" class="btn custom-btn">Add Task</a>
+                </div>
             </div>
 
             <form method="POST" action="{% url 'tracker:update_water_sleep' %}" id="water-sleep-form">
@@ -86,7 +90,6 @@
                 </div>
             </form>
         </section>
-        {% endif %}
     </div>
 </div>
 
@@ -121,5 +124,5 @@
         </div>
     </div>
 </div>
-
+{% endif %}
 {% endblock %}

@@ -3,15 +3,26 @@
 {% block title %}Edit Task{% endblock %}
 
 {% block content %}
-<div class="create-form-container">
-    <h2>{% if object %}Edit Task{% else %}Add Task{% endif %}</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div class="create-choices"></div>
-        <button type="submit" class="btn custom-btn">{% if object %}Update{% else %}Create{% endif %}</button>
-        <a href="{% url 'tracker:dashboard' %}" class="btn custom-btn">Cancel</a>
-    </form>
-</div>
-</div>
+<form method="post">
+    {% csrf_token %}
+    {% if messages %}
+    <ul class="error-messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <label for="id_title">Title</label>
+    <input type="text" name="title" id="id_title" maxlength="50" required>
+
+    <label for="id_description">Description</label>
+    <textarea name="description" id="id_description" maxlength="200" rows="3"></textarea>
+
+
+    <button type="submit" class="btn custom-btn">Create</button>
+    <a href="{% url 'tracker:dashboard' %}" class="btn custom-btn">Cancel</a>
+
+</form>
+
 {% endblock %}
