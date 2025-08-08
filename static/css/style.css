@@ -3,7 +3,7 @@
     --primary-font: "Instrument Serif", serif;
     --primary-color: #4B2E1E;
     /* rich brown color */
-    --secondary-color: #7C4F36;
+    --secondary-color: #7e533b;
     --highlight-color: #c2d2c2;
     /*eucalyptus color */
     --highlight-color-dark: #2D4739;
@@ -59,6 +59,7 @@ h2,
 h3 {
     font-family: var(--primary-font);
     font-weight: 400;
+    padding-bottom: 1rem;
 }
 
 #main-container {
@@ -71,6 +72,11 @@ h3 {
 
 
 /* Navbar Styles */
+.logo {
+    width: 15rem;
+    height: 4rem;
+}
+
 .navbar {
     background-color: var(--highlight-color);
 }
@@ -115,26 +121,28 @@ h3 {
 }
 
 #home-container {
-    width: 60%;
+    width: 80%;
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem;
     color: var(--primary-color);
     font-family: var(--primary-font);
     line-height: 1.6;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    scroll-margin-top: 100px;
 }
 
 .banner-text {
     position: absolute;
-    top: 10rem;
-    width: 100%;
+    top: 8rem;
     display: flex;
+    text-align: center;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: var(--primary-color);
-    font-size: 1.8rem;
 }
 
 .banner-bottom {
@@ -150,7 +158,7 @@ h3 {
 .app-description,
 .app-benefits {
     background-color: rgba(255, 255, 255, 0.326);
-    padding: 3rem 4rem;
+    padding: 2rem 1rem;
     margin-bottom: 3rem;
     width: 90%;
     border-radius: 15px;
@@ -159,6 +167,7 @@ h3 {
 
 .benefits-list {
     list-style: none;
+    padding: 0;
 }
 
 #login-signup h3 {
