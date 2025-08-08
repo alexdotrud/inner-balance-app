@@ -55,8 +55,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
                 task.save()
                 # Counts created tasks, after 5 shows a seccess message
                 task_count = Task.objects.filter(user=request.user).count()
-                if task_count == 5:
-                    messages.success(request, "You’ve created 5 daily tasks. Now you can start your tracking journey together with INNNER BALANCE")
+
 
             except IntegrityError:
                 messages.error(request, "You already have a task with this title.")
@@ -157,7 +156,6 @@ class TaskCreateView(SuccessMessageMixin, CreateView):
     model = Task
     fields = ['title', 'description']
     template_name = 'tracker/task_form.html'
-    success_message = 'Task created!'
 
   #set the user before saving
     def form_valid(self, form):
