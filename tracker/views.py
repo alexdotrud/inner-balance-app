@@ -1,8 +1,10 @@
 from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.shortcuts import redirect, render
+from django import forms
 from django.utils import timezone
 from django.db import IntegrityError
 from django.contrib import messages
@@ -11,21 +13,6 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Task, DailyReset, UserProfile
 from .forms import TaskForm
 
-
-#Prevention of invalid unrealistic goals
-def clean_water_goal(self):
-    water_goal = self.cleaned_data.get("water_goal")
-    if water_goal is None or water_goal < 0 or water_goal > 20:
-        raise forms.ValidationError("Water goal must be between 0 and 20.")
-    return water_goal
-
-
-#Prevention of invalid unrealistic goals
-def clean_sleep_goal(self):
-    sleep_goal = self.cleaned_data.get("sleep_goal")
-    if sleep_goal is None or sleep_goal < 0 or sleep_goal > 20:
-        raise forms.ValidationError("Sleep goal must be between 0 and 20.")
-    return sleep_goal
 
 
 class DashboardView(LoginRequiredMixin, TemplateView):
@@ -77,10 +64,42 @@ def add_task(request):
     return render(request, "tracker/add_task.html")
 
 
-class ProfileView(View):
-    def get(self, request):
-        return render(request, 'my_profile.html')
-    
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ["description", "water_goal", "sleep_goal"]
+
+    def clean_water_goal(self):
+        val = self.cleaned_data.get("water_goal")
+        if val is None or val < 0 or val > 20:
+            raise forms.ValidationError("Water goal must be between 0 and 20.")
+        return val
+
+    def clean_sleep_goal(self):
+        val = self.cleaned_data.get("sleep_goal")
+        if val is None or val < 0 or val > 20:
+            raise forms.ValidationError("Sleep goal must be between 0 and 20.")
+        return val
+
+@login_required
+def profile_view(request):
+    profile, _ = UserProfile.objects.get_or_create(user=request.user)
+
+    if request.method == "POST":
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Profile updated.")
+            return redirect("tracker:my_profile")
+    else:
+        form = ProfileForm(instance=profile)
+
+    return render(request, "tracker/my_profile.html", {
+        "form": form,
+        "username": request.user.username,
+        "water_intake": profile.water_intake,
+        "sleep_hours": profile.sleep_hours,
+    })
 
 def populate_profile_on_signup(request, user, **kwargs):
     water_goal = request.POST.get("water_goal")
