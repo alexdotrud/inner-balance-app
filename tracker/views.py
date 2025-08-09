@@ -107,6 +107,7 @@ def profile_view(request):
 
     return render(request, "tracker/my_profile.html", {
         "username": request.user.username,
+        "description": profile.description,
         "water_intake": profile.water_intake,
         "sleep_hours": profile.sleep_hours,
     })

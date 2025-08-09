@@ -21,15 +21,23 @@
 
         <!-- Description -->
         <div class="form-group">
-            <label for="description" class="description-label">Description</label>
+            <label for="description" class="description-label">Description:</label>
+            <p id="description-text"> {{ description }}</p>
+            <button type="button" id="desc-edit"
+                class="custom-btn btn-add {% if not description %}is-hidden{% endif %}">
+                Edit
+            </button>
+            {% if not description %}
             <textarea id="description" name="description" maxlength="500" rows="4"
                 placeholder="Write something about yourself...">{{ description }}</textarea>
-            <button type="submit" class="custom-btn btn-add">Save</button>
+            {% endif %}
+            <button type="submit" class="custom-btn btn-add" id="description-button"
+                onclick="saveDescription(event)">Save</button>
         </div>
 
         <!-- Goals block -->
         <div id="motivation">
-            <p class="motivation-text">Your Goals</p>
+            <p class="motivation-text">Your Goals:</p>
             <div class="list-group">
                 <div class="list-group-item">
                     <label for="water_goal">💧 Water goal (glasses)</label>

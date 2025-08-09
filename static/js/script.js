@@ -133,3 +133,16 @@ function updateWater(change) {
     countElem.textContent = count;
     inputElem.value = count;
 }
+
+function saveDescription(e) {
+    const textarea = document.getElementById('description');
+    const paragraph = document.getElementById('description-text');
+    const text = textarea.value.trim().slice(0, 500);
+    const SaveButton = document.getElementById('description-button')
+
+    // Replace textarea visually
+    textarea.remove();
+    SaveButton.remove();
+
+    paragraph.textContent = text;
+}
