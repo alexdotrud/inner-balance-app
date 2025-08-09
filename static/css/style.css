@@ -12,6 +12,10 @@
 }
 
 /* General Styles */
+html a {
+    scroll-behavior: smooth;
+}
+
 header {
     position: fixed;
     width: 100%;
@@ -58,7 +62,7 @@ h2,
 h3 {
     font-family: var(--primary-font);
     font-weight: 400;
-    padding-bottom: 1rem;
+    padding: 1rem;
 }
 
 #main-container {
@@ -195,14 +199,16 @@ h3 {
 #dashboard-container {
     display: flex;
     flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
     width: 80%;
     max-width: 1200px;
     padding: 2rem 3rem;
-    gap: 2rem;
-    background-color: rgba(255, 255, 255, 0.395);
+    gap: 3rem;
+    background-color: rgba(67, 132, 96, 0.135);
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    animation: fadeInSlide 0.6s ease;
     text-align: center;
 }
 
@@ -226,7 +232,7 @@ h3 {
     border: 1.5px solid #5cdb9785;
     border-radius: 10px;
     padding: 2rem;
-    margin-bottom: 2rem;
+    margin: 2rem;
     text-align: center;
     position: relative;
     box-shadow: 0 7px 20px rgba(67, 210, 191, 0.356)
@@ -261,28 +267,34 @@ h3 {
     margin-bottom: 0.4rem;
 }
 
-/* Tracking Section */
-#tracking-section {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    gap: 2.5rem;
+/* Task, Water, Sleep Cards Styles */
+
+.tracker-card {
+    width: 80%;
+    margin: 1rem;
+    max-width: 1000px;
+    background: #ffffff64;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transform: scale(1.07);
+    transition: transform 0.4s ease-in-out;
 }
 
 #task {
-    width: 400px;
-    min-width: 400px;
-    background: rgba(255, 255, 255, 0.479);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-    box-sizing: border-box;
+    max-width: fit-content;
+    min-width: 500px;
+    padding: 1rem;
+    margin: 0 auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-#task.empty {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+.add-task {
+    text-align: center;
+}
+
+.tracker-card:hover {
+    transform: scale(1.1);
 }
 
 .task-title {
@@ -331,6 +343,8 @@ h3 {
     font-size: 1.5rem;
     text-decoration: none;
     color: var(--primary-color);
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
 }
 
 .add {
@@ -342,6 +356,7 @@ h3 {
     min-width: 25px;
     height: 25px;
     margin-right: 10px;
+
 }
 
 .custom-checkbox:checked+.task-title {
@@ -357,27 +372,6 @@ h3 {
 .error-msg {
     color: rgb(189, 81, 81);
     ;
-}
-
-/* Water/Sleep Styles */
-#water-sleep {
-    width: 400px;
-    background: rgba(255, 255, 255, 0.479);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-    box-sizing: border-box;
-}
-
-#water {
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 2px solid #5bd39386;
-
-}
-
-#sleep input {
-    width: 5rem;
 }
 
 .water-progress-bar,
@@ -406,6 +400,9 @@ h3 {
     margin-bottom: 0.4rem;
 }
 
+.counter {
+    margin: 2rem;
+}
 
 /* Delete/Edit Pages Styles */
 .delete-container,
@@ -682,8 +679,6 @@ h3 {
 }
 
 .arrow-link {
-    display: flex;
-    justify-content: center;
     color: rgb(222, 229, 213);
     font-size: 2rem;
     text-decoration: none;
