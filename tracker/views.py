@@ -86,16 +86,26 @@ def profile_view(request):
     profile, _ = UserProfile.objects.get_or_create(user=request.user)
 
     if request.method == "POST":
-        form = ProfileForm(request.POST, instance=profile)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Profile updated.")
-            return redirect("tracker:my_profile")
-    else:
-        form = ProfileForm(instance=profile)
+        profile.description = (request.POST.get("description") or "")[:500]
+
+        water = request.POST.get("water_goal")
+        sleep = request.POST.get("sleep_goal")
+        try:
+            if water not in (None, ""):
+                profile.water_goal = max(0, min(20, int(water)))
+        except ValueError:
+            pass
+        try:
+            if sleep not in (None, ""):
+                profile.sleep_goal = max(0.0, min(20.0, float(sleep)))
+        except ValueError:
+            pass
+
+        profile.save()
+        messages.success(request, "Profile updated.")
+        return redirect("tracker:profile")
 
     return render(request, "tracker/my_profile.html", {
-        "form": form,
         "username": request.user.username,
         "water_intake": profile.water_intake,
         "sleep_hours": profile.sleep_hours,
