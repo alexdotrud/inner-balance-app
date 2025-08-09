@@ -1,8 +1,26 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Delete Task{% endblock %}
+{% block title %}My Profile - INNER BALANCE{% endblock %}
 
 {% block content %}
-<h1>MY PROFILE</h1>
-<p>To rewiev or change goals</p>
-{% endblock %}
+<div id="main-container">
+
+    <!-- Profile Card -->
+    <div class="tracker-card" style="width:100%;max-width:800px;text-align:left;">
+
+        <!-- Username -->
+        <h1 class="title" style="text-align:center;margin-bottom:0;">@{{ username }}</h1>
+        <p style="text-align:center;margin-top:-0.5rem;">Make it yours — update your bio and goals.</p>
+
+        <!-- Messages (success/errors) -->
+        {% if messages %}
+        <div style="margin:0 1rem 1rem;">
+            {% for message in messages %}
+            <div class="error-message"
+                style="color: {% if message.tags == 'success' %}#2D4739{% else %}rgb(189,81,81){% endif %};">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
