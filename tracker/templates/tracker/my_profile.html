@@ -15,12 +15,53 @@
 
         <!-- Messages (success/errors) -->
         {% if messages %}
-        <div style="margin:0 1rem 1rem;">
+        <div>
             {% for message in messages %}
-            <div class="error-message"
-                style="color: {% if message.tags == 'success' %}#2D4739{% else %}rgb(189,81,81){% endif %};">
+            <div class="error-message" {% if message.tags = 'success' %}#2D4739{% else %}rgb(189,81,81){% endif %};>
                 {{ message }}
             </div>
             {% endfor %}
         </div>
         {% endif %}
+
+        <!-- Form -->
+        <form method="post" novalidate style="padding: 0 1rem 1rem;">
+            {% csrf_token %}
+
+            <!-- Description -->
+            <div class="form-group">
+                <label for="{{ form.description.id_for_label }}">Description</label>
+                {{ form.description }}
+                {% if form.description.errors %}
+                <div class="error-message">
+                    {% for err in form.description.errors %}{{ err }}{% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Goals block -->
+            <div id="motivation" style="margin-top:1rem;">
+                <p class="motivation-text">Your Goals</p>
+
+                <div class="list-group" style="max-width:420px;margin-top:1rem;">
+                    <div class="list-group-item" style="display:flex;gap:1rem;align-items:center;">
+                        <label for="{{ form.water_goal.id_for_label }}" style="margin:0;">💧 Water goal
+                            (glasses)</label>
+                        {{ form.water_goal }}
+                    </div>
+                    {% if form.water_goal.errors %}
+                    <div class="error-message">
+                        {% for err in form.water_goal.errors %}{{ err }}{% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <div class="list-group-item" style="display:flex;gap:1rem;align-items:center;">
+                        <label for="{{ form.sleep_goal.id_for_label }}" style="margin:0;">💤 Sleep goal (hours)</label>
+                        {{ form.sleep_goal }}
+                    </div>
+                    {% if form.sleep_goal.errors %}
+                    <div class="error-message">
+                        {% for err in form.sleep_goal.errors %}{{ err }}{% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
