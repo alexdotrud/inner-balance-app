@@ -1,7 +1,7 @@
 /* Css Variable */
 :root {
     --primary-font: "Instrument Serif", serif;
-    --primary-color: #4B2E1E;
+    --primary-color: #442818;
     /* rich brown color */
     --secondary-color: #7e533b;
     --highlight-color: #c2d2c2;
@@ -12,8 +12,8 @@
 }
 
 /* General Styles */
-html a {
-    scroll-behavior: smooth;
+html {
+    color: var(--primary-color);
 }
 
 header {
@@ -21,7 +21,6 @@ header {
     width: 100%;
     z-index: 2;
     border-bottom: 1px solid rgba(91, 94, 91, 0.612);
-    color: var(--primary-color);
 }
 
 body {
@@ -494,6 +493,59 @@ h3 {
     top: 1rem;
     right: 1rem;
     z-index: 10;
+}
+
+/* My Profile Styles */
+
+#profile-card {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 1200px;
+    padding: 2rem 3rem;
+    background-color: rgba(67, 132, 96, 0.135);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#profile-card .form-group {
+    background-color: #f4f9f4;
+    border: 1.5px solid #5cdb9785;
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 2rem;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 7px 20px rgba(67, 210, 191, 0.356);
+}
+
+.description-label {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+    color: var(--primary-color);
+    font-family: var(--primary-font);
+}
+
+#profile-card .form-group textarea {
+    width: 100%;
+    min-height: 140px;
+    resize: vertical;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--highlight-color);
+    border-radius: 10px;
+    background: #fff;
+    font-size: 1rem;
+    font-family: inherit;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#motivation .custom-btn {
+    display: block;
+    margin: 1rem auto 0;
 }
 
 /* Login Page Styles */

@@ -4,64 +4,45 @@
 {% block title %}My Profile - INNER BALANCE{% endblock %}
 
 {% block content %}
-<div id="main-container">
+
+<div id="profile-card">
 
     <!-- Profile Card -->
-    <div class="tracker-card" style="width:100%;max-width:800px;text-align:left;">
 
-        <!-- Username -->
-        <h1 class="title" style="text-align:center;margin-bottom:0;">@{{ username }}</h1>
-        <p style="text-align:center;margin-top:-0.5rem;">Make it yours — update your bio and goals.</p>
+    <!-- Username -->
+    <div class="welcome-block">
+        <h1 class="title">{{ username }}</h1>
+        <p>Make it yours — update your bio and goals.</p>
+    </div>
 
-        <!-- Messages (success/errors) -->
-        {% if messages %}
-        <div>
-            {% for message in messages %}
-            <div class="error-message" {% if message.tags = 'success' %}#2D4739{% else %}rgb(189,81,81){% endif %};>
-                {{ message }}
-            </div>
-            {% endfor %}
+    <!-- Form -->
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Description -->
+        <div class="form-group">
+            <label for="description" class="description-label">Description</label>
+            <textarea id="description" name="description" maxlength="500" rows="4"
+                placeholder="Write something about yourself...">{{ description }}</textarea>
+            <button type="submit" class="custom-btn btn-add">Save</button>
         </div>
-        {% endif %}
 
-        <!-- Form -->
-        <form method="post" novalidate style="padding: 0 1rem 1rem;">
-            {% csrf_token %}
-
-            <!-- Description -->
-            <div class="form-group">
-                <label for="{{ form.description.id_for_label }}">Description</label>
-                {{ form.description }}
-                {% if form.description.errors %}
-                <div class="error-message">
-                    {% for err in form.description.errors %}{{ err }}{% endfor %}
+        <!-- Goals block -->
+        <div id="motivation">
+            <p class="motivation-text">Your Goals</p>
+            <div class="list-group">
+                <div class="list-group-item">
+                    <label for="water_goal">💧 Water goal (glasses)</label>
+                    <input type="number" id="water_goal" name="water_goal" min="0" max="20" value="{{ water_goal }}">
                 </div>
-                {% endif %}
+
+                <div class="list-group-item">
+                    <label for="sleep_goal">💤 Sleep goal (hours)</label>
+                    <input type="number" step="0.5" id="sleep_goal" name="sleep_goal" min="0" max="20"
+                        value="{{ sleep_goal }}">
+                </div>
+                <button type="submit" class="custom-btn btn-add">Save</button>
             </div>
-
-            <!-- Goals block -->
-            <div id="motivation" style="margin-top:1rem;">
-                <p class="motivation-text">Your Goals</p>
-
-                <div class="list-group" style="max-width:420px;margin-top:1rem;">
-                    <div class="list-group-item" style="display:flex;gap:1rem;align-items:center;">
-                        <label for="{{ form.water_goal.id_for_label }}" style="margin:0;">💧 Water goal
-                            (glasses)</label>
-                        {{ form.water_goal }}
-                    </div>
-                    {% if form.water_goal.errors %}
-                    <div class="error-message">
-                        {% for err in form.water_goal.errors %}{{ err }}{% endfor %}
-                    </div>
-                    {% endif %}
-
-                    <div class="list-group-item" style="display:flex;gap:1rem;align-items:center;">
-                        <label for="{{ form.sleep_goal.id_for_label }}" style="margin:0;">💤 Sleep goal (hours)</label>
-                        {{ form.sleep_goal }}
-                    </div>
-                    {% if form.sleep_goal.errors %}
-                    <div class="error-message">
-                        {% for err in form.sleep_goal.errors %}{{ err }}{% endfor %}
-                    </div>
-                    {% endif %}
-                </div>
+    </form>
+</div>
+{% endblock %}
