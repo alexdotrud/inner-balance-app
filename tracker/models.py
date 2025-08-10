@@ -14,10 +14,8 @@ class UserProfile(models.Model):
     description = models.TextField(blank=True, default="")
 
 
-
 class DailyReset(models.Model):
     last_reset = models.DateField(default=now)
-
 
 
 class Task(models.Model):

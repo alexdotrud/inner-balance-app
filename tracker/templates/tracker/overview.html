@@ -6,7 +6,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<div id="dashboard-container">
+<div id="overview-container">
 
     <div class="welcome-block">
         <h1 class="title">Dashboard</h1>
@@ -38,8 +38,7 @@
                                 onchange="document.getElementById('task-form').submit();"
                                 {% if task.is_completed %}checked{% endif %}>
                             <span class="task-title"
-                                onclick="openTaskModal('{{ task.id }}','{{ task.title|escapejs }}', '{{ task.description|escapejs }}')"
-                                style="cursor: pointer;">
+                                onclick="openTaskModal('{{ task.id }}','{{ task.title|escapejs }}', '{{ task.description|escapejs }}')">
                                 {{ task.title }}
                             </span>
                         </li>

@@ -15,8 +15,8 @@ from .forms import TaskForm
 
 
 
-class DashboardView(LoginRequiredMixin, TemplateView):
-    template_name = 'tracker/dashboard.html'
+class OverviewView(LoginRequiredMixin, TemplateView):
+    template_name = 'tracker/overview.html'
     
     # Sending data to template
     def get_context_data(self, **kwargs):
@@ -32,7 +32,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
             'sleep_goal': profile.sleep_goal,
         }
     
-    # If form submitted -redirects to dashboard.
+    # If form submitted -redirects to overview.
     def post(self, request):
         form = TaskForm(request.POST)
         if form.is_valid():
@@ -47,7 +47,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
             except IntegrityError:
                 messages.error(request, "You already have a task with this title.")
 
-        return redirect('tracker:dashboard')
+        return redirect('tracker:overview')
     
 
 def add_task(request):
@@ -57,7 +57,7 @@ def add_task(request):
 
         if title and len(title) <= 50 and len(description) <= 200:
             Task.objects.create(user=request.user, title=title, description=description)
-            return redirect("tracker:dashboard")
+            return redirect("tracker:overview")
         else:
             messages.error(request, "Title (max 50 chars) and description (max 200 chars) are required.")
 
@@ -110,6 +110,8 @@ def profile_view(request):
         "description": profile.description,
         "water_intake": profile.water_intake,
         "sleep_hours": profile.sleep_hours,
+        "water_goal": profile.water_goal,
+        "sleep_goal": profile.sleep_goal,
     })
 
 def populate_profile_on_signup(request, user, **kwargs):
@@ -145,7 +147,7 @@ def update_water_sleep(request):
                 pass 
 
         profile.save()
-        return redirect('tracker:dashboard')
+        return redirect('tracker:overview')
     
 
 def reset_tasks_if_needed(user):
@@ -164,7 +166,6 @@ def reset_tasks_if_needed(user):
     return profile
     
 
-
 def update_tasks(request):
     if request.method == 'POST':
         tasks = Task.objects.filter(user=request.user)
@@ -174,7 +175,7 @@ def update_tasks(request):
             task.is_completed = task.id in checked_ids
             task.save()
 
-    return redirect('tracker:dashboard')
+    return redirect('tracker:overview')
 
 
 class TaskListView(ListView):
@@ -193,7 +194,7 @@ class TaskCreateView(SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('tracker:dashboard')
+        return reverse_lazy('tracker:overview')
 
 
 
@@ -208,13 +209,13 @@ class TaskUpdateView(SuccessMessageMixin, UpdateView):
         return Task.objects.filter(user=self.request.user)
 
     def get_success_url(self):
-        return reverse_lazy('tracker:dashboard')
+        return reverse_lazy('tracker:overview')
     
 
 class TaskDeleteView(SuccessMessageMixin, DeleteView):
     model = Task
     template_name = 'tracker/task_confirm_delete.html'
-    success_url = reverse_lazy('tracker:dashboard')
+    success_url = reverse_lazy('tracker:overview')
     success_message = 'Task Deleted!'
 
     #obly the author can edit his tasks

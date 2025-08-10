@@ -135,14 +135,24 @@ function updateWater(change) {
 }
 
 function saveDescription(e) {
-    const textarea = document.getElementById('description');
-    const paragraph = document.getElementById('description-text');
-    const text = textarea.value.trim().slice(0, 500);
-    const SaveButton = document.getElementById('description-button')
+    const editBtn = document.getElementById("desc-edit");
+    const textarea = document.getElementById("description");
+    const paragraph = document.getElementById("description-text");
+    const saveBtn = document.getElementById("description-button");
 
-    // Replace textarea visually
-    textarea.remove();
-    SaveButton.remove();
+    // Hide textarea + save if description already exists
+    if (paragraph.textContent.trim() !== "") {
+        textarea.classList.add("is-hidden");
+        saveBtn.classList.add("is-hidden");
+    } else {
+        paragraph.classList.add("is-hidden");
+        editBtn.classList.add("is-hidden");
+    }
 
-    paragraph.textContent = text;
-}
+    editBtn.addEventListener("click", () => {
+        textarea.classList.remove("is-hidden");
+        saveBtn.classList.remove("is-hidden");
+        paragraph.classList.add("is-hidden");
+        editBtn.classList.add("is-hidden");
+    });
+};

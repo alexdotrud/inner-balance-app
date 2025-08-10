@@ -12,7 +12,7 @@
     <!-- Username -->
     <div class="welcome-block">
         <h1 class="title">{{ username }}</h1>
-        <p>Make it yours — update your bio and goals.</p>
+        <p>Make it yours - update your description and goals.</p>
     </div>
 
     <!-- Form -->
@@ -21,18 +21,19 @@
 
         <!-- Description -->
         <div class="form-group">
+            {% if description %}
+            <p id="description-text">{{ description }}</p>
+            <button type="button" id="desc-edit" class="custom-btn btn-add">Edit</button>
+
+            {% else %}
+
             <label for="description" class="description-label">Description:</label>
-            <p id="description-text"> {{ description }}</p>
-            <button type="button" id="desc-edit"
-                class="custom-btn btn-add {% if not description %}is-hidden{% endif %}">
-                Edit
-            </button>
-            {% if not description %}
             <textarea id="description" name="description" maxlength="500" rows="4"
                 placeholder="Write something about yourself...">{{ description }}</textarea>
-            {% endif %}
             <button type="submit" class="custom-btn btn-add" id="description-button"
                 onclick="saveDescription(event)">Save</button>
+
+            {% endif %}
         </div>
 
         <!-- Goals block -->

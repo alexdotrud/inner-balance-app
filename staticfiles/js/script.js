@@ -1,3 +1,16 @@
+const isLoggedIn = "{{user.is_authenticated|yesno:'true,false'}}";
+const LoggedParagraph = document.getElementById("sign-p")
+const LoggedHeading = document.getElementById("sign-h")
+
+if (isLoggedIn) {
+    if (LoggedParagraph) {
+        LoggedParagraph.style.display = "none";
+    }
+    if (LoggedHeading) {
+        LoggedHeading.style.display = "none";
+    }
+}
+
 function openTaskModal(id, title, description) {
 
     const titleElement = document.getElementById('modal-title');
@@ -120,3 +133,26 @@ function updateWater(change) {
     countElem.textContent = count;
     inputElem.value = count;
 }
+
+function saveDescription(e) {
+    const editBtn = document.getElementById("desc-edit");
+    const textarea = document.getElementById("description");
+    const paragraph = document.getElementById("description-text");
+    const saveBtn = document.getElementById("description-button");
+
+    // Hide textarea + save if description already exists
+    if (paragraph.textContent.trim() !== "") {
+        textarea.classList.add("is-hidden");
+        saveBtn.classList.add("is-hidden");
+    } else {
+        paragraph.classList.add("is-hidden");
+        editBtn.classList.add("is-hidden");
+    }
+
+    editBtn.addEventListener("click", () => {
+        textarea.classList.remove("is-hidden");
+        saveBtn.classList.remove("is-hidden");
+        paragraph.classList.add("is-hidden");
+        editBtn.classList.add("is-hidden");
+    });
+};

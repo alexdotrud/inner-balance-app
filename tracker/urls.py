@@ -1,11 +1,11 @@
 from django.urls import path
 from . import views
-from .views import DashboardView, TaskListView, TaskDeleteView, TaskUpdateView, TaskCreateView, profile_view
+from .views import OverviewView, TaskListView, TaskDeleteView, TaskUpdateView, TaskCreateView, profile_view
 
 app_name = 'tracker'
 
 urlpatterns = [
-    path('dashboard/', DashboardView.as_view(), name='dashboard'),
+    path('overview', OverviewView.as_view(), name='overview'),
     path("profile/", profile_view, name="profile"),
     path('tasks/', TaskListView.as_view(), name='task_list'),  
     path('task/create/', TaskCreateView.as_view(), name='task_create'),
