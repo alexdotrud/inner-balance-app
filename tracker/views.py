@@ -11,7 +11,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Task, DailyReset
 from .forms import TaskForm
-
+from profiles.models import UserProfile
 
 
 class OverviewView(LoginRequiredMixin, TemplateView):

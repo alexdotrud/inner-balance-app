@@ -149,10 +149,20 @@ function saveDescription(e) {
         editBtn.classList.add("is-hidden");
     }
 
+};
+
+function editDescription() {
+    const editBtn = document.getElementById("desc-edit");
+    const textarea = document.getElementById("description");
+    const paragraph = document.getElementById("description-text");
+    const saveBtn = document.getElementById("description-button");
+
+    if (!editBtn || !textarea || !paragraph || !saveBtn) return;
+
     editBtn.addEventListener("click", () => {
         textarea.classList.remove("is-hidden");
         saveBtn.classList.remove("is-hidden");
         paragraph.classList.add("is-hidden");
         editBtn.classList.add("is-hidden");
     });
-};
+}
