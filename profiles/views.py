@@ -8,24 +8,30 @@ def profile_view(request):
     profile, _ = UserProfile.objects.get_or_create(user=request.user)
 
     if request.method == "POST":
-        profile.description = (request.POST.get("description") or "")[:500]
+        if "save_description" in request.POST:
+            # Only update description
+            profile.description = (request.POST.get("description") or "")[:500]
+            profile.save()
+            messages.success(request, "Description updated.")
+            return redirect("profiles:profile")
 
-        water = request.POST.get("water_goal")
-        sleep = request.POST.get("sleep_goal")
-        try:
-            if water not in (None, ""):
-                profile.water_goal = max(0, min(20, int(water)))
-        except ValueError:
-            pass
-        try:
-            if sleep not in (None, ""):
-                profile.sleep_goal = max(0.0, min(20.0, float(sleep)))
-        except ValueError:
-            pass
-
-        profile.save()
-        messages.success(request, "Profile updated.")
-        return redirect("profiles:profile")
+        if "save_goals" in request.POST:
+            # Only update goals
+            water = request.POST.get("water_goal")
+            sleep = request.POST.get("sleep_goal")
+            try:
+                if water not in (None, ""):
+                    profile.water_goal = max(0, min(20, int(water)))
+            except ValueError:
+                pass
+            try:
+                if sleep not in (None, ""):
+                    profile.sleep_goal = max(0.0, min(20.0, float(sleep)))
+            except ValueError:
+                pass
+            profile.save()
+            messages.success(request, "Goals updated.")
+            return redirect("profiles:profile")
 
     return render(request, "profiles/my_profile.html", {
         "username": request.user.username,

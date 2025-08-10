@@ -23,14 +23,14 @@
         <div class="form-group">
             {% if description %}
             <p id="description-text">{{ description }}</p>
-            <button type="button" id="desc-edit" class="custom-btn btn-add">Edit</button>
+            <button type="button" id="desc-edit" class="custom-btn btn-add" onclick="editDescription()">Edit</button>
 
             {% else %}
 
             <label for="description" class="description-label">Description:</label>
             <textarea id="description" name="description" maxlength="500" rows="4"
                 placeholder="Write something about yourself...">{{ description }}</textarea>
-            <button type="submit" class="custom-btn btn-add" id="description-button"
+            <button type="submit" class="custom-btn btn-add" id="description-button" name="save-description"
                 onclick="saveDescription(event)">Save</button>
 
             {% endif %}
@@ -50,7 +50,7 @@
                     <input type="number" step="0.5" id="sleep_goal" name="sleep_goal" min="0" max="20"
                         value="{{ sleep_goal }}">
                 </div>
-                <button type="submit" class="custom-btn btn-add">Save</button>
+                <button type="submit" class="custom-btn btn-add" name="save-goals">Save</button>
             </div>
     </form>
 </div>

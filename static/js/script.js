@@ -163,3 +163,17 @@ function saveDescription(e) {
         editBtn.classList.add("is-hidden");
     });
 };
+
+function editDescription() {
+    const para = document.getElementById("description-text");
+    const editBtn = document.getElementById("desc-edit");
+    if (!para || !editBtn) return;
+
+    para.style.display = "none";
+    editBtn.style.display = "none";
+
+    para.insertAdjacentHTML("afterend", `
+    <textarea id="description" name="description" rows="4" maxlength="500">${para.textContent.trim()}</textarea>
+    <button type="submit" id="description-button" class="custom-btn btn-add">Save</button>
+  `);
+}
