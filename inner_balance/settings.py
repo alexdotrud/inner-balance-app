@@ -41,6 +41,7 @@ ACCOUNT_USERNAME_MIN_LENGTH = 8
 
 ACCOUNT_SIGNUP_FIELDS = ['username', 'password1', 'password2', 'email']
 
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
@@ -72,7 +73,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'allauth.account.middleware.AccountMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware'
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 ]
 
 ROOT_URLCONF = 'inner_balance.urls'
@@ -144,8 +146,8 @@ AUTHENTICATION_BACKENDS = [
 
 # Link for redirection after autentification
 
-LOGIN_REDIRECT_URL = 'tracker:dashboard'
-ACCOUNT_SIGNUP_REDIRECT_URL = 'tracker:dashboard'
+LOGIN_REDIRECT_URL = 'tracker:overview'
+ACCOUNT_SIGNUP_REDIRECT_URL = 'tracker:overview'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

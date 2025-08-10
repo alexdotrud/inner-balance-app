@@ -8,15 +8,8 @@ def profile_view(request):
     profile, _ = UserProfile.objects.get_or_create(user=request.user)
 
     if request.method == "POST":
-        if "save_description" in request.POST:
-            # Only update description
-            profile.description = (request.POST.get("description") or "")[:500]
-            profile.save()
-            messages.success(request, "Description updated.")
-            return redirect("profiles:profile")
-
+        # 1) Handle goals first
         if "save_goals" in request.POST:
-            # Only update goals
             water = request.POST.get("water_goal")
             sleep = request.POST.get("sleep_goal")
             try:
@@ -31,6 +24,13 @@ def profile_view(request):
                 pass
             profile.save()
             messages.success(request, "Goals updated.")
+            return redirect("profiles:profile")
+
+        # 2) Only then handle description
+        if "description" in request.POST:
+            profile.description = (request.POST.get("description") or "")[:500]
+            profile.save()
+            messages.success(request, "Description updated.")
             return redirect("profiles:profile")
 
     return render(request, "profiles/my_profile.html", {

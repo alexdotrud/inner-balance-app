@@ -84,6 +84,19 @@
     {% endblock %}
     <!-- Main content -->
     <main id="main-container">
+
+        {% if messages %}
+        <div id="flash-messages">
+            {% for message in messages %}
+            {% if message.tags == "success" %}
+            <div class="alert alert-success">{{ message }}</div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+
+
         {% block content %}
 
         {% endblock %}

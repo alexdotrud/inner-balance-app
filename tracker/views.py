@@ -136,6 +136,7 @@ class TaskCreateView(SuccessMessageMixin, CreateView):
     model = Task
     fields = ['title', 'description']
     template_name = 'tracker/task_form.html'
+    success_message = 'Task added!'
 
   #set the user before saving
     def form_valid(self, form):

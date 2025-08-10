@@ -11,7 +11,7 @@
         <form method="post">
             {% csrf_token %}
             <button type="submit" class="btn custom-btn btn-danger">Yes, delete</button>
-            <a href="{% url 'tracker:dashboard' %}" class="btn custom-btn">Cancel</a>
+            <a href="{% url 'tracker:overview' %}" class="btn custom-btn">Cancel</a>
         </form>
     </div>
 </div>
