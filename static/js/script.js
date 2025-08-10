@@ -68,13 +68,13 @@ function Motivation() {
 }
 
 function waterSleepMotivation() {
-    const waterGoal = parseInt($("#water-goal").text());
-    const waterCount = parseInt($("#water-count").text());
-    const waterPercentage = Math.min((waterCount / waterGoal) * 100, 100);
+    const waterGoal = parseInt($("#water-goal").text(), 10) || 0;
+    const waterCount = parseInt($("#water-count").text(), 10) || 0;
+    let waterPercentage = waterGoal > 0 ? (waterCount / waterGoal) * 100 : 0;
 
     const sleepGoal = parseFloat($("#sleep-input").attr("max")) || 8;
     const sleepCount = parseFloat($("#sleep-input").val()) || 0;
-    const sleepPercentage = Math.min((sleepCount / sleepGoal) * 100, 100);
+    let sleepPercentage = sleepGoal > 0 ? (sleepCount / sleepGoal) * 100 : 0;
 
     function getMessage(percent) {
         if (percent === 100) return "🎉 Perfect!";
@@ -90,6 +90,9 @@ function waterSleepMotivation() {
 
     $(".water-progress-bar-fill").css("width", waterPercentage + "%");
     $(".sleep-progress-bar-fill").css("width", sleepPercentage + "%");
+
+    $("#water-progress-percentage").text(Math.round(waterPercentage) + "%");
+    $("#sleep-progress-percentage").text(Math.round(sleepPercentage) + "%");
 
 }
 

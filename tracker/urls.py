@@ -6,7 +6,6 @@ app_name = 'tracker'
 
 urlpatterns = [
     path('overview', OverviewView.as_view(), name='overview'),
-    path("profile/", profile_view, name="profile"),
     path('tasks/', TaskListView.as_view(), name='task_list'),  
     path('task/create/', TaskCreateView.as_view(), name='task_create'),
     path('task/<int:pk>/edit/', views.TaskUpdateView.as_view(), name='task_edit'),

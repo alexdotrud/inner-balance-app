@@ -23,4 +23,5 @@ urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
     path('tracker/', include('tracker.urls')),
     path('accounts/', include('allauth.urls')),
+    path("profile/", include("profiles.urls")),
 ]

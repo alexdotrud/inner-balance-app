@@ -178,7 +178,7 @@ h3 {
     padding-bottom: 0.5rem;
 }
 
-/* Dashboard styles*/
+/* Overview styles*/
 
 .title {
     letter-spacing: 2px;
@@ -261,7 +261,9 @@ h3 {
     border-radius: 40px;
 }
 
-#progress-percentage {
+#progress-percentage,
+#water-progress-procentage,
+#sleep-progress-percentage {
     font-size: 1rem;
     margin-bottom: 0.4rem;
 }
