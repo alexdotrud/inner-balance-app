@@ -1,24 +1,7 @@
-from django.db import models
-from django.contrib.auth import get_user_model
-from django.utils.timezone import now
-
-User = get_user_model()
-class ProfileForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile
-        fields = ["description", "water_goal", "sleep_goal"]
-
-    def clean_water_goal(self):
-        val = self.cleaned_data.get("water_goal")
-        if val is None or val < 0 or val > 20:
-            raise forms.ValidationError("Water goal must be between 0 and 20.")
-        return val
-
-    def clean_sleep_goal(self):
-        val = self.cleaned_data.get("sleep_goal")
-        if val is None or val < 0 or val > 20:
-            raise forms.ValidationError("Sleep goal must be between 0 and 20.")
-        return val
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.shortcuts import redirect, render
+from .models import UserProfile
 
 @login_required
 def profile_view(request):
@@ -42,9 +25,9 @@ def profile_view(request):
 
         profile.save()
         messages.success(request, "Profile updated.")
-        return redirect("tracker:profile")
+        return redirect("profiles:profile")
 
-    return render(request, "tracker/my_profile.html", {
+    return render(request, "profiles/my_profile.html", {
         "username": request.user.username,
         "description": profile.description,
         "water_intake": profile.water_intake,
@@ -52,3 +35,36 @@ def profile_view(request):
         "water_goal": profile.water_goal,
         "sleep_goal": profile.sleep_goal,
     })
+
+def populate_profile_on_signup(request, user, **kwargs):
+    water_goal = request.POST.get("water_goal")
+    sleep_goal = request.POST.get("sleep_goal")
+
+    profile, _ = UserProfile.objects.get_or_create(user=user)
+    if water_goal:
+        profile.water_goal = int(water_goal)
+    if sleep_goal:
+        profile.sleep_goal = float(sleep_goal)
+    profile.save()
+
+def update_water_sleep(request):
+    if request.method == 'POST':
+        profile, _ = UserProfile.objects.get_or_create(user=request.user)
+
+        water_value = request.POST.get('water')
+        if water_value and water_value.strip():
+            try:
+                profile.water_intake = int(water_value)
+            except ValueError:
+                pass
+
+        sleep_value = request.POST.get('sleep')
+        if sleep_value and sleep_value.strip():
+            try:
+                sleep_hours = float(sleep_value)
+                profile.sleep_hours = min(sleep_hours, 20.0)
+            except ValueError:
+                pass
+
+        profile.save()
+        return redirect('tracker:overview')

@@ -1,7 +1,6 @@
 from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.shortcuts import redirect, render
 from django import forms
@@ -10,7 +9,7 @@ from django.db import IntegrityError
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Task, DailyReset, UserProfile
+from .models import Task, DailyReset
 from .forms import TaskForm
 
 
