@@ -58,6 +58,10 @@ function Motivation() {
         message = "😴 You haven’t done anything yet... let's start!";
     }
 
+    if (isNaN(percentage)) {
+        percentage = 0;
+    }
+
     $('#motivation-text').text(message);
     $('.progress-bar-fill').css('width', percentage + '%');
     $('#progress-percentage').text(Math.round(percentage) + '%');
