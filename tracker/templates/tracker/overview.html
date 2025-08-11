@@ -66,11 +66,11 @@
             {% csrf_token %}
             <div class="counter">
                 <i class="fa-solid fa-glass-water"></i>
-                <button type="button" onclick="updateWater(-1)"><i class="fa-solid fa-minus"></i></button>
+                <button type="button" onclick="updateCounter('water', -0.5)"><i class="fa-solid fa-minus"></i></button>
                 <input type="hidden" name="water" id="water-input" value="{{ water_count|default:0 }}">
                 <span id="water-count">{{ water_count|default:0 }}</span>
                 / <span id="water-goal">{{ water_goal }}</span>
-                <button type="button" onclick="updateWater(1)"><i class="fa-solid fa-plus"></i></button>
+                <button type="button" onclick="updateCounter('water', 0.5)"><i class="fa-solid fa-plus"></i></button>
             </div>
             <button type="submit" class="custom-btn btn-add">Save</button>
         </form>
@@ -92,11 +92,11 @@
             {% csrf_token %}
             <div class="counter">
                 <i class="fa-solid fa-moon"></i>
-                <button type="button" onclick="updateSleep(-1)"><i class="fa-solid fa-minus"></i></button>
+                <button type="button" onclick="updateCounter('sleep', -0.5)"><i class="fa-solid fa-minus"></i></button>
                 <input type="hidden" name="sleep" id="sleep-input" value="{{ sleep_count|default:0 }}">
                 <span id="sleep-count">{{ sleep_count|default:0 }}</span>
                 / <span id="sleep-goal">{{ sleep_goal }}</span>
-                <button type="button" onclick="updateSleep(1)"><i class="fa-solid fa-plus"></i></button>
+                <button type="button" onclick="updateCounter('sleep', 0.5)"><i class="fa-solid fa-plus"></i></button>
             </div>
             <button type="submit" class="custom-btn btn-add">Save</button>
         </form>

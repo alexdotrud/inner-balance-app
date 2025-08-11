@@ -410,6 +410,8 @@ h3 {
 }
 
 .counter {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
     margin: 2rem;
 }
 

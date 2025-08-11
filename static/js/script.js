@@ -127,32 +127,22 @@ $(document).ready(function () {
     });
 });
 
-function updateSleep(delta = 0.5) {
-    const countElem = document.getElementById('sleep-count');
-    const inputElem = document.getElementById('sleep-input');
-    if (!countElem || !inputElem) return;
+function updateCounter(type, delta = 0.5, min = 0, max = 20) {
+    const countEl = document.getElementById(`${type}-count`);
+    const inputEl = document.getElementById(`${type}-input`);
+    if (!countEl || !inputEl) return;
 
-    const current = parseFloat(inputElem.value) || 0;
-    const next = Math.round(Math.max(0, Math.min(20, current + delta)) * 10) / 10;
+    const current = parseFloat(inputEl.value) || 0;
+    const curTenths = Math.round(current * 10);
+    const delTenths = Math.round(delta * 10);
+    let nextTenths = curTenths + delTenths;
+    nextTenths = Math.max(min * 10, Math.min(max * 10, nextTenths));
 
-    inputElem.value = next;
-    countElem.textContent = Number.isInteger(next) ? next.toFixed(0) : next.toFixed(1);
+    const next = nextTenths / 10;
+    inputEl.value = next;
+    countEl.textContent = Number.isInteger(next) ? next.toFixed(0) : next.toFixed(1);
 
     waterSleepMotivation();
-}
-
-function updateWater(change) {
-    const countElem = document.getElementById('water-count');
-    const inputElem = document.getElementById('water-input');
-
-    let count = parseInt(countElem.textContent) || 0;
-    count += change;
-
-    // Prevent negative count
-    if (count < 0) count = 0;
-
-    countElem.textContent = count;
-    inputElem.value = count;
 }
 
 function saveDescription(e) {
