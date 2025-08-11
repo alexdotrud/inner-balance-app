@@ -127,6 +127,20 @@ $(document).ready(function () {
     });
 });
 
+function updateSleep(delta = 0.5) {
+    const countElem = document.getElementById('sleep-count');
+    const inputElem = document.getElementById('sleep-input');
+    if (!countElem || !inputElem) return;
+
+    const current = parseFloat(inputElem.value) || 0;
+    const next = Math.round(Math.max(0, Math.min(20, current + delta)) * 10) / 10;
+
+    inputElem.value = next;
+    countElem.textContent = Number.isInteger(next) ? next.toFixed(0) : next.toFixed(1);
+
+    waterSleepMotivation();
+}
+
 function updateWater(change) {
     const countElem = document.getElementById('water-count');
     const inputElem = document.getElementById('water-input');
