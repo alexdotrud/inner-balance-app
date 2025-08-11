@@ -69,7 +69,7 @@ def populate_profile_on_signup(request, user, **kwargs):
 
     profile, _ = UserProfile.objects.get_or_create(user=user)
     if water_goal:
-        profile.water_goal = int(water_goal)
+        profile.water_goal = float(water_goal)
     if sleep_goal:
         profile.sleep_goal = float(sleep_goal)
     profile.save()
@@ -80,15 +80,15 @@ def update_water_sleep(request):
     if request.method == 'POST':
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
         
-        water_value = request.POST.get('water')
-        if water_value and water_value.strip():
+        raw_water = (request.POST.get('water') or "").replace(",", ".")
+        if raw_water and water_value.strip():
             try:
-                profile.water_intake = int(water_value)
+                profile.water_intake = float(water_value)
             except ValueError:
                 pass
 
-        sleep_value = request.POST.get('sleep')
-        if sleep_value and sleep_value.strip():
+        raw_sleep = (request.POST.get('sleep') or "").replace(",", ".")
+        if raw_sleep and sleep_value.strip():
             try:
                 sleep_hours = float(sleep_value)
                 profile.sleep_hours = min(sleep_hours, 20.0)
