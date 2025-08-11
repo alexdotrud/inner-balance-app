@@ -81,16 +81,16 @@ def update_water_sleep(request):
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
         
         raw_water = (request.POST.get('water') or "").replace(",", ".")
-        if raw_water and water_value.strip():
+        if raw_water and raw_water.strip():
             try:
-                profile.water_intake = float(water_value)
+                profile.water_intake = float(raw_water)
             except ValueError:
                 pass
 
         raw_sleep = (request.POST.get('sleep') or "").replace(",", ".")
-        if raw_sleep and sleep_value.strip():
+        if raw_sleep and raw_sleep.strip():
             try:
-                sleep_hours = float(sleep_value)
+                sleep_hours = float(raw_sleep)
                 profile.sleep_hours = min(sleep_hours, 20.0)
             except ValueError:
                 pass 

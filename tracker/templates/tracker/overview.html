@@ -39,12 +39,11 @@
                             onclick="openTaskModal('{{ task.id }}','{{ task.title|escapejs }}', '{{ task.description|escapejs }}')">
                             {{ task.title }}
                         </span>
-                        <div class="add-task">
-                            <a href="{% url 'tracker:task_create' %}" class="btn custom-btn btn-add"> + Add</a>
-                        </div>
                     </li>
                     {% endfor %}
-
+                    <div class="add-task">
+                        <a href="{% url 'tracker:task_create' %}" class="custom-btn btn-add"> + Add</a>
+                    </div>
                 </ul>
             </div>
         </form>

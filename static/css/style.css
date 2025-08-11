@@ -667,6 +667,11 @@ h3 {
     box-shadow: 0 6px 12px var(--primary-color);
 }
 
+.nav-btn:focus,
+.custom-btn:focus {
+    box-shadow: 0 0 0 3px var(--secondary-color);
+    border-radius: 0.5rem;
+}
 
 .custom-btn {
     max-width: 250px;
