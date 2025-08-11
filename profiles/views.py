@@ -40,6 +40,7 @@ def profile_view(request):
         "sleep_hours": profile.sleep_hours,
         "water_goal": profile.water_goal,
         "sleep_goal": profile.sleep_goal,
+        "member_since": request.user.date_joined,
     })
 
 def populate_profile_on_signup(request, user, **kwargs):
