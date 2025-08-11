@@ -1,4 +1,4 @@
-const isLoggedIn = "{{user.is_authenticated|yesno:'true,false'}}";
+const isLoggedIn = "{{ user.is_authenticated|yesno:'true,false' }}" === "true";
 const LoggedParagraph = document.getElementById("sign-p")
 const LoggedHeading = document.getElementById("sign-h")
 
