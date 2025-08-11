@@ -44,7 +44,7 @@
                         </li>
                         {% endfor %}
                         <div class="add-task">
-                            <a href="{% url 'tracker:task_create' %}" class="btn custom-btn"> + Add</a>
+                            <a href="{% url 'tracker:task_create' %}" class="btn custom-btn btn-add"> + Add</a>
                         </div>
                     </ul>
                 </form>
@@ -65,13 +65,14 @@
         <form method="POST" action="{% url 'tracker:update_water_sleep' %}">
             {% csrf_token %}
             <div class="counter">
+                <i class="fa-solid fa-glass-water"></i>
                 <button type="button" onclick="updateWater(-1)"><i class="fa-solid fa-minus"></i></button>
                 <input type="hidden" name="water" id="water-input" value="{{ water_count|default:0 }}">
                 <span id="water-count">{{ water_count|default:0 }}</span>
                 / <span id="water-goal">{{ water_goal }}</span>
                 <button type="button" onclick="updateWater(1)"><i class="fa-solid fa-plus"></i></button>
             </div>
-            <button type="submit" class="custom-btn small-btn">Save</button>
+            <button type="submit" class="custom-btn btn-add">Save</button>
         </form>
     </div>
 
@@ -95,7 +96,7 @@
                     id="sleep-goal">{{ sleep_goal}}</span>
                 <span>hours</span>
             </div>
-            <button type="submit" class="custom-btn small-btn">Save</button>
+            <button type="submit" class="custom-btn btn-add">Save</button>
         </form>
     </div>
 </div>

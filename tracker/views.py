@@ -91,12 +91,11 @@ def update_water_sleep(request):
         if sleep_value and sleep_value.strip():
             try:
                 sleep_hours = float(sleep_value)
-                profile.sleep_hours = min(sleep_hours, 20.0)  # Cap at 20
+                profile.sleep_hours = min(sleep_hours, 20.0)
             except ValueError:
                 pass 
 
         profile.save()
-        messages.success(request, "Goals updated.")
         return redirect('tracker:overview')
     
 
