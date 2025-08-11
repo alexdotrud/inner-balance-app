@@ -68,8 +68,8 @@ function Motivation() {
 }
 
 function waterSleepMotivation() {
-    const waterGoal = parseInt($("#water-goal").text(), 10) || 0;
-    const waterCount = parseInt($("#water-count").text(), 10) || 0;
+    const waterGoal = parseFloat($("#water-goal").text(), 10) || 8;
+    const waterCount = parseFloat($("#water-count").text(), 10) || 0;
     let waterPercentage = waterGoal > 0 ? (waterCount / waterGoal) * 100 : 0;
 
     const sleepGoal = parseFloat($("#sleep-input").attr("max")) || 8;

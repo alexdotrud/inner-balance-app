@@ -49,7 +49,7 @@ def populate_profile_on_signup(request, user, **kwargs):
 
     profile, _ = UserProfile.objects.get_or_create(user=user)
     if water_goal:
-        profile.water_goal = int(water_goal)
+        profile.water_goal = float(water_goal)
     if sleep_goal:
         profile.sleep_goal = float(sleep_goal)
     profile.save()
