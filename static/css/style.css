@@ -232,6 +232,13 @@ h3 {
     width: 30%;
 }
 
+#flash-messages .alert {
+    position: relative;
+    padding-right: 2rem;
+}
+
+
+
 
 /* Motivation */
 #motivation {
@@ -292,7 +299,6 @@ h3 {
 
 #task {
     max-width: fit-content;
-    min-width: 500px;
     padding: 1rem;
     margin: 0 auto;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -411,6 +417,11 @@ h3 {
 
 .counter {
     margin: 2rem;
+}
+
+.counter input {
+    font-size: 1rem;
+    height: 2rem;
 }
 
 /* Delete/Edit Pages Styles */
@@ -729,6 +740,13 @@ h3 {
     max-width: fit-content;
     margin-left: 1rem;
     font-size: 1rem;
+}
+
+.btn-close {
+    font-size: 0.7rem;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
 }
 
 /* Custom Links Styles */

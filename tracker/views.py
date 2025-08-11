@@ -96,6 +96,7 @@ def update_water_sleep(request):
                 pass 
 
         profile.save()
+        messages.success(request, "Goals updated.")
         return redirect('tracker:overview')
     
 
