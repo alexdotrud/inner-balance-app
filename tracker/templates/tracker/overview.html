@@ -27,28 +27,27 @@
         <form method="POST" action="{% url 'tracker:update_tasks' %}" id="task-form">
             {% csrf_token %}
             <div id="task">
-                <form method="POST" action="{% url 'tracker:update_tasks' %}" id="task-form">
-                    {% csrf_token %}
-                    <h3>Task List:</h3>
-                    <span class="toggle-arrow"><i class="fa-solid fa-chevron-up"></i></span>
-                    <ul class="list-group">
-                        {% for task in tasks %}
-                        <li class="list-group-item">
-                            <input type="checkbox" name="task_{{ task.id }}" class="custom-checkbox"
-                                onchange="document.getElementById('task-form').submit();"
-                                {% if task.is_completed %}checked{% endif %}>
-                            <span class="task-title"
-                                onclick="openTaskModal('{{ task.id }}','{{ task.title|escapejs }}', '{{ task.description|escapejs }}')">
-                                {{ task.title }}
-                            </span>
-                        </li>
-                        {% endfor %}
+                <h3>Task List:</h3>
+                <span class="toggle-arrow"><i class="fa-solid fa-chevron-up"></i></span>
+                <ul class="list-group">
+                    {% for task in tasks %}
+                    <li class="list-group-item">
+                        <input type="checkbox" name="task_{{ task.id }}" class="custom-checkbox"
+                            onchange="document.getElementById('task-form').submit();"
+                            {% if task.is_completed %}checked{% endif %}>
+                        <span class="task-title"
+                            onclick="openTaskModal('{{ task.id }}','{{ task.title|escapejs }}', '{{ task.description|escapejs }}')">
+                            {{ task.title }}
+                        </span>
                         <div class="add-task">
                             <a href="{% url 'tracker:task_create' %}" class="btn custom-btn btn-add"> + Add</a>
                         </div>
-                    </ul>
-                </form>
+                    </li>
+                    {% endfor %}
+
+                </ul>
             </div>
+        </form>
     </div>
 
     <!--Water Card-->
@@ -83,7 +82,7 @@
         <div id="motivation">
             <p class="motivation-text" id="sleep-motivation"></p>
             <p id="sleep-progress-percentage"></p>
-            <div class="progress-bar">
+            <div class="sleep-progress-bar">
                 <div class="sleep-progress-bar-fill"></div>
             </div>
         </div>
