@@ -292,18 +292,15 @@ h3 {
 }
 
 #task {
-    max-width: fit-content;
+    width: 90%;
     padding: 1rem;
     margin: 1.5rem auto;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    background-color: #ffffff3c;
 }
 
 .add-task {
     text-align: center;
-}
-
-.tracker-card:hover {
-    transform: scale(1.1);
 }
 
 .task-title {
@@ -350,6 +347,11 @@ h3 {
     font-size: 1.5rem;
     text-decoration: none;
     color: var(--primary-color);
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+}
+
+#task i:hover {
     transform: scale(1.2);
     transition: transform 0.3s ease;
 }
@@ -784,5 +786,9 @@ h3 {
         width: 80%;
         max-width: 1200px;
         padding: 3rem;
+    }
+
+    #task {
+        width: 70%;
     }
 }
