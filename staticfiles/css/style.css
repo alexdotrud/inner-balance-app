@@ -123,8 +123,7 @@ h3 {
 }
 
 #home-container {
-    width: 80%;
-    max-width: 1200px;
+    width: 90%;
     color: var(--primary-color);
     font-family: var(--primary-font);
     line-height: 1.6;
@@ -178,7 +177,7 @@ h3 {
     padding-bottom: 0.5rem;
 }
 
-/* Dashboard styles*/
+/* Overview styles*/
 
 .title {
     letter-spacing: 2px;
@@ -195,19 +194,15 @@ h3 {
 }
 
 
-#dashboard-container {
+#overview-container {
     display: flex;
     flex-direction: column;
     align-self: center;
     justify-content: center;
     align-items: center;
-    width: 80%;
-    max-width: 1200px;
-    padding: 2rem 3rem;
+    width: 90%;
     gap: 3rem;
-    background-color: rgba(67, 132, 96, 0.135);
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
@@ -216,22 +211,36 @@ h3 {
     background: rgba(255, 255, 255, 0.479);
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    width: 70%;
-    max-width: 1200px;
+    width: 90%;
     margin: 0 auto;
     padding: 3rem 1.5rem;
     line-height: 1.6;
     text-align: center;
 }
 
+#flash-messages {
+    position: fixed;
+    top: 91.5px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    text-align: center;
+    width: 30%;
+}
+
+#flash-messages .alert {
+    position: relative;
+    padding-right: 2rem;
+}
 
 /* Motivation */
+
 #motivation {
     background-color: #f4f9f4;
     border: 1.5px solid #5cdb9785;
     border-radius: 10px;
-    padding: 2rem;
-    margin: 2rem;
+    margin: 3rem 0;
+    padding: 1rem;
     text-align: center;
     position: relative;
     box-shadow: 0 7px 20px rgba(67, 210, 191, 0.356)
@@ -261,7 +270,9 @@ h3 {
     border-radius: 40px;
 }
 
-#progress-percentage {
+#progress-percentage,
+#water-progress-procentage,
+#sleep-progress-percentage {
     font-size: 1rem;
     margin-bottom: 0.4rem;
 }
@@ -269,31 +280,27 @@ h3 {
 /* Task, Water, Sleep Cards Styles */
 
 .tracker-card {
-    width: 80%;
-    margin: 1rem;
+    width: 90%;
+    margin: 1rem 0.5rem;
     max-width: 1000px;
     background: #ffffff64;
     border-radius: 20px;
-    padding: 20px;
+    padding: 1rem;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     transform: scale(1.07);
     transition: transform 0.4s ease-in-out;
 }
 
 #task {
-    max-width: fit-content;
-    min-width: 500px;
+    width: 90%;
     padding: 1rem;
-    margin: 0 auto;
+    margin: 1.5rem auto;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    background-color: #ffffff3c;
 }
 
 .add-task {
     text-align: center;
-}
-
-.tracker-card:hover {
-    transform: scale(1.1);
 }
 
 .task-title {
@@ -320,11 +327,9 @@ h3 {
 }
 
 .list-group-item {
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 1.2rem;
     color: var(--primary-color);
     border-bottom: 1px solid var(--highlight-color);
     background-color: white;
@@ -346,8 +351,17 @@ h3 {
     transition: transform 0.3s ease;
 }
 
+#task i:hover {
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+}
+
 .add {
     text-align: right;
+}
+
+.add-task {
+    margin-top: 1rem;
 }
 
 .custom-checkbox {
@@ -365,7 +379,7 @@ h3 {
 
 .list-group {
     width: 100%;
-    margin: 1rem auto;
+    margin: 2rem auto;
 }
 
 .error-msg {
@@ -400,7 +414,15 @@ h3 {
 }
 
 .counter {
+    font-size: 1.5rem;
+    color: rgb(14, 149, 207);
     margin: 2rem;
+}
+
+.counter input {
+    font-size: 1rem;
+    height: 2.5rem;
+    max-width: 6rem;
 }
 
 /* Delete/Edit Pages Styles */
@@ -500,24 +522,19 @@ h3 {
 #profile-card {
     display: flex;
     flex-direction: column;
-    width: 80%;
-    max-width: 1200px;
-    padding: 2rem 3rem;
-    background-color: rgba(67, 132, 96, 0.135);
+    margin: 0 0.5rem;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-#profile-card .form-group {
-    background-color: #f4f9f4;
+#profile-card .form-group,
+#profile-card #motivation {
+    background-color: #f4f9f4ad;
     border: 1.5px solid #5cdb9785;
-    border-radius: 10px;
-    padding: 2rem;
-    margin: 2rem;
+    border-radius: 20px;
     text-align: center;
-    position: relative;
     box-shadow: 0 7px 20px rgba(67, 210, 191, 0.356);
+    padding: 2rem;
 }
 
 .description-label {
@@ -546,6 +563,10 @@ h3 {
 #motivation .custom-btn {
     display: block;
     margin: 1rem auto 0;
+}
+
+.list-group-item label {
+    padding-right: 2rem;
 }
 
 /* Login Page Styles */
@@ -650,6 +671,11 @@ h3 {
     box-shadow: 0 6px 12px var(--primary-color);
 }
 
+.nav-btn:focus,
+.custom-btn:focus {
+    box-shadow: 0 0 0 3px var(--secondary-color);
+    border-radius: 0.5rem;
+}
 
 .custom-btn {
     max-width: 250px;
@@ -672,7 +698,6 @@ h3 {
 }
 
 .btn-add {
-    margin-top: 1rem;
     max-width: fit-content;
 }
 
@@ -721,6 +746,13 @@ h3 {
     font-size: 1rem;
 }
 
+.btn-close {
+    font-size: 0.7rem;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+
 /* Custom Links Styles */
 .custom-link {
     color: var(--highlight-color-dark);
@@ -741,4 +773,32 @@ h3 {
     /* growing effect */
     transform: scale(1.2);
     transition: transform 0.3s ease;
+}
+
+/*Styles for Big Screens */
+
+@media screen and (min-width:992px) {
+
+    #home-container,
+    #overview-container {
+        width: 80%;
+        max-width: 1200px;
+    }
+
+    .delete-container,
+    .create-form-container {
+        width: 70%;
+        max-width: 1200px;
+    }
+
+    .tracker-card,
+    #profile-card {
+        width: 80%;
+        max-width: 1200px;
+        padding: 3rem;
+    }
+
+    #task {
+        width: 70%;
+    }
 }

@@ -762,14 +762,14 @@ h3 {
     color: var(--secondary-color);
 }
 
-.arrow-link {
+.arrow-link i {
     color: rgb(222, 229, 213);
     font-size: 2rem;
     text-decoration: none;
     cursor: pointer;
 }
 
-.arrow-link:hover {
+.arrow-link i:hover {
     /* growing effect */
     transform: scale(1.2);
     transition: transform 0.3s ease;

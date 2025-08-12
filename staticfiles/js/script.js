@@ -1,4 +1,4 @@
-const isLoggedIn = "{{user.is_authenticated|yesno:'true,false'}}";
+const isLoggedIn = "{{ user.is_authenticated|yesno:'true,false' }}" === "true";
 const LoggedParagraph = document.getElementById("sign-p")
 const LoggedHeading = document.getElementById("sign-h")
 
@@ -58,19 +58,23 @@ function Motivation() {
         message = "😴 You haven’t done anything yet... let's start!";
     }
 
+    if (isNaN(percentage)) {
+        percentage = 0;
+    }
+
     $('#motivation-text').text(message);
     $('.progress-bar-fill').css('width', percentage + '%');
     $('#progress-percentage').text(Math.round(percentage) + '%');
 }
 
 function waterSleepMotivation() {
-    const waterGoal = parseInt($("#water-goal").text());
-    const waterCount = parseInt($("#water-count").text());
-    const waterPercentage = Math.min((waterCount / waterGoal) * 100, 100);
+    const waterGoal = parseFloat($("#water-goal").text(), 10) || 8;
+    const waterCount = parseFloat($("#water-count").text(), 10) || 0;
+    let waterPercentage = waterGoal > 0 ? (waterCount / waterGoal) * 100 : 0;
 
-    const sleepGoal = parseFloat($("#sleep-input").attr("max")) || 8;
+    const sleepGoal = parseFloat($("#sleep-goal").text()) || 8;
     const sleepCount = parseFloat($("#sleep-input").val()) || 0;
-    const sleepPercentage = Math.min((sleepCount / sleepGoal) * 100, 100);
+    let sleepPercentage = sleepGoal > 0 ? (sleepCount / sleepGoal) * 100 : 0;
 
     function getMessage(percent) {
         if (percent === 100) return "🎉 Perfect!";
@@ -86,6 +90,9 @@ function waterSleepMotivation() {
 
     $(".water-progress-bar-fill").css("width", waterPercentage + "%");
     $(".sleep-progress-bar-fill").css("width", sleepPercentage + "%");
+
+    $("#water-progress-percentage").text(Math.round(waterPercentage) + "%");
+    $("#sleep-progress-percentage").text(Math.round(sleepPercentage) + "%");
 
 }
 
@@ -120,18 +127,22 @@ $(document).ready(function () {
     });
 });
 
-function updateWater(change) {
-    const countElem = document.getElementById('water-count');
-    const inputElem = document.getElementById('water-input');
+function updateCounter(type, delta = 0.5, min = 0, max = 20) {
+    const countEl = document.getElementById(`${type}-count`);
+    const inputEl = document.getElementById(`${type}-input`);
+    if (!countEl || !inputEl) return;
 
-    let count = parseInt(countElem.textContent) || 0;
-    count += change;
+    const current = parseFloat(inputEl.value) || 0;
+    const curTenths = Math.round(current * 10);
+    const delTenths = Math.round(delta * 10);
+    let nextTenths = curTenths + delTenths;
+    nextTenths = Math.max(min * 10, Math.min(max * 10, nextTenths));
 
-    // Prevent negative count
-    if (count < 0) count = 0;
+    const next = nextTenths / 10;
+    inputEl.value = next;
+    countEl.textContent = Number.isInteger(next) ? next.toFixed(0) : next.toFixed(1);
 
-    countElem.textContent = count;
-    inputElem.value = count;
+    waterSleepMotivation();
 }
 
 function saveDescription(e) {
@@ -156,3 +167,17 @@ function saveDescription(e) {
         editBtn.classList.add("is-hidden");
     });
 };
+
+function editDescription() {
+    const para = document.getElementById("description-text");
+    const editBtn = document.getElementById("desc-edit");
+    if (!para || !editBtn) return;
+
+    para.style.display = "none";
+    editBtn.style.display = "none";
+
+    para.insertAdjacentHTML("afterend", `
+    <textarea id="description" name="description" rows="4" maxlength="500">${para.textContent.trim()}</textarea>
+    <button type="submit" id="description-button" class="custom-btn btn-add">Save</button>
+  `);
+}
