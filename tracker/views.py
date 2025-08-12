@@ -12,6 +12,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Task, DailyReset
 from .forms import TaskForm
 from profiles.models import UserProfile
+from django.core.exceptions import ValidationError
 
 
 class OverviewView(LoginRequiredMixin, TemplateView):
@@ -78,20 +79,21 @@ def update_water_sleep(request):
     if request.method == 'POST':
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
         
-        raw_water = (request.POST.get('water') or "").replace(",", ".")
-        if raw_water and raw_water.strip():
-            try:
+        raw_water = (request.POST.get("water") or "").replace(",", ".")
+        raw_sleep = (request.POST.get("sleep") or "").replace(",", ".")
+    
+        try:
+            if raw_water.strip():
                 profile.water_intake = float(raw_water)
-            except ValueError:
-                pass
+            if raw_sleep.strip():
+                profile.sleep_hours = float(raw_sleep)
 
-        raw_sleep = (request.POST.get('sleep') or "").replace(",", ".")
-        if raw_sleep and raw_sleep.strip():
-            try:
-                sleep_hours = float(raw_sleep)
-                profile.sleep_hours = min(sleep_hours, 20.0)
-            except ValueError:
-                pass 
+            profile.full_clean()
+            profile.save()
+            messages.success(request, "Progress updated.")
+        except (ValueError, ValidationError):
+            messages.error(request, "Invalid intake value. Please check the limits.")
+
 
         profile.save()
         return redirect('tracker:overview')
