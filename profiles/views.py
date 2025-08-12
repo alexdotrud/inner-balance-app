@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from .models import UserProfile
+from django.core.exceptions import ValidationError
 
 @login_required
 def profile_view(request):
@@ -15,19 +16,16 @@ def profile_view(request):
             raw_sleep = (request.POST.get("sleep_goal") or "").replace(",", ".")
 
             try:
-                if raw_water not in (None, ""):
-                   profile.water_goal = max(0.0, min(20.0, float(raw_water)))
-            except ValueError:
-                pass
+                if raw_water.strip():
+                    profile.water_goal = float(raw_water)
+                if raw_sleep.strip():
+                    profile.sleep_goal = float(raw_sleep)
 
-            try:
-                if raw_sleep not in (None, ""):
-                    profile.sleep_goal = round(max(0.0, min(20.0, float(raw_sleep))), 1)
-            except ValueError:
-                pass
-
-            profile.save()
-            messages.success(request, "Goals updated.")
+                profile.full_clean()
+                profile.save()
+                messages.success(request, "Goals updated.")
+            except (ValueError, ValidationError):
+                messages.error(request, "Goal should not be less than 1 or more than 20.")
             return redirect("profiles:profile")
 
         # Then handle description
@@ -53,36 +51,31 @@ def populate_profile_on_signup(request, user, **kwargs):
     raw_water = (request.POST.get("water_goal") or "").replace(",", ".")
     raw_sleep = (request.POST.get("sleep_goal") or "").replace(",", ".")
     try:
-        profile.water_goal = max(0.0, min(20.0, float(raw_water))) if raw_water else 8.0
-    except ValueError:
+        profile.water_goal = float(raw_water) if raw_water else 8.0
+        profile.sleep_goal = float(raw_sleep) if raw_sleep else 8.0
+        profile.full_clean()
+    except (ValueError, ValidationError):
         profile.water_goal = 8.0
-
-    try:
-        profile.sleep_goal = max(0.0, min(20.0, float(raw_sleep))) if raw_sleep else 8.0
-    except ValueError:
         profile.sleep_goal = 8.0
 
     profile.save()
 
 def update_water_sleep(request):
-     if request.method == 'POST':
-        profile, _ = UserProfile.objects.get_or_create(user=request.user)
+    if request.method == 'POST':
+          profile, _ = UserProfile.objects.get_or_create(user=request.user)
 
-        raw_water = (request.POST.get('water') or "").replace(",", ".")
+          raw_water = (request.POST.get('water') or "").replace(",", ".")
+          raw_sleep = (request.POST.get('sleep') or "").replace(",", ".")
+    try:
         if raw_water.strip():
-            try:
-                v = float(raw_water)
-                profile.water_intake = max(0.0, min(20.0, v))
-            except ValueError:
-                pass
-
-        raw_sleep = (request.POST.get('sleep') or "").replace(",", ".")
+                profile.water_intake = float(raw_water)
         if raw_sleep.strip():
-            try:
-                v = float(raw_sleep)
-                profile.sleep_hours = max(0.0, min(20.0, v))
-            except ValueError:
-                pass
+                profile.sleep_hours = float(raw_sleep)
 
+        profile.full_clean()
         profile.save()
-        return redirect('tracker:overview')
+        messages.success(request, "Progress updated.")
+    except (ValueError, ValidationError):
+        messages.error(request, "Invalid intake value. Please check the limits.")
+
+    return redirect('tracker:overview')
