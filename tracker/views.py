@@ -50,17 +50,15 @@ class OverviewView(LoginRequiredMixin, TemplateView):
     
 
 def add_task(request):
-    if request.method == "POST":
-        title = request.POST.get("title", "").strip()
-        description = request.POST.get("description", "").strip()
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('task_list')
+    else:
+        form = TaskForm()
 
-        if title and len(title) <= 50 and len(description) <= 200:
-            Task.objects.create(user=request.user, title=title, description=description)
-            return redirect("tracker:overview")
-        else:
-            messages.error(request, "Title (max 50 chars) and description (max 200 chars) are required.")
-
-    return render(request, "tracker/add_task.html")
+    return render(request, 'add_task.html', {'task_form': form})
 
 
 def populate_profile_on_signup(request, user, **kwargs):
