@@ -360,6 +360,10 @@ h3 {
     text-align: right;
 }
 
+.add-task {
+    margin-top: 1rem;
+}
+
 .custom-checkbox {
     accent-color: #5bd39386;
     min-width: 25px;
@@ -694,7 +698,6 @@ h3 {
 }
 
 .btn-add {
-    margin-top: 1rem;
     max-width: fit-content;
 }
 
