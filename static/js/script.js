@@ -2,15 +2,9 @@ const isLoggedIn = "{{ user.is_authenticated|yesno:'true,false' }}" === "true";
 const LoggedParagraph = document.getElementById("sign-p")
 const LoggedHeading = document.getElementById("sign-h")
 
-if (isLoggedIn) {
-    if (LoggedParagraph) {
-        LoggedParagraph.style.display = "none";
-    }
-    if (LoggedHeading) {
-        LoggedHeading.style.display = "none";
-    }
-}
-
+/**
+ * Modal opening function
+ */
 function openTaskModal(id, title, description) {
 
     const titleElement = document.getElementById('modal-title');
@@ -34,6 +28,9 @@ function openTaskModal(id, title, description) {
     }
 }
 
+/**
+ * Function that is counting success percentage and shows a motivation feedback.
+ */
 function Motivation() {
     const checkboxes = $('.list-group-item input[type="checkbox"]');
     const totalTasks = checkboxes.length;
@@ -67,6 +64,9 @@ function Motivation() {
     document.getElementById('progress-percentage').textContent = Math.round(percentage) + '%';
 }
 
+/**
+ * Motivation function for sleep and water section. Calculates success procentage and gives feedback.
+ */
 function waterSleepMotivation() {
     const waterGoal = parseFloat($("#water-goal").text(), 10) || 8;
     const waterCount = parseFloat($("#water-count").text(), 10) || 0;
@@ -96,37 +96,51 @@ function waterSleepMotivation() {
 
 }
 
-$(document).ready(function () {
+/**
+ * Runs Motivation function every time checkbox is clicked.
+ */
+document.addEventListener("DOMContentLoaded", function () {
     Motivation();
 
     // Re-run every time checkbox is clicked
-    $(".custom-checkbox").on("change", function () {
-        Motivation();
+    document.querySelectorAll(".custom-checkbox").forEach(function (checkbox) {
+        checkbox.addEventListener("change", Motivation);
     });
 
-});
-
-$(document).ready(function () {
     waterSleepMotivation();
 });
 
-$(document).ready(function () {
-    $('.toggle-arrow').on('click', function () {
-        const icon = $(this).find('i');
-        const taskList = $('.list-group');
+/**
+ * Function is hiding and showing task list, changing the icon.
+ */
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".toggle-arrow").forEach(function (toggle) {
+        toggle.addEventListener("click", function () {
+            const icon = this.querySelector("i");
+            const taskList = document.querySelector(".list-group");
 
-        // Opens and Closes Task List
-        taskList.slideToggle(200);
+            // Toggle visibility (instant, not animated)
+            if (taskList.style.display === "none" || taskList.style.display === "") {
+                taskList.style.display = "block";
+            } else {
+                taskList.style.display = "none";
+            }
 
-        // Changing icons class
-        if (icon.hasClass('fa-chevron-down')) {
-            icon.removeClass('fa-chevron-down').addClass('fa-chevron-up');
-        } else {
-            icon.removeClass('fa-chevron-up').addClass('fa-chevron-down');
-        }
+            // Change icon class
+            if (icon.classList.contains("fa-chevron-down")) {
+                icon.classList.remove("fa-chevron-down");
+                icon.classList.add("fa-chevron-up");
+            } else {
+                icon.classList.remove("fa-chevron-up");
+                icon.classList.add("fa-chevron-down");
+            }
+        });
     });
 });
 
+/**
+ * Changes the current progress toward goals.
+ */
 function updateCounter(type, delta = 0.5, min = 0, max = 20) {
     const countEl = document.getElementById(`${type}-count`);
     const inputEl = document.getElementById(`${type}-input`);
@@ -145,6 +159,9 @@ function updateCounter(type, delta = 0.5, min = 0, max = 20) {
     waterSleepMotivation();
 }
 
+/**
+ * Saves description. Changes area from textarea to paragraph.
+ */
 function saveDescription(e) {
     const editBtn = document.getElementById("desc-edit");
     const textarea = document.getElementById("description");
@@ -168,6 +185,9 @@ function saveDescription(e) {
     });
 };
 
+/**
+ * Changes area back to textarea to allow changes.
+ */
 function editDescription() {
     const para = document.getElementById("description-text");
     const editBtn = document.getElementById("desc-edit");
