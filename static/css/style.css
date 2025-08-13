@@ -654,6 +654,15 @@ h3 {
     text-align: center;
 }
 
+.errorlist {
+    list-style: none;
+    color: red;
+    font-size: 1.2rem;
+    margin: 1rem;
+    list-style: none;
+    text-align: center;
+}
+
 /* Custom Buttons Styles */
 
 .nav-btn {

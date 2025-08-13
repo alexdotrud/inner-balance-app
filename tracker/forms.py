@@ -1,19 +1,21 @@
 from django import forms
 from .models import Task
+from django.core.exceptions import ValidationError
+
 
 class TaskForm(forms.ModelForm):
+    title = forms.CharField(
+        widget=forms.TextInput(),
+    )
+    description = forms.CharField(
+        widget=forms.Textarea(attrs={"rows": 3}),
+        required=False
+    )
+
     class Meta:
         model = Task
-        fields = ['title', 'description']
-
-    def clean_title(self):
-        title = self.cleaned_data.get('title', '')
-        if len(title) > 50:
-            raise forms.ValidationError("Title must be less than 50 characters.")
-        return title
-
-    def clean_description(self):
-        description = self.cleaned_data.get('description', '')
-        if len(description) > 200:
-            raise forms.ValidationError("Description must be less than 200 characters.")
-        return description
+        fields = ["title", "description"]
+        widgets = {
+                "title": forms.TextInput(),
+            "description": forms.Textarea(attrs={"rows": 3}),
+        }

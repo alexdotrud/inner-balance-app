@@ -41,15 +41,11 @@ class OverviewView(LoginRequiredMixin, TemplateView):
             task.user = request.user
             try:
                 task.save()
-                # Counts created tasks, after 5 shows a seccess message
-                task_count = Task.objects.filter(user=request.user).count()
-
-
             except IntegrityError:
                 messages.error(request, "You already have a task with this title.")
-
         return redirect('tracker:overview')
     
+
 
 def add_task(request):
     """
@@ -64,9 +60,9 @@ def add_task(request):
         elif len(title) > 50:
             messages.error(request, "Title cannot exceed 50 characters.")
         elif not description:
-            messages.error(request, "Description is required (max 200 characters).")
-        elif len(description) > 200:
-            messages.error(request, "Description cannot exceed 200 characters.")
+            messages.error(request, "Description is required (max 300 characters).")
+        elif len(description) > 300:
+            messages.error(request, "Description cannot exceed 300 characters.")
         else:
             Task.objects.create(user=request.user, title=title, description=description)
             messages.success(request, "Task created successfully!")
@@ -146,11 +142,10 @@ class TaskCreateView(SuccessMessageMixin, CreateView):
     Creates a new task for the logged-in user.
     """
     model = Task
-    fields = ['title', 'description']
+    form_class = TaskForm
     template_name = 'tracker/task_form.html'
     success_message = 'Task added!'
 
-  #set the user before saving
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -158,6 +153,7 @@ class TaskCreateView(SuccessMessageMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('tracker:overview')
 
+    # No need to pass user in initial anymore
 
 
 class TaskUpdateView(SuccessMessageMixin, UpdateView):
@@ -165,7 +161,7 @@ class TaskUpdateView(SuccessMessageMixin, UpdateView):
     Updates an existing task owned by the logged-in user.
     """
     model = Task
-    fields = ['title', 'description']
+    form_class = TaskForm
     template_name = 'tracker/task_form.html'
     success_message = 'Task updated!'
     
@@ -175,6 +171,8 @@ class TaskUpdateView(SuccessMessageMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('tracker:overview')
+    
+    # No need to pass user in initial anymore
     
 
 class TaskDeleteView(SuccessMessageMixin, DeleteView):
