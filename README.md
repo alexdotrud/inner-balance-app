@@ -282,7 +282,63 @@ INNER BALANCE uses a mix of subtle animations, dynamic feedback, and conditional
 ## Testing 
 ### User stories tasting:
 
+| **Test Description**                                                        | **Result** | **Status** |
+|------------------------------------------------------------------------------|------------|------------|
+| User can sign up, log in, and log out successfully.                          | Pass       | ✅         |
+| User can create a task with title and description.                           | Pass       | ✅         |
+| User cannot create a task with duplicate title.                              | Pass       | ✅         |
+| User can edit their own task and see changes immediately.                    | Pass       | ✅         |
+| User can delete their own task with confirmation.                            | Pass       | ✅         |
+| User can update water and sleep intake within allowed range (0–20).          | Pass       | ✅         |
+| User cannot update water or sleep intake outside allowed range.              | Pass       | ✅         |
+| User can set water and sleep goals within allowed range (1–20).              | Pass       | ✅         |
+| Daily reset resets tasks, water, and sleep at start of new day.              | Pass       | ✅         |
+| Non-logged-in users are redirected to login when accessing protected pages.  | Pass       | ✅         |
+| 404 page is shown for non-existent routes in production.                     | Pass       | ✅         |
+
 ### Manual testing results:
+
+###  Sign Up
+| **Form Testing** | **Description**                                                                          | **Result** | **Status** |
+|------------------|------------------------------------------------------------------------------------------|------------|------------|
+|                  | Accepts unique username/email + strong password; user is created & logged in.           | Pass       | ✅         |
+|                  | Duplicate **username** is rejected with a field error.                                   | Pass       | ✅         |
+|                  | Password confirmation mismatch shows a field error.                                      | Pass       | ✅         |
+|                  | Required fields enforced; empty submit shows field errors.                               | Pass       | ✅         |
+|                  | 'tracker/overview' preserved and user redirected there after signup.                     | Pass       | ✅         |
+
+### Login
+| **Form Testing** | **Description**                                                | **Result** | **Status** |
+|------------------|----------------------------------------------------------------|------------|------------|
+|                  | Valid credentials log user in and redirect to overview.        | Pass       | ✅         |
+|                  | Invalid credentials show an error; user remains on login page. | Pass       | ✅         |
+
+### Logout
+| **Form Testing** | **Description**                                                   | **Result** | **Status** |
+|------------------|-------------------------------------------------------------------|------------|------------|
+|                  | Logout link ends session and redirects to home/landing page.      | Pass       | ✅         |
+|                  | Visiting homepage after logout redirects to login page.           | Pass       | ✅         |
+
+###  Profile
+| **Form Testing** | **Description**                                                                                   | **Result** | **Status** |
+|------------------|---------------------------------------------------------------------------------------------------|------------|------------|
+|                  | Updating **water goal** with valid value between 1–20 saves successfully.                         | Pass       | ✅         |
+|                  | Updating **sleep goal** with valid value between 1–20 saves successfully.                         | Pass       | ✅         |
+|                  | Invalid values outside allowed range trigger error message.                                       | Pass       | ✅         |
+|                  | Description can be updated (max 500 characters).                                                  | Pass       | ✅         |
+|                  | Leaving description empty saves successfully.                                                     | Pass       | ✅         |
+|                  | Comma in numeric input is accepted and converted to decimal.                                      | Pass       | ✅         |
+|                  | Submitting form without changes keeps previous values.                                            | Pass       | ✅         |
+
+###  Overview
+| **Form Testing** | **Description**                                                                                   | **Result** | **Status** |
+|------------------|---------------------------------------------------------------------------------------------------|------------|------------|
+|                  | New task can be created with title ≤ 50 characters and description ≤ 200 characters.              | Pass       | ✅         |
+|                  | Attempting to add task with duplicate title shows error message.                                   | Pass       | ✅         |
+|                  | Task can be marked as complete and saved.                                                          | Pass       | ✅         |
+|                  | Task list refreshes daily at reset time, resetting completion status.                              | Pass       | ✅         |
+|                  | Water intake and sleep hours can be updated (0–20 range enforced).                                 | Pass       | ✅         |
+|                  | Invalid intake values outside range trigger error message.                                         | Pass       | ✅         |
 
 #### Lighthouse Report:
 
