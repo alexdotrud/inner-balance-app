@@ -10,6 +10,7 @@ INNER BALANCE is a personal wellness tracker built with **Django**, **Bootstrap*
 - [Business Goals](#business-goals)  
 - [Developer Goals](#developer-goals)  
 - [User Stories](#user-stories)  
+- [Agile Methods](#agile-methods)
 - [Design Choices](#design-choices)  
 - [Features](#features)  
 - [UX Design](#ux-design)  
@@ -18,7 +19,8 @@ INNER BALANCE is a personal wellness tracker built with **Django**, **Bootstrap*
 - [Bugs](#bugs) 
 - [Future Changes](#future-changes)
 - [Deployment](#deployment)  
-- [Publishing](#publishing)  
+- [Setup Instructions](#setup-instructions)  
+- [Cloning and Forking](#cloning-and-forking)
 - [Credits](#credits)  
 
 ## User Goals
@@ -116,6 +118,30 @@ The project aims to:
 - The progress bar updates automatically as I log sleep.  
 - A motivational message appears based on how close I am to my goal.  
 
+## Agile Methods
+
+This project was planned and developed using Agile methodology to stay organised and deliver features iteratively.
+
+- **User Stories**:  
+  All planned features were written as user stories with clear acceptance criteria.  
+  These helped define the scope and ensured that each feature met the intended user needs.
+  Each user story was given a **priority label** — *Must Have*, *Should Have*, or *Could Have* — to help focus development on the most critical features first.
+
+
+- **Project Planning**:  
+  A GitHub Projects Kanban board was used with columns for **To Do**, **In Progress**, **Done** and **Feature Improvements**.  
+  This allowed tracking of progress at a glance and made it easy to prioritise tasks.
+
+- **Iterative Development**:  
+  The project was developed in small, manageable tasks. Core functionality was completed first, followed by enhancements.
+
+- **Testing & Refinement**:  
+  Each completed feature was manually tested and adjusted based on results before moving on to the next task.
+
+**Project Planning Screenshots**  
+
+![GitHub Projects Board - To Do, In Progress, Done and Fututre improvements](documentation/todo-list.png)  
+![Example User Stories](documentation/task.png)
 
 ## Design Choices
 
@@ -194,6 +220,7 @@ The original concept for INNER BALANCE was to create a fully-featured wellness t
 - Friendly error page matching INNER BALANCE branding.  
 - Suggests returning to the dashboard or logging in.  
 - Helps guide lost users back to the main workflow.  
+- Non-authenticated users cannot access dashboard or profile pages.
 
 ![Error Page](documentation/error-page.png)  
 
@@ -452,10 +479,99 @@ The following features and improvements could be done for INNER BALANCE to enhan
 - **Resources App:** Create a dedicated section with wellness-related blog posts, tips, and expert advice to educate and inspire users.
 - **Goal Setup at Registration:** Add the ability for users to set their daily water intake and sleep goals during the sign-up process, ensuring a personalized dashboard from day one.
 
+## Deployment
+[Live project can be found here!](https://alexdotrud.github.io/jungles-story/)
 
-https://www.freepik.com/free-photos-vectors/notepad-transparent-background -for notepad picture
+The project was deployed to **Heroku** using GitHub for version control and automatic deployment.  
+The following steps were used to deploy the project:
 
+1. Create a new Heroku app in the Heroku dashboard.
+2. Connect the app to the GitHub repository and enable **Automatic Deploys** from the `main` branch.
+3. Add the **Heroku PostgreSQL** add-on as the production database.
+4. Set up environment variables in **Heroku Config Vars** (e.g., `SECRET_KEY`, `DEBUG`, `DATABASE_URL`).
+5. Push the code to GitHub to trigger deployment to Heroku.
+6. After deployment, run migrations and create a superuser from the Heroku console:
+   ```bash
+   python manage.py migrate
+   python manage.py createsuperuser
 
-Bugs:
-Everytime after pressing on checkboxes in rolls you up to progress container.-not fixed
-Fix the bug with progress-bar-fill dissapearing from the screen" -fixed by impproving html structure of progress bar.
+## Setup Instructions
+
+To set up the project locally or in Gitpod, follow these steps:
+
+1. **Open in Gitpod**:  
+    Navigate to your GitHub repository and prefix the URL with `gitpod.io/#`. For example:  
+    `https://gitpod.io/#https://github.com/yourusername/inner-balance-app`
+
+2. **Install dependencies**:  
+    In the terminal, run:  
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. **Set up the database**:  
+    Create a PostgreSQL database and update the `DATABASE_URL` in your environment variables.
+
+4. **Run migrations**:  
+    ```bash
+    python manage.py migrate
+    ```
+
+5. **Create a superuser for admin access**:  
+    ```bash
+    python manage.py createsuperuser
+    ```
+
+6. **Run the development server**:  
+    ```bash
+    python3 manage.py runserver 0.0.0.0:8000
+    ```
+
+7. **Access the application**:  
+    Open the URL provided in the terminal to view your application.
+
+## Cloning and forking
+
+### Cloning
+
+To clone the repository:
+
+- On GitHub.com, navigate to the main page of the repository.
+- Above the list of files, click **Code**.
+- Copy the URL for the repository.
+- Type `git clone`, and then paste the URL you copied earlier.
+- Press **Enter** to create your local clone.
+
+### Forking
+
+To fork the repository:
+
+- On GitHub.com, navigate to the main page of the repository.
+- In the top-right corner of the page, click **Fork**.
+- Under "Owner," select the dropdown menu and click an owner for the forked repository.
+- Click **Create Fork**.
+
+## Credits
+
+- **Django Framework** – [Django](https://www.djangoproject.com/) was used as the main backend framework.
+- **Bootstrap / CSS Styling** – Used for responsive and clean front-end design.
+- **PostgreSQL** – [PostgreSQL](https://www.postgresql.org/) was used as the production database via Heroku.
+- **Heroku** – [Heroku](https://www.heroku.com/) was used for hosting and deployment.
+- **Gunicorn** – [Gunicorn](https://gunicorn.org/) WSGI server for running the application in production.
+- **dj-database-url** – For parsing and using the `DATABASE_URL` environment variable.
+- **Cloudinary** *(if used)* – For media file storage.
+- **Favicon & Logo** – Created using [favicon.io](https://favicon.io/).
+- **Icons** – Sourced from [Font Awesome](https://fontawesome.com/).
+- **Fonts** – From [Google Fonts](https://fonts.google.com/).
+- **Inspiration & Guidance** – Code Institute course material and Django documentation.
+- **Testing** – Conducted manually across multiple browsers and devices.
+- **Content & Text** – Written by the project author (Aleksandra Rudenko).
+- **Homepage Image** – Sourced from [Pixabay](https://pixabay.com/).
+- **W3Schools**: Used for reference and tutorials on HTML, CSS, JavaScript, and more (https://www.w3schools.com/).
+- **Stack Overflow**: Used for troubleshooting and seeking solutions to development challenges (https://stackoverflow.com/).
+- **Chrome DevTools Lighthouse**: Used to test and improve web performance (https://developer.chrome.com/docs/lighthouse/performance/).
+- **Figma** : Used for creating plan for the project. (https://www.figma.com/)
+- **Code Institute**: Used for learning web development techniques and improving skills through the full stack developer program (https://www.codeinstitute.net/).
+- **Am I Responsive?**: Used to create Image for different screens (https://ui.dev/amiresponsive?url=https://alexdotrud.github.io/jungles-story/).
+- **Responsive Website Design Tester** : Used to test responsivness of the website (https://responsivetesttool.com/).
+- **Master Django & Python for Web Development** : Used fo learning more about django (https://www.youtube.com/watch?v=D584Rm9VLLc).
