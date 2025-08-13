@@ -35,12 +35,12 @@ function openTaskModal(id, title, description) {
 }
 
 function Motivation() {
-    var checkboxes = $('.list-group-item input[type="checkbox"]');
-    var totalTasks = checkboxes.length;
-    var completedTasks = checkboxes.filter(':checked').length;
-    var percentage = (completedTasks / totalTasks) * 100;
+    const checkboxes = $('.list-group-item input[type="checkbox"]');
+    const totalTasks = checkboxes.length;
+    const completedTasks = checkboxes.filter(':checked').length;
+    const percentage = (completedTasks / totalTasks) * 100;
 
-    var message = "";
+    const message = "";
 
     if (totalTasks === 0) {
         message = "📋 No tasks yet!";
@@ -62,9 +62,9 @@ function Motivation() {
         percentage = 0;
     }
 
-    $('#motivation-text').text(message);
-    $('.progress-bar-fill').css('width', percentage + '%');
-    $('#progress-percentage').text(Math.round(percentage) + '%');
+    document.getElementById('motivation-text').textContent = message;
+    document.getElementsByClassName('progress-bar-fill').style.width = percentage + '%';
+    document.getElementById('progress-percentage').textContent = Math.round(percentage) + '%';
 }
 
 function waterSleepMotivation() {
@@ -85,14 +85,14 @@ function waterSleepMotivation() {
         return "😴 Not tracked yet.";
     }
 
-    $("#water-motivation").text(getMessage(waterPercentage));
-    $("#sleep-motivation").text(getMessage(sleepPercentage));
+    document.getElementById("water-motivation").textContent = getMessage(waterPercentage);
+    document.getElementById("sleep-motivation").textContent = getMessage(sleepPercentage);
 
-    $(".water-progress-bar-fill").css("width", waterPercentage + "%");
-    $(".sleep-progress-bar-fill").css("width", sleepPercentage + "%");
+    document.getElementsByClassName("water-progress-bar-fill").style.width = waterPercentage + "%";
+    document.getElementsByClassName("sleep-progress-bar-fill").style.width = sleepPercentage + "%";
 
-    $("#water-progress-percentage").text(Math.round(waterPercentage) + "%");
-    $("#sleep-progress-percentage").text(Math.round(sleepPercentage) + "%");
+    document.getElementById("water-progress-percentage").textContent = Math.round(waterPercentage) + "%";
+    document.getElementById("sleep-progress-percentage").textContent = Math.round(sleepPercentage) + "%";
 
 }
 
