@@ -1,21 +1,22 @@
 from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views import View
 from django.shortcuts import redirect, render
-from django import forms
 from django.utils import timezone
 from django.db import IntegrityError
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Task, DailyReset
+from .models import Task
 from .forms import TaskForm
 from profiles.models import UserProfile
 from django.core.exceptions import ValidationError
 
 
 class OverviewView(LoginRequiredMixin, TemplateView):
+    """
+    Shows daily overview, resets counters if needed, and handles quick task creation.
+    """
     template_name = 'tracker/overview.html'
     
     # Sending data to template
@@ -51,6 +52,9 @@ class OverviewView(LoginRequiredMixin, TemplateView):
     
 
 def add_task(request):
+    """
+    Handles separate task creation form page (GET shows form, POST saves task).
+    """
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
@@ -62,20 +66,10 @@ def add_task(request):
     return render(request, 'add_task.html', {'task_form': form})
 
 
-def populate_profile_on_signup(request, user, **kwargs):
-    water_goal = request.POST.get("water_goal")
-    sleep_goal = request.POST.get("sleep_goal")
-
-    profile, _ = UserProfile.objects.get_or_create(user=user)
-    if water_goal:
-        profile.water_goal = float(water_goal)
-    if sleep_goal:
-        profile.sleep_goal = float(sleep_goal)
-    profile.save()
-
-
-
 def update_water_sleep(request):
+    """
+    Updates current day's water intake and sleep hours for the logged-in user.
+    """
     if request.method == 'POST':
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
         
@@ -100,6 +94,9 @@ def update_water_sleep(request):
     
 
 def reset_tasks_if_needed(user):
+    """
+    Resets all tasks and counters if the date has changed since last reset. Once per day.
+    """
     today = timezone.now().date()
 
     # creating new database row with reset data
@@ -116,6 +113,9 @@ def reset_tasks_if_needed(user):
     
 
 def update_tasks(request):
+    """
+    Marks tasks as completed/incomplete based on submitted checkboxes.
+    """
     if request.method == 'POST':
         tasks = Task.objects.filter(user=request.user)
         checked_ids = {int(key.split('_')[1]) for key in request.POST if key.startswith('task_')}
@@ -133,6 +133,9 @@ class TaskListView(ListView):
 
 
 class TaskCreateView(SuccessMessageMixin, CreateView):
+    """
+    Creates a new task for the logged-in user.
+    """
     model = Task
     fields = ['title', 'description']
     template_name = 'tracker/task_form.html'
@@ -149,6 +152,9 @@ class TaskCreateView(SuccessMessageMixin, CreateView):
 
 
 class TaskUpdateView(SuccessMessageMixin, UpdateView):
+    """
+    Updates an existing task owned by the logged-in user.
+    """
     model = Task
     fields = ['title', 'description']
     template_name = 'tracker/task_form.html'
@@ -163,6 +169,9 @@ class TaskUpdateView(SuccessMessageMixin, UpdateView):
     
 
 class TaskDeleteView(SuccessMessageMixin, DeleteView):
+    """
+    Deletes an existing task owned by the logged-in user.
+    """
     model = Task
     template_name = 'tracker/task_confirm_delete.html'
     success_url = reverse_lazy('tracker:overview')
