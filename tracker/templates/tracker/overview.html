@@ -28,8 +28,8 @@
             {% csrf_token %}
             <div id="task">
                 <h3>Task List:</h3>
-                <span class="toggle-arrow"><i class="fa-solid fa-chevron-up"></i></span>
-                <ul class="list-group">
+                <span class="toggle-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                <ul class="list-group hidden">
                     {% for task in tasks %}
                     <li class="list-group-item">
                         <input type="checkbox" name="task_{{ task.id }}" class="custom-checkbox"

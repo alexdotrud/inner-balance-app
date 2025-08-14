@@ -321,15 +321,17 @@ footer i {
     max-width: 500px;
     list-style: none;
     padding: 0;
-    margin-top: 2rem;
+    margin: 2rem auto;
     text-align: right;
+    max-height: fit-content;
+    opacity: 1;
 }
 
-.list-group.hidden-list {
-    display: none !important;
-    height: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
+.hidden {
+    margin: 0 auto;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.3s ease;
 }
 
 .list-group-item {
@@ -380,12 +382,6 @@ footer i {
 
 .custom-checkbox:checked+.task-title {
     text-decoration: line-through;
-}
-
-
-.list-group {
-    width: 100%;
-    margin: 2rem auto;
 }
 
 .error-msg {
@@ -667,7 +663,7 @@ footer i {
     margin: 1rem;
     list-style: none;
     text-align: center;
-    padding: 0;
+    padding: 0 0.5rem;
 }
 
 /* Custom Buttons Styles */
