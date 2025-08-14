@@ -10,9 +10,9 @@ class DailyReset(models.Model):
 
 class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tasks")
-    title = models.CharField(max_length=50)
+    title = models.TextField(blank=True)
     slug = models.SlugField(max_length=50, blank=True)
-    description = models.CharField(max_length=300)
+    description = models.TextField(blank=True)
     is_completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 

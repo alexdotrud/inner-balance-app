@@ -667,6 +667,7 @@ footer i {
     margin: 1rem;
     list-style: none;
     text-align: center;
+    padding: 0;
 }
 
 /* Custom Buttons Styles */

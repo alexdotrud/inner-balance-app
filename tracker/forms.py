@@ -13,9 +13,10 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = ["title", "description"]
         widgets = {
-            "title": forms.TextInput(attrs={"maxlength": 50,}),
-            "description": forms.Textarea(attrs={"maxlength": 300, "rows": 3}),
+            "title": forms.TextInput(attrs={"required": False}),
+            "description": forms.Textarea(attrs={"required": False, "rows": 3}),
         }
+
 
     def clean_title(self):
         title = (self.cleaned_data.get("title") or "").strip()
