@@ -177,6 +177,12 @@ h3 {
     padding-bottom: 0.5rem;
 }
 
+footer i {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin: 0 0.5rem;
+}
+
 /* Overview styles*/
 
 .title {

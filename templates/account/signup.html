@@ -17,7 +17,7 @@
     </div>
 
     <div class="signup-form">
-        <form method="POST" action="{% url 'account_signup' %}" class="login-form">
+        <form method="POST" action="{% url 'account_signup' %}" class="login-form" novalidate>
             {% csrf_token %}
 
             {% for field in form %}

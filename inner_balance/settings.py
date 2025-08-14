@@ -37,7 +37,6 @@ ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1', '*']
 ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "none" 
 ACCOUNT_AUTHENTICATION_METHOD = "username"
-ACCOUNT_USERNAME_MIN_LENGTH = 8
 
 ACCOUNT_SIGNUP_FIELDS = ['username', 'password1', 'password2']
 
@@ -94,6 +93,10 @@ TEMPLATES = [
         },
     },
 ]
+
+ACCOUNT_FORMS = {
+    "signup": "tracker.forms.CustomSignupForm",
+}
 
 WSGI_APPLICATION = 'inner_balance.wsgi.application'
 
