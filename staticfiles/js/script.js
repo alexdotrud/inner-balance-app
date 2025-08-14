@@ -35,13 +35,13 @@ function Motivation() {
     const checkboxes = $('.list-group-item input[type="checkbox"]');
     const totalTasks = checkboxes.length;
     const completedTasks = checkboxes.filter(':checked').length;
-    const percentage = (completedTasks / totalTasks) * 100;
+    let percentage = (completedTasks / totalTasks) * 100;
 
-    const message = "";
+    let message = "";
 
     if (totalTasks === 0) {
         message = "📋 No tasks yet!";
-    } else if (percentage === 100) {
+    } else if (percentage >= 100) {
         message = "🎉 Amazing day! All tasks done!";
     } else if (percentage >= 80) {
         message = "🔥 You're doing a good job!";
@@ -51,6 +51,8 @@ function Motivation() {
         message = "🏆 Push a bit harder!";
     } else if (percentage >= 10) {
         message = "⚡ You can do better!";
+    } else if (percentage > 0) {
+        message = "🌀 You have started, keep it up!";
     } else {
         message = "😴 You haven’t done anything yet... let's start!";
     }
@@ -60,7 +62,7 @@ function Motivation() {
     }
 
     document.getElementById('motivation-text').textContent = message;
-    document.getElementsByClassName('progress-bar-fill').style.width = percentage + '%';
+    document.querySelector('.progress-bar-fill').style.width = percentage + '%';
     document.getElementById('progress-percentage').textContent = Math.round(percentage) + '%';
 }
 
@@ -77,19 +79,20 @@ function waterSleepMotivation() {
     let sleepPercentage = sleepGoal > 0 ? (sleepCount / sleepGoal) * 100 : 0;
 
     function getMessage(percent) {
-        if (percent === 100) return "🎉 Perfect!";
+        if (percent >= 100) return "🎉 Perfect!";
         if (percent >= 80) return "🔥 Great job!";
         if (percent >= 50) return "💪 Keep going!";
         if (percent >= 30) return "🏃 Push harder!";
-        if (percent >= 10) return "🌀 Just starting...";
+        if (percent >= 10) return "⚡ You can do better!";
+        if (percent >= 0) return "🌀 Just starting...";
         return "😴 Not tracked yet.";
     }
 
     document.getElementById("water-motivation").textContent = getMessage(waterPercentage);
     document.getElementById("sleep-motivation").textContent = getMessage(sleepPercentage);
 
-    document.getElementsByClassName("water-progress-bar-fill").style.width = waterPercentage + "%";
-    document.getElementsByClassName("sleep-progress-bar-fill").style.width = sleepPercentage + "%";
+    document.querySelector(".water-progress-bar-fill").style.width = waterPercentage + "%";
+    document.querySelector(".sleep-progress-bar-fill").style.width = sleepPercentage + "%";
 
     document.getElementById("water-progress-percentage").textContent = Math.round(waterPercentage) + "%";
     document.getElementById("sleep-progress-percentage").textContent = Math.round(sleepPercentage) + "%";
@@ -117,20 +120,17 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".toggle-arrow").forEach(function (toggle) {
         toggle.addEventListener("click", function () {
             const icon = this.querySelector("i");
-            const taskList = document.querySelector(".list-group");
+            const taskList = this.closest("#task").querySelector(".list-group");
 
-            // Toggle visibility (instant, not animated)
-            if (taskList.style.display === "none" || taskList.style.display === "") {
-                taskList.style.display = "block";
-            } else {
-                taskList.style.display = "none";
-            }
+            if (!taskList) return;
 
-            // Change icon class
-            if (icon.classList.contains("fa-chevron-down")) {
+            // Toggle based on the is-hidden class
+            if (taskList.classList.contains("hidden")) {
+                taskList.classList.remove("hidden"); // show
                 icon.classList.remove("fa-chevron-down");
                 icon.classList.add("fa-chevron-up");
             } else {
+                taskList.classList.add("hidden"); // hide
                 icon.classList.remove("fa-chevron-up");
                 icon.classList.add("fa-chevron-down");
             }
@@ -201,3 +201,12 @@ function editDescription() {
     <button type="submit" id="description-button" class="custom-btn btn-add">Save</button>
   `);
 }
+
+/**
+ * Hides backgrounf image for main container on homepage.
+ */
+document.addEventListener("DOMContentLoaded", function () {
+    if (window.location.pathname === "/") {
+        document.getElementById("main-container").style.backgroundImage = "none";
+    }
+});

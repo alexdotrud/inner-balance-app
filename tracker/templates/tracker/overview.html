@@ -13,9 +13,10 @@
         <p class="welcome-user">Welcome back, {{ user.first_name|default:user.username }}!</p>
     </div>
 
-    <div id="row-cards">
+
+    <div id="row-cards" class="row g-4">
         <!-- Task List -->
-        <div class="card tracker-card">
+        <div class="col-12" id="tracker-card">
             <h3>📝 Daily Tasks</h3>
             <div id="motivation">
                 <p id="motivation-text" class="motivation-text"></p>
@@ -51,7 +52,7 @@
         </div>
 
         <!--Water Card-->
-        <div class="card tracker-card">
+        <div class="col-12 col-lg-6" is="tracker-card">
             <h3>💧 Water</h3>
             <div id="motivation">
                 <p class="motivation-text" id="water-motivation"></p>
@@ -79,7 +80,7 @@
 
 
         <!--Sleep Card-->
-        <div class="card tracker-card">
+        <div class="col-12 col-lg-6" id="tracker-card">
             <h3>💤 Sleep</h3>
             <div id="motivation">
                 <p class="motivation-text" id="sleep-motivation"></p>

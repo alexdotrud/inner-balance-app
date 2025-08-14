@@ -290,8 +290,9 @@ footer i {
 
 /* Task, Water, Sleep Cards Styles */
 
-.tracker-card {
+#tracker-card {
     width: 90%;
+    max-width: 1200px;
     margin: 1rem 0.5rem;
     border-radius: 20px;
     padding: 1rem;
@@ -331,6 +332,7 @@ footer i {
 }
 
 .hidden {
+    display: none;
     margin: 0 auto;
     max-height: 0;
     opacity: 0;
@@ -800,13 +802,6 @@ footer i {
 
 @media screen and (min-width:992px) {
 
-    #row-cards {
-        gap: 1.5rem;
-        display: flex;
-        flex-direction: row;
-        margin: 2rem auto;
-    }
-
     #home-container {
         width: 80%;
         max-width: 1200px;
@@ -828,7 +823,7 @@ footer i {
         width: 70%;
     }
 
-    #row-cards .tracker-card {
+    #water-sleep .tracker-card {
         width: 100%;
         padding: 1.6rem;
         min-height: 220px;
