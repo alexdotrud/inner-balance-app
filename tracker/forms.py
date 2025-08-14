@@ -28,17 +28,20 @@ class TaskForm(forms.ModelForm):
             raise ValidationError(
             f"Title must be at most {max_len} characters (you entered {len(title)})."
         )
+        
         return title
 
     def clean_description(self):
         description = (self.cleaned_data.get("description") or "").strip()
         max_len = 300
+
         if len(description) == 0:
             raise ValidationError("This field cannot be empty.")
         if len(description) > 300:
             raise ValidationError(
             f"description must be at most {max_len} characters (you entered {len(description)})."
-        )
+            )
+    
         return description
     
 

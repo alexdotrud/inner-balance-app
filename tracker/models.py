@@ -17,7 +17,7 @@ class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('user', 'title') # users can have similar task name
+        pass
 
     def save(self, *args, **kwargs):
         if not self.slug:
