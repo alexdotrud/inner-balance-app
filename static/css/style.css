@@ -46,12 +46,9 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-
     background-image: url('../images/view.jpg');
     background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
+    background-attachment: fixed;
 }
 
 footer {
@@ -205,12 +202,12 @@ footer i {
 
 
 #overview-container {
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    justify-content: center;
-    align-items: center;
     width: 90%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    justify-items: center;
+    margin: 0 auto;
     padding: 3rem 0;
     gap: 3rem;
     border-radius: 8px;
@@ -290,7 +287,7 @@ footer i {
 
 /* Task, Water, Sleep Cards Styles */
 
-#tracker-card {
+.tracker-card {
     width: 90%;
     max-width: 1200px;
     margin: 1rem 0.5rem;
@@ -532,6 +529,8 @@ footer i {
     margin: 0 0.5rem;
     border-radius: 8px;
     text-align: center;
+    width: 90%;
+    padding: 3rem 0;
 }
 
 #profile-card .form-group,
@@ -541,7 +540,7 @@ footer i {
     text-align: center;
     margin: 2rem auto;
     padding: 2rem;
-    background-color: rgba(255, 255, 255, 0.824);
+    background-color: rgba(255, 255, 255, 0.852);
     border: 1.5px solid rgba(92, 219, 151, 0.3);
     box-shadow: 0 7px 20px rgba(92, 219, 151, 0.25);
 }
@@ -801,6 +800,25 @@ footer i {
 /*Styles for Big Screens */
 
 @media screen and (min-width:992px) {
+    #overview-container {
+        grid-template-columns: repeat(2, minmax(360px, 1fr));
+        align-items: stretch;
+        justify-items: stretch;
+        width: 70%;
+    }
+
+    #overview-container>.welcome-block,
+    #overview-container>#task-card {
+        grid-column: 1 / -1;
+    }
+
+    #overview-container .tracker-card {
+        width: auto;
+    }
+
+    #profile-card {
+        width: 70%;
+    }
 
     #home-container {
         width: 80%;
@@ -810,22 +828,10 @@ footer i {
     .delete-container,
     .create-form-container {
         width: 70%;
-        max-width: 1200px;
-    }
-
-    #profile-card {
-        width: 80%;
-        max-width: 1200px;
-        padding: 3rem;
+        max-width: 1000px;
     }
 
     #task {
         width: 70%;
-    }
-
-    #water-sleep .tracker-card {
-        width: 100%;
-        padding: 1.6rem;
-        min-height: 220px;
     }
 }

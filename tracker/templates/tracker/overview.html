@@ -13,98 +13,91 @@
         <p class="welcome-user">Welcome back, {{ user.first_name|default:user.username }}!</p>
     </div>
 
-
-    <div id="row-cards" class="row g-4">
-        <!-- Task List -->
-        <div class="col-12" id="tracker-card">
-            <h3>📝 Daily Tasks</h3>
-            <div id="motivation">
-                <p id="motivation-text" class="motivation-text"></p>
-                <p id="progress-percentage"></p>
-                <div class="progress-bar">
-                    <div class="progress-bar-fill"></div>
-                </div>
+    <!-- Task List -->
+    <div class="card tracker-card" id="task-card">
+        <h3>📝 Daily Tasks</h3>
+        <div id="motivation">
+            <p id="motivation-text" class="motivation-text"></p>
+            <p id="progress-percentage"></p>
+            <div class="progress-bar">
+                <div class="progress-bar-fill"></div>
             </div>
-
-            <form method="POST" action="{% url 'tracker:update_tasks' %}" id="task-form">
-                {% csrf_token %}
-                <div id="task">
-                    <h3>Task List:</h3>
-                    <span class="toggle-arrow"><i class="fa-solid fa-chevron-down"></i></span>
-                    <ul class="list-group hidden">
-                        {% for task in tasks %}
-                        <li class="list-group-item">
-                            <input type="checkbox" name="task_{{ task.id }}" class="custom-checkbox"
-                                onchange="document.getElementById('task-form').submit();"
-                                {% if task.is_completed %}checked{% endif %}>
-                            <span class="task-title"
-                                onclick="openTaskModal('{{ task.id }}','{{ task.title|escapejs }}', '{{ task.description|escapejs }}')">
-                                {{ task.title }}
-                            </span>
-                        </li>
-                        {% endfor %}
-                        <div class="add-task">
-                            <a href="{% url 'tracker:task_create' %}" class="custom-btn btn-add"> + Add</a>
-                        </div>
-                    </ul>
-                </div>
-            </form>
         </div>
 
-        <!--Water Card-->
-        <div class="col-12 col-lg-6" is="tracker-card">
-            <h3>💧 Water</h3>
-            <div id="motivation">
-                <p class="motivation-text" id="water-motivation"></p>
-                <p id="water-progress-percentage"></p>
-                <div class="water-progress-bar">
-                    <div class="water-progress-bar-fill"></div>
-                </div>
+        <form method="POST" action="{% url 'tracker:update_tasks' %}" id="task-form">
+            {% csrf_token %}
+            <div id="task">
+                <h3>Task List:</h3>
+                <span class="toggle-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                <ul class="list-group hidden">
+                    {% for task in tasks %}
+                    <li class="list-group-item">
+                        <input type="checkbox" name="task_{{ task.id }}" class="custom-checkbox"
+                            onchange="document.getElementById('task-form').submit();"
+                            {% if task.is_completed %}checked{% endif %}>
+                        <span class="task-title"
+                            onclick="openTaskModal('{{ task.id }}','{{ task.title|escapejs }}', '{{ task.description|escapejs }}')">
+                            {{ task.title }}
+                        </span>
+                    </li>
+                    {% endfor %}
+                    <div class="add-task">
+                        <a href="{% url 'tracker:task_create' %}" class="custom-btn btn-add"> + Add</a>
+                    </div>
+                </ul>
             </div>
+        </form>
+    </div>
 
-            <form method="POST" action="{% url 'tracker:update_water_sleep' %}">
-                {% csrf_token %}
-                <div class="counter">
-                    <i class="fa-solid fa-glass-water"></i>
-                    <button type="button" onclick="updateCounter('water', -0.5)"><i
-                            class="fa-solid fa-minus"></i></button>
-                    <input type="hidden" name="water" id="water-input" value="{{ water_count|default:0 }}">
-                    <span id="water-count">{{ water_count|default:0 }}</span>
-                    / <span id="water-goal">{{ water_goal }}</span>
-                    <button type="button" onclick="updateCounter('water', 0.5)"><i
-                            class="fa-solid fa-plus"></i></button>
-                </div>
-                <button type="submit" class="custom-btn btn-add">Save</button>
-            </form>
+    <!--Water Card-->
+    <div class="card tracker-card">
+        <h3>💧 Water</h3>
+        <div id="motivation">
+            <p class="motivation-text" id="water-motivation"></p>
+            <p id="water-progress-percentage"></p>
+            <div class="water-progress-bar">
+                <div class="water-progress-bar-fill"></div>
+            </div>
         </div>
 
-
-        <!--Sleep Card-->
-        <div class="col-12 col-lg-6" id="tracker-card">
-            <h3>💤 Sleep</h3>
-            <div id="motivation">
-                <p class="motivation-text" id="sleep-motivation"></p>
-                <p id="sleep-progress-percentage"></p>
-                <div class="sleep-progress-bar">
-                    <div class="sleep-progress-bar-fill"></div>
-                </div>
+        <form method="POST" action="{% url 'tracker:update_water_sleep' %}">
+            {% csrf_token %}
+            <div class="counter">
+                <i class="fa-solid fa-glass-water"></i>
+                <button type="button" onclick="updateCounter('water', -0.5)"><i class="fa-solid fa-minus"></i></button>
+                <input type="hidden" name="water" id="water-input" value="{{ water_count|default:0 }}">
+                <span id="water-count">{{ water_count|default:0 }}</span>
+                / <span id="water-goal">{{ water_goal }}</span>
+                <button type="button" onclick="updateCounter('water', 0.5)"><i class="fa-solid fa-plus"></i></button>
             </div>
+            <button type="submit" class="custom-btn btn-add">Save</button>
+        </form>
+    </div>
 
-            <form method="POST" action="{% url 'tracker:update_water_sleep' %}">
-                {% csrf_token %}
-                <div class="counter">
-                    <i class="fa-solid fa-moon"></i>
-                    <button type="button" onclick="updateCounter('sleep', -0.5)"><i
-                            class="fa-solid fa-minus"></i></button>
-                    <input type="hidden" name="sleep" id="sleep-input" value="{{ sleep_count|default:0 }}">
-                    <span id="sleep-count">{{ sleep_count|default:0 }}</span>
-                    / <span id="sleep-goal">{{ sleep_goal }}</span>
-                    <button type="button" onclick="updateCounter('sleep', 0.5)"><i
-                            class="fa-solid fa-plus"></i></button>
-                </div>
-                <button type="submit" class="custom-btn btn-add">Save</button>
-            </form>
+
+    <!--Sleep Card-->
+    <div class="card tracker-card">
+        <h3>💤 Sleep</h3>
+        <div id="motivation">
+            <p class="motivation-text" id="sleep-motivation"></p>
+            <p id="sleep-progress-percentage"></p>
+            <div class="sleep-progress-bar">
+                <div class="sleep-progress-bar-fill"></div>
+            </div>
         </div>
+
+        <form method="POST" action="{% url 'tracker:update_water_sleep' %}">
+            {% csrf_token %}
+            <div class="counter">
+                <i class="fa-solid fa-moon"></i>
+                <button type="button" onclick="updateCounter('sleep', -0.5)"><i class="fa-solid fa-minus"></i></button>
+                <input type="hidden" name="sleep" id="sleep-input" value="{{ sleep_count|default:0 }}">
+                <span id="sleep-count">{{ sleep_count|default:0 }}</span>
+                / <span id="sleep-goal">{{ sleep_goal }}</span>
+                <button type="button" onclick="updateCounter('sleep', 0.5)"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            <button type="submit" class="custom-btn btn-add">Save</button>
+        </form>
     </div>
 </div>
 
