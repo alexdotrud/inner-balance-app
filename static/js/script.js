@@ -201,3 +201,9 @@ function editDescription() {
     <button type="submit" id="description-button" class="custom-btn btn-add">Save</button>
   `);
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    if (window.location.pathname === "/") {
+        document.getElementById("main-container").style.backgroundImage = "none";
+    }
+});

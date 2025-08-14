@@ -47,7 +47,6 @@ footer {
     background-color: var(--highlight-color);
     border-top: 1px solid rgba(83, 87, 83, 0.58);
     color: var(--primary-color);
-    margin-top: 3rem;
     bottom: 0;
     z-index: 1;
 }
@@ -68,7 +67,9 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 8rem;
+    margin-top: 74px;
+    background-image: url('../images/view.jpg');
+    background-size: cover;
 }
 
 
@@ -207,6 +208,7 @@ footer i {
     justify-content: center;
     align-items: center;
     width: 90%;
+    padding: 2rem 0;
     gap: 3rem;
     border-radius: 8px;
     text-align: center;
@@ -331,7 +333,7 @@ footer i {
     margin: 0 auto;
     max-height: 0;
     opacity: 0;
-    transition: max-height 0.5s ease, opacity 0.3s ease;
+    transition: max-height 0.4s ease, opacity 0.2s ease;
 }
 
 .list-group-item {
