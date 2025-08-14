@@ -177,6 +177,12 @@ h3 {
     padding-bottom: 0.5rem;
 }
 
+footer i {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin: 0 0.5rem;
+}
+
 /* Overview styles*/
 
 .title {
@@ -654,6 +660,15 @@ h3 {
     text-align: center;
 }
 
+.errorlist {
+    list-style: none;
+    color: red;
+    font-size: 1.2rem;
+    margin: 1rem;
+    list-style: none;
+    text-align: center;
+}
+
 /* Custom Buttons Styles */
 
 .nav-btn {
@@ -762,14 +777,14 @@ h3 {
     color: var(--secondary-color);
 }
 
-.arrow-link {
+.arrow-link i {
     color: rgb(222, 229, 213);
     font-size: 2rem;
     text-decoration: none;
     cursor: pointer;
 }
 
-.arrow-link:hover {
+.arrow-link i:hover {
     /* growing effect */
     transform: scale(1.2);
     transition: transform 0.3s ease;

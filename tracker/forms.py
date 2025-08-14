@@ -6,24 +6,33 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 """
-Form for adding task on overview page.
+Form for adding task on overview page. Check if input is empty or too long.
 """
 class TaskForm(forms.ModelForm):
-    title = forms.CharField(
-        widget=forms.TextInput(),
-    )
-    description = forms.CharField(
-        widget=forms.Textarea(attrs={"rows": 3}),
-        required=False
-    )
-
     class Meta:
         model = Task
         fields = ["title", "description"]
         widgets = {
-                "title": forms.TextInput(),
-            "description": forms.Textarea(attrs={"rows": 3}),
+            "title": forms.TextInput(attrs={"maxlength": 50,}),
+            "description": forms.Textarea(attrs={"maxlength": 300, "rows": 3}),
         }
+
+    def clean_title(self):
+        title = (self.cleaned_data.get("title") or "").strip()
+        if len(title) == 0:
+            raise ValidationError("This field cannot be empty.")
+        if len(title) > 50:
+            raise ValidationError("Title must be less than or equal to 50 characters.")
+        return title
+
+    def clean_description(self):
+        description = (self.cleaned_data.get("description") or "").strip()
+        if len(description) == 0:
+            raise ValidationError("This field cannot be empty.")
+        if len(description) > 300:
+            raise ValidationError("Description must be less than or equal to 300 characters.")
+        return description
+    
 
 class CustomSignupForm(SignupForm):
     def clean_username(self):

@@ -49,26 +49,25 @@ class OverviewView(LoginRequiredMixin, TemplateView):
 
 def add_task(request):
     """
-    Handles separate task creation form page (GET shows form, POST saves task), displays error messages.
+     Handles task creation using TaskForm for all validation.
     """
     if request.method == "POST":
-        title = request.POST.get("title", "").strip()
-        description = request.POST.get("description", "").strip()
-
-        if not title:
-            messages.error(request, "Title is required (max 50 characters).")
-        elif len(title) > 50:
-            messages.error(request, "Title cannot exceed 50 characters.")
-        elif not description:
-            messages.error(request, "Description is required (max 300 characters).")
-        elif len(description) > 300:
-            messages.error(request, "Description cannot exceed 300 characters.")
-        else:
-            Task.objects.create(user=request.user, title=title, description=description)
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.user = request.user
+            task.save()
             messages.success(request, "Task created successfully!")
             return redirect("tracker:overview")
+        else:
+            # show all form errors as messages
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{error}")
+    else:
+        form = TaskForm()
 
-    return render(request, "tracker/add_task.html")
+    return render(request, "tracker/add_task.html", {"form": form})
 
 
 def update_water_sleep(request):
