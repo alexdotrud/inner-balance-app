@@ -12,8 +12,11 @@
 }
 
 /* General Styles */
-html {
-    color: var(--primary-color);
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: auto;
 }
 
 header {
@@ -24,19 +27,31 @@ header {
 }
 
 body {
-    min-height: 100vh;
     background-color: #DDE6DE;
     font-family: var(--primary-font);
     font-size: 1.3rem;
     color: var(--primary-color);
-    margin: 0;
-    padding: 0;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 main {
-    flex: 1;
+    flex: 1 0 auto;
+    padding-top: 74px;
+}
+
+#main-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-image: url('../images/view.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
 }
 
 footer {
@@ -47,7 +62,6 @@ footer {
     background-color: var(--highlight-color);
     border-top: 1px solid rgba(83, 87, 83, 0.58);
     color: var(--primary-color);
-    bottom: 0;
     z-index: 1;
 }
 
@@ -62,17 +76,6 @@ h3 {
     font-weight: 400;
     padding: 1rem;
 }
-
-#main-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 74px;
-    background-image: url('../images/view.jpg');
-    background-size: cover;
-}
-
-
 
 /* Navbar Styles */
 .logo {
@@ -208,7 +211,7 @@ footer i {
     justify-content: center;
     align-items: center;
     width: 90%;
-    padding: 2rem 0;
+    padding: 3rem 0;
     gap: 3rem;
     border-radius: 8px;
     text-align: center;
@@ -290,13 +293,11 @@ footer i {
 .tracker-card {
     width: 90%;
     margin: 1rem 0.5rem;
-    max-width: 1000px;
-    background: #ffffff64;
     border-radius: 20px;
     padding: 1rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    transform: scale(1.07);
-    transition: transform 0.4s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.854);
+    border: 1.5px solid rgba(92, 219, 151, 0.3);
+    box-shadow: 0 7px 20px rgba(92, 219, 151, 0.25);
 }
 
 #task {
@@ -533,12 +534,14 @@ footer i {
 
 #profile-card .form-group,
 #profile-card #motivation {
-    background-color: #f4f9f4ad;
-    border: 1.5px solid #5cdb9785;
+    width: 90%;
     border-radius: 20px;
     text-align: center;
-    box-shadow: 0 7px 20px rgba(67, 210, 191, 0.356);
+    margin: 2rem auto;
     padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.824);
+    border: 1.5px solid rgba(92, 219, 151, 0.3);
+    box-shadow: 0 7px 20px rgba(92, 219, 151, 0.25);
 }
 
 .description-label {
@@ -567,6 +570,10 @@ footer i {
 #motivation .custom-btn {
     display: block;
     margin: 1rem auto 0;
+}
+
+#motivation .list-group {
+    margin: 0 auto;
 }
 
 .list-group-item label {
@@ -701,7 +708,7 @@ footer i {
     font-family: var(--primary-font);
     text-decoration: none;
     cursor: pointer;
-    margin-bottom: 0.7rem;
+    margin: 0.5rem;
     font-size: 1.3rem;
     border: none;
     transition: all 0.3s ease;
@@ -793,8 +800,14 @@ footer i {
 
 @media screen and (min-width:992px) {
 
-    #home-container,
-    #overview-container {
+    #row-cards {
+        gap: 1.5rem;
+        display: flex;
+        flex-direction: row;
+        margin: 2rem auto;
+    }
+
+    #home-container {
         width: 80%;
         max-width: 1200px;
     }
@@ -805,7 +818,6 @@ footer i {
         max-width: 1200px;
     }
 
-    .tracker-card,
     #profile-card {
         width: 80%;
         max-width: 1200px;
@@ -814,5 +826,11 @@ footer i {
 
     #task {
         width: 70%;
+    }
+
+    #row-cards .tracker-card {
+        width: 100%;
+        padding: 1.6rem;
+        min-height: 220px;
     }
 }

@@ -202,6 +202,9 @@ function editDescription() {
   `);
 }
 
+/**
+ * Hides backgrounf image for main container on homepage.
+ */
 document.addEventListener("DOMContentLoaded", function () {
     if (window.location.pathname === "/") {
         document.getElementById("main-container").style.backgroundImage = "none";
