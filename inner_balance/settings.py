@@ -33,16 +33,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1', '*']
 
-ACCOUNT_EMAIL_REQUIRED = True
+
 ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "none" 
 ACCOUNT_AUTHENTICATION_METHOD = "username"
 ACCOUNT_USERNAME_MIN_LENGTH = 8
 
-ACCOUNT_SIGNUP_FIELDS = ['username', 'password1', 'password2', 'email']
+ACCOUNT_SIGNUP_FIELDS = ['username', 'password1', 'password2']
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 
 
 # Application definition
@@ -108,17 +108,9 @@ WSGI_APPLICATION = 'inner_balance.wsgi.application'
 #    }
 #}
 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-else:
-    DATABASES = {
-        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-    }
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+}
 
 CSRF_TRUSTED_ORIGINS = [
     "https://*.codeinstitute-ide.net/",
