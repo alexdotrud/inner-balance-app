@@ -20,18 +20,25 @@ class TaskForm(forms.ModelForm):
 
     def clean_title(self):
         title = (self.cleaned_data.get("title") or "").strip()
+        max_len = 50
+
         if len(title) == 0:
             raise ValidationError("This field cannot be empty.")
         if len(title) > 50:
-            raise ValidationError("Title must be less than or equal to 50 characters.")
+            raise ValidationError(
+            f"Title must be at most {max_len} characters (you entered {len(title)})."
+        )
         return title
 
     def clean_description(self):
         description = (self.cleaned_data.get("description") or "").strip()
+        max_len = 300
         if len(description) == 0:
             raise ValidationError("This field cannot be empty.")
         if len(description) > 300:
-            raise ValidationError("Description must be less than or equal to 300 characters.")
+            raise ValidationError(
+            f"description must be at most {max_len} characters (you entered {len(description)})."
+        )
         return description
     
 
