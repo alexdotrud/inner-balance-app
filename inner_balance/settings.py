@@ -35,8 +35,10 @@ ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1', '*']
 
 
 ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = "none" 
 ACCOUNT_AUTHENTICATION_METHOD = "username"
+
 
 ACCOUNT_SIGNUP_FIELDS = ['username', 'password1', 'password2']
 
