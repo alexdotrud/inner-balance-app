@@ -16,7 +16,9 @@ class TaskForm(forms.ModelForm):
             "title": forms.TextInput(attrs={"required": False}),
             "description": forms.Textarea(attrs={"required": False, "rows": 3}),
         }
-
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop("user", None)  # pass user in views
+        super().__init__(*args, **kwargs)
 
     def clean_title(self):
         title = (self.cleaned_data.get("title") or "").strip()
@@ -28,7 +30,11 @@ class TaskForm(forms.ModelForm):
             raise ValidationError(
             f"Title must be at most {max_len} characters (you entered {len(title)})."
         )
-        
+        user = self.user or getattr(self.instance, "user", None)
+        if user and Task.objects.filter(user=user, title__iexact=title).exclude(pk=self.instance.pk).exists():
+            raise ValidationError("You already have a task with this name.") # doesn't allow same title for the same user
+        return title
+
         return title
 
     def clean_description(self):

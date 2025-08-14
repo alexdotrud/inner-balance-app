@@ -26,7 +26,7 @@ class OverviewView(LoginRequiredMixin, TemplateView):
         return {
             'tasks': tasks,
             'task_count': tasks.count(),
-            'task_form': TaskForm(),
+            'task_form': TaskForm(user=self.request.user),
             'water_count': profile.water_intake,
             'water_goal': profile.water_goal,
             'sleep_count': profile.sleep_hours,
@@ -35,7 +35,7 @@ class OverviewView(LoginRequiredMixin, TemplateView):
     
     # If form submitted -redirects to overview.
     def post(self, request):
-        form = TaskForm(request.POST)
+        form = TaskForm(request.POST, user=request.user)
         if form.is_valid():
             task = form.save(commit=False)
             task.user = request.user
@@ -52,7 +52,7 @@ def add_task(request):
      Handles task creation using TaskForm for all validation.
     """
     if request.method == "POST":
-        form = TaskForm(request.POST)
+        form = TaskForm(request.POST, user=request.user)
         if form.is_valid():
             task = form.save(commit=False)
             task.user = request.user
@@ -65,7 +65,7 @@ def add_task(request):
                 for error in errors:
                     messages.error(request, f"{error}")
     else:
-        form = TaskForm()
+        form = TaskForm(user=request.user)
 
     return render(request, "tracker/add_task.html", {"form": form})
 
@@ -145,6 +145,11 @@ class TaskCreateView(SuccessMessageMixin, CreateView):
     template_name = 'tracker/task_form.html'
     success_message = 'Task added!'
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -167,6 +172,11 @@ class TaskUpdateView(SuccessMessageMixin, UpdateView):
     #obly the author can edit his tasks
     def get_queryset(self):
         return Task.objects.filter(user=self.request.user)
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
     def get_success_url(self):
         return reverse_lazy('tracker:overview')
