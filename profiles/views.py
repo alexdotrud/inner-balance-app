@@ -3,12 +3,13 @@ from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import UserProfile
 from django.core.exceptions import ValidationError
-from .forms import ProfileAvatarForm
+from .forms import ProfileForm, AvatarForm
 
 @login_required
 def profile_view(request):
+
     profile, _ = UserProfile.objects.get_or_create(user=request.user)
-    form = ProfileAvatarForm(instance=profile)
+    form = ProfileForm(instance=profile)
 
     if request.method == "POST":
         # Handle goals first
@@ -36,6 +37,8 @@ def profile_view(request):
             profile.save()
             messages.success(request, "Description updated.")
             return redirect("profiles:profile")
+        
+    avatar_url = profile.avatar.url if profile.avatar and profile.avatar.name != "images/avatar.png" else None
 
     return render(request, "profiles/my_profile.html", {
         "username": request.user.username,
@@ -46,21 +49,30 @@ def profile_view(request):
         "sleep_goal": profile.sleep_goal,
         "member_since": request.user.date_joined,
         "form": form,
-        "avatar": profile.avatar.url,
+        "avatar_url": avatar_url,
+        "profile": profile,
     })
 
 @login_required
 def profile_avatar_view(request):
+    """
+    
+    """
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == "POST":
-        form = ProfileAvatarForm(request.POST, request.FILES, instance=profile)
+        if "avatar" not in request.FILES:
+            messages.error(request, "Please choose an image to upload.")
+            return redirect("profiles:profile")
+
+        form = AvatarForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
             messages.success(request, "Avatar updated.")
         else:
             messages.error(request, "Invalid image. Check file size/type.")
     return redirect("profiles:profile")
+
 
 def populate_profile_on_signup(request, user, **kwargs):
     profile, _ = UserProfile.objects.get_or_create(user=user)

@@ -18,17 +18,19 @@
         </div>
 
         <aside class="profile__avatar">
-            <img src="{% if profile.avatar %}{{ profile.avatar.url }}{% else %}{% static 'images/avatar.png' %}{% endif %}"
-                alt="Avatar" class="avatar" id="avatar-img" />
+            {% if profile.avatar and profile.avatar.name != 'images/avatar.png' %}
+            <img src="{{ profile.avatar.url }}" alt="Avatar" id="avatar-img" class="avatar">
+            {% else %}
+            <img src="{% static 'images/avatar.png' %}" alt="Avatar" id="avatar-img" class="avatar">
+            {% endif %}
 
             <form method="post" enctype="multipart/form-data" class="avatar-form"
                 action="{% url 'profiles:profile_avatar' %}">
                 {% csrf_token %}
-                <p>
-                    <label for="avatar-input">Choose new avatar</label>
-                    <input type="file" id="avatar-input" name="avatar" accept="image/*" />
-                </p>
-                <button type="submit" class="btn custom-btn">Update Avatar</button>
+
+                <input type="file" id="avatar-input" name="avatar" accept="image/*" />
+                <p>Click on avatar fo choose your image</p>
+                <button type="submit" class="btn-add custom-btn">Update</button>
             </form>
         </aside>
     </div>

@@ -232,3 +232,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+/**
+ * Opens File Input when avatar image is clicked
+ */
+document.getElementById('avatar-img').onclick = () => document.getElementById('avatar-input').click();
