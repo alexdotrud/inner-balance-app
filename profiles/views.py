@@ -8,6 +8,7 @@ from .forms import ProfileAvatarForm
 @login_required
 def profile_view(request):
     profile, _ = UserProfile.objects.get_or_create(user=request.user)
+    form = ProfileAvatarForm(instance=profile)
 
     if request.method == "POST":
         # Handle goals first
@@ -44,6 +45,8 @@ def profile_view(request):
         "water_goal": profile.water_goal,
         "sleep_goal": profile.sleep_goal,
         "member_since": request.user.date_joined,
+        "form": form,
+        "avatar": profile.avatar.url,
     })
 
 @login_required

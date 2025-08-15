@@ -4,7 +4,11 @@ from .models import UserProfile
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ["description", "avatar", "water_goal", "sleep_goal"]
+        fields = ["description", "water_goal", "sleep_goal", "avatar"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["avatar"].required = False
 
     def clean_water_goal(self):
         val = self.cleaned_data.get("water_goal")
@@ -17,15 +21,3 @@ class ProfileForm(forms.ModelForm):
         if val is None or val < 0 or val > 20:
             raise forms.ValidationError("Sleep goal must be between 0 and 20.")
         return val
-    
-class ProfileAvatarForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile
-        fields = ["avatar"]
-        widgets = {
-            "avatar": forms.ClearableFileInput(attrs={
-                "accept": "image/*",
-                "id": "avatar-input",
-                "style": "display:none",
-            })
-        }
