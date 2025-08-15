@@ -10,7 +10,7 @@
     </div>
     <div class="banner-bottom">
         {% if not user.is_authenticated %}
-        <a href="{% url 'account_signup' %}" class="btn-start custom-btn">Get Started</a>
+        <a href="{% url 'account_signup' %}" class="custom-btn">Get Started</a>
         {% endif %}
         <a href="#home-container" class="arrow-link" aria-label="Scroll down">
             <i class="fa-solid fa-chevron-down"></i>
