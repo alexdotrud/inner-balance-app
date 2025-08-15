@@ -10,10 +10,24 @@
     <!-- Profile Card -->
 
     <!-- Username -->
-    <div class="welcome-block">
-        <h1 class="title">{{ username }}</h1>
-        <p>Member since: {{ member_since|date:"F j, Y" }}</p> <br>
-        <h3>Make it yours - update your description and goals.</h3>
+    <div id="welcome" class="profile">
+        <div class="profile__header">
+            <h1 class="title">{{ username }}</h1>
+            <p class="meta">Member since: {{ member_since|date:"F j, Y" }}</p>
+            <h3>Make it yours — update your description and goals.</h3>
+        </div>
+
+        <!-- Avatar + form -->
+        <aside class="profile__avatar">
+            <img src="{% if profile.avatar %}{{ profile.avatar.url }}{% else %}{% static 'images/avatar.png' %}{% endif %}"
+                alt="Avatar" class="avatar" />
+
+            <form method="post" enctype="multipart/form-data" class="avatar-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn custom-btn">Update Avatar</button>
+            </form>
+        </aside>
     </div>
 
     <!-- Form -->

@@ -4,7 +4,7 @@ from .models import UserProfile
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ["description", "water_goal", "sleep_goal"]
+        fields = ["description", "avatar", "water_goal", "sleep_goal"]
 
     def clean_water_goal(self):
         val = self.cleaned_data.get("water_goal")
