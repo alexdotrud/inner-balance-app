@@ -28,7 +28,7 @@
                 action="{% url 'profiles:profile_avatar' %}">
                 {% csrf_token %}
                 <p>
-                    <label for="avatar-input" class="custom-btn btn-add" id="label-inpt">+ Choose</label>
+                    <label for="avatar-input">Click on avatar and choose your image</label>
                     <input type="file" id="avatar-input" name="avatar" accept="image/*" />
                 </p>
                 <button type="submit" class="btn-add custom-btn" id="save-btn">Save</button>

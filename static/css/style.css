@@ -536,11 +536,18 @@ footer i {
 
 .profile {
     display: grid;
-    gap: 1rem;
-    align-items: start;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+    gap: 2.5rem;
+    align-items: center;
+    width: 90%;
+    border-radius: 20px;
+    text-align: center;
+    margin: 2.5rem auto;
+    padding: 1rem;
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.852);
+    border: 1.5px solid rgba(92, 219, 151, 0.3);
+    box-shadow: 0 7px 20px rgba(92, 219, 151, 0.25);
+    border-radius: 20px;
 }
 
 .avatar {
@@ -560,6 +567,10 @@ footer i {
 
 #avatar-img {
     cursor: pointer;
+}
+
+.avatar-form p {
+    font-size: 1rem;
 }
 
 #profile-card .form-group,
@@ -866,6 +877,7 @@ footer i {
 
     .profile {
         grid-template-columns: 1.6fr 1fr;
+        background-color: transparent;
     }
 
     .profile__avatar {
