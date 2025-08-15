@@ -17,12 +17,12 @@
             <h3>Make it yours — update your description and goals.</h3>
         </div>
 
-        <!-- Avatar + form -->
         <aside class="profile__avatar">
             <img src="{% if profile.avatar %}{{ profile.avatar.url }}{% else %}{% static 'images/avatar.png' %}{% endif %}"
-                alt="Avatar" class="avatar" />
+                alt="Avatar" class="avatar" id="avatar-img" />
 
-            <form method="post" enctype="multipart/form-data" class="avatar-form">
+            <form method="post" enctype="multipart/form-data" class="avatar-form"
+                action="{% url 'profiles:profile_avatar' %}">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="btn custom-btn">Update Avatar</button>

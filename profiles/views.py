@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from .models import UserProfile
 from django.core.exceptions import ValidationError
 from .forms import ProfileAvatarForm
@@ -37,7 +37,6 @@ def profile_view(request):
             return redirect("profiles:profile")
 
     return render(request, "profiles/my_profile.html", {
-        "profile": profile,
         "username": request.user.username,
         "description": profile.description,
         "water_intake": profile.water_intake,

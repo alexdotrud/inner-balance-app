@@ -210,3 +210,25 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("main-container").style.backgroundImage = "none";
     }
 });
+
+/**
+ * Handles avatar image preview before uploading
+ */
+document.addEventListener("DOMContentLoaded", function () {
+    const avatarInput = document.getElementById("avatar-input");
+    const avatarImage = document.getElementById("avatar-img");
+
+    if (avatarInput && avatarImage) {
+        avatarInput.addEventListener("change", function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    avatarImage.src = e.target.result;
+                    avatarImage.style.objectPosition = "center top";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+});
