@@ -42,7 +42,7 @@
                     </li>
                     {% endfor %}
                     <div class="add-task">
-                        <a href="{% url 'tracker:task_create' %}" class="custom-btn btn-add"> + Add</a>
+                        <a href="{% url 'tracker:task_create' %}" class="custom-btn"> + Add</a>
                     </div>
                 </ul>
             </div>
@@ -70,7 +70,7 @@
                 / <span id="water-goal">{{ water_goal }}</span>
                 <button type="button" onclick="updateCounter('water', 0.5)"><i class="fa-solid fa-plus"></i></button>
             </div>
-            <button type="submit" class="custom-btn btn-add">Save</button>
+            <button type="submit" class="custom-btn">Save</button>
         </form>
     </div>
 
@@ -96,7 +96,7 @@
                 / <span id="sleep-goal">{{ sleep_goal }}</span>
                 <button type="button" onclick="updateCounter('sleep', 0.5)"><i class="fa-solid fa-plus"></i></button>
             </div>
-            <button type="submit" class="custom-btn btn-add">Save</button>
+            <button type="submit" class="custom-btn">Save</button>
         </form>
     </div>
 </div>

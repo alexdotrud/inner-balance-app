@@ -740,7 +740,7 @@ footer i {
 }
 
 .custom-btn {
-    max-width: 250px;
+    max-width: fit-content;
     width: 100%;
     background-color: var(--highlight-color);
     color: var(--primary-color);
@@ -751,17 +751,9 @@ footer i {
     cursor: pointer;
     margin: 0.5rem;
     font-size: 1.3rem;
-    border: none;
     transition: all 0.3s ease;
 }
 
-.btn-start {
-    max-width: fit-content;
-}
-
-.btn-add {
-    max-width: fit-content;
-}
 
 .custom-btn:hover {
     background-color: var(--highlight-color);
@@ -770,21 +762,6 @@ footer i {
     box-shadow: 0 6px 12px var(--primary-color);
 }
 
-.login-btn,
-.logout-btn {
-    padding: 0.9rem 2rem;
-    font-size: 1.3rem;
-    border-radius: 30px;
-    transition: all 0.3s ease;
-}
-
-.login-btn:hover,
-.logout-btn:hover {
-    background-color: var(--highlight-color);
-    color: var(--secondary-color);
-    border-color: var(--secondary-color);
-    box-shadow: 0 6px 12px var(--primary-color);
-}
 
 .login-container .custom-btn {
     display: block;
