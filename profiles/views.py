@@ -34,6 +34,14 @@ def profile_view(request):
             profile.save()
             messages.success(request, "Description updated.")
             return redirect("profiles:profile")
+        
+         # Handle avatar upload
+        if "avatar" in request.FILES:
+            profile.avatar = request.FILES["avatar"]
+            profile.save()
+            messages.success(request, "Avatar updated.")
+            return redirect("profiles:profile")
+
 
     return render(request, "profiles/my_profile.html", {
         "username": request.user.username,
