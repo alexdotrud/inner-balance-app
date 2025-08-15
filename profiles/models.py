@@ -5,7 +5,15 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 User = get_user_model()
 
+def avatar_upload_path(instance, filename):
+    return f"avatars/user_{instance.user_id}/{filename}"
+
 class UserProfile(models.Model):
+    avatar = models.ImageField(
+        upload_to=avatar_upload_path,
+        blank=True, null=True,
+        default="images/avatar.png",
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     last_reset = models.DateField(default=now)
     water_intake = models.FloatField(

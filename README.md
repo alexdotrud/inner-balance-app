@@ -566,7 +566,7 @@ To fork the repository:
 - **Inspiration & Guidance** – Code Institute course material and Django documentation.
 - **Testing** – Conducted manually across multiple browsers and devices.
 - **Content & Text** – Written by the project author (Aleksandra Rudenko).
-- **Homepage Image** – Sourced from [Pixabay](https://pixabay.com/).
+- **Images** – All images (homepage bannes, main background and avatar) are taken from [Pixabay](https://pixabay.com/).
 - **W3Schools**: Used for reference and tutorials on HTML, CSS, JavaScript, and more (https://www.w3schools.com/).
 - **Stack Overflow**: Used for troubleshooting and seeking solutions to development challenges (https://stackoverflow.com/).
 - **Chrome DevTools Lighthouse**: Used to test and improve web performance (https://developer.chrome.com/docs/lighthouse/performance/).
