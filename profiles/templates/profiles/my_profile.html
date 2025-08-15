@@ -24,6 +24,14 @@
             <img src="{% static 'images/avatar.png' %}" alt="Avatar" id="avatar-img" class="avatar">
             {% endif %}
 
+            {% if messages %}
+            {% for message in messages %}
+            {% if message.level_tag == 'error' %}
+            <p class="error-message">{{ message }}</p>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+
             <form method="post" enctype="multipart/form-data" class="avatar-form"
                 action="{% url 'profiles:profile_avatar' %}">
                 {% csrf_token %}
