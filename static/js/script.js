@@ -237,3 +237,24 @@ document.addEventListener("DOMContentLoaded", function () {
  * Opens File Input when avatar image is clicked
  */
 document.getElementById('avatar-img').onclick = () => document.getElementById('avatar-input').click();
+
+document.addEventListener("DOMContentLoaded", function () {
+    const input = document.getElementById("avatar-input");
+    const img = document.getElementById("avatar-img");
+    const submitBtn = document.getElementById("save-btn")
+    const chooseInp = this.documentElementById("label-inpt")
+
+    if (!input || !submitBtn) return;
+
+    // Hide the save button until a file is chosen
+    submitBtn.hidden = true;
+
+    // Clicking the image opens the file picker
+    if (img) img.addEventListener("click", () => input.click());
+
+    // Show the save button only when a file is selected
+    chooseInp.hidden = true;
+    input.addEventListener("change", () => {
+        submitBtn.hidden = !(input.files && input.files.length);
+    });
+});

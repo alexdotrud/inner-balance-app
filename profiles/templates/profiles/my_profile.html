@@ -27,10 +27,11 @@
             <form method="post" enctype="multipart/form-data" class="avatar-form"
                 action="{% url 'profiles:profile_avatar' %}">
                 {% csrf_token %}
-
-                <input type="file" id="avatar-input" name="avatar" accept="image/*" />
-                <p>Click on avatar fo choose your image</p>
-                <button type="submit" class="btn-add custom-btn">Update</button>
+                <p>
+                    <label for="avatar-input" class="custom-btn btn-add" id="label-inpt">+ Choose</label>
+                    <input type="file" id="avatar-input" name="avatar" accept="image/*" />
+                </p>
+                <button type="submit" class="btn-add custom-btn" id="save-btn">Save</button>
             </form>
         </aside>
     </div>
