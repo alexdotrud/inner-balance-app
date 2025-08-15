@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.shortcuts import redirect, render
 from .models import UserProfile
 from django.core.exceptions import ValidationError
+from .forms import ProfileAvatarForm
 
 @login_required
 def profile_view(request):
@@ -34,16 +35,9 @@ def profile_view(request):
             profile.save()
             messages.success(request, "Description updated.")
             return redirect("profiles:profile")
-        
-         # Handle avatar upload
-        if "avatar" in request.FILES:
-            profile.avatar = request.FILES["avatar"]
-            profile.save()
-            messages.success(request, "Avatar updated.")
-            return redirect("profiles:profile")
-
 
     return render(request, "profiles/my_profile.html", {
+        "profile": profile,
         "username": request.user.username,
         "description": profile.description,
         "water_intake": profile.water_intake,
@@ -52,6 +46,19 @@ def profile_view(request):
         "sleep_goal": profile.sleep_goal,
         "member_since": request.user.date_joined,
     })
+
+@login_required
+def profile_avatar_view(request):
+    profile = get_object_or_404(UserProfile, user=request.user)
+
+    if request.method == "POST":
+        form = ProfileAvatarForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Avatar updated.")
+        else:
+            messages.error(request, "Invalid image. Check file size/type.")
+    return redirect("profiles:profile")
 
 def populate_profile_on_signup(request, user, **kwargs):
     profile, _ = UserProfile.objects.get_or_create(user=user)
