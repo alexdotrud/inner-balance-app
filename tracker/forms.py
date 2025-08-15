@@ -5,10 +5,11 @@ from allauth.account.forms import SignupForm
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
-"""
-Form for adding task on overview page. Check if input is empty or too long.
-"""
+
 class TaskForm(forms.ModelForm):
+    """
+    Form for adding task on overview page. Check if input is empty or too long.
+    """
     class Meta:
         model = Task
         fields = ["title", "description"]
@@ -52,6 +53,9 @@ class TaskForm(forms.ModelForm):
     
 
 class CustomSignupForm(SignupForm):
+    """
+    Custom Sign up form to validate username length and uniqueness.
+    """
     def clean_username(self):
         username = (self.cleaned_data.get("username") or "").strip()
         

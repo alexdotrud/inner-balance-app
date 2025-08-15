@@ -7,7 +7,10 @@ from .forms import ProfileForm, AvatarForm
 
 @login_required
 def profile_view(request):
-
+    """
+    Displays user profile with options to update description and goals.
+    Handles both GET and POST requests for updating profile information.
+    """
     profile, _ = UserProfile.objects.get_or_create(user=request.user)
     form = ProfileForm(instance=profile)
 
@@ -56,7 +59,8 @@ def profile_view(request):
 @login_required
 def profile_avatar_view(request):
     """
-    
+    Handles avatar upload for the user's profile.
+    Requires a valid image file and updates the avatar field in UserProfile.
     """
     profile = get_object_or_404(UserProfile, user=request.user)
 
@@ -75,6 +79,9 @@ def profile_avatar_view(request):
 
 
 def populate_profile_on_signup(request, user, **kwargs):
+    """
+    Sets default values for water and sleep goals when a new user signs up.
+    """
     profile, _ = UserProfile.objects.get_or_create(user=user)
 
     raw_water = (request.POST.get("water_goal") or "").replace(",", ".")
@@ -90,6 +97,9 @@ def populate_profile_on_signup(request, user, **kwargs):
     profile.save()
 
 def update_water_sleep(request):
+    """
+    Updates current day's water intake and sleep hours for the logged-in user.
+    Handles both GET and POST requests, validating input values."""
     if request.method == 'POST':
           profile, _ = UserProfile.objects.get_or_create(user=request.user)
 

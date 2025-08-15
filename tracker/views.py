@@ -49,7 +49,8 @@ class OverviewView(LoginRequiredMixin, TemplateView):
 
 def add_task(request):
     """
-     Handles task creation using TaskForm for all validation.
+    Handles task creation using TaskForm for all validation.
+    If form is valid, saves the task and redirects to overview.
     """
     if request.method == "POST":
         form = TaskForm(request.POST, user=request.user)
@@ -73,6 +74,7 @@ def add_task(request):
 def update_water_sleep(request):
     """
     Updates current day's water intake and sleep hours for the logged-in user.
+    Handles both GET and POST requests, validating input values.
     """
     if request.method == 'POST':
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
@@ -119,6 +121,7 @@ def reset_tasks_if_needed(user):
 def update_tasks(request):
     """
     Marks tasks as completed/incomplete based on submitted checkboxes.
+    Each checkbox corresponds to a task, and the task's completion status is updated accordingly.
     """
     if request.method == 'POST':
         tasks = Task.objects.filter(user=request.user)
@@ -132,6 +135,9 @@ def update_tasks(request):
 
 
 class TaskListView(ListView):
+    """
+    Displays all tasks for the logged-in user.
+    """
     model = Task
     template_name = 'tracker/tasks.html'
 

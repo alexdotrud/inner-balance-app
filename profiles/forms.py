@@ -2,6 +2,8 @@ from django import forms
 from .models import UserProfile
 
 class ProfileForm(forms.ModelForm):
+    """
+     Form for updating user profile details like description and goals. """
     class Meta:
         model = UserProfile
         fields = ["description", "water_goal", "sleep_goal"]
@@ -19,6 +21,9 @@ class ProfileForm(forms.ModelForm):
         return val
     
 class AvatarForm(forms.ModelForm):
+    """
+    Form for updating user avatar. It requires an image file.
+    """
     class Meta:
         model = UserProfile
         fields = ["avatar"]
