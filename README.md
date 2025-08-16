@@ -289,22 +289,28 @@ INNER BALANCE uses a mix of subtle animations, dynamic feedback, and conditional
 
 ## Technologies Used
 
-- **HTML** — Structures the content of the application, including forms, navigation, and dashboard elements.
-- **CSS** — Styles the application with custom layouts, colors, typography, and responsive design.
-- **CSS Variables** — Used for managing a consistent color palette and font settings across the project.
-- **CSS Flexbox** — Provides flexible and responsive layouts for dashboard components and forms.
-- **Bootstrap 5** — Delivers responsive design and pre-built components like modals, buttons, and form controls.
-- **JavaScript (Vanilla)** — Handles task logic, dynamic updates, progress bar animations, conditional UI rendering, and dashboard interactions.
-- **jQuery** — Simplifies DOM manipulation, event handling, and animations (used in some legacy interactions).
-- **Django** — The backend framework powering the app, managing templates, routes, models, and authentication.
-- **PostgreSQL** — Relational database used in production for storing tasks, water/sleep tracking data, and user profiles reliably and securely.
-- **Git** — Version control for tracking changes and managing development history.
-- **GitHub** — Hosts the repository and enables collaboration and deployment.
-- **Font Awesome** — Provides vector-based icons for buttons, navigation, and UI feedback.
-- **Google Fonts** — Integrates `"Instrument Serif"` for typography consistency.
-- **Visual Studio Code** — Code editor for development with extensions for Django, Git, and formatting.
-- **Coolors** — Assisted in creating a harmonious and professional color palette.
-- **Image Optimization Tools** — Used to compress and resize static images for faster page loading.
+- **HTML** — Structures the content of the application, including forms, navigation, and dashboard elements.  
+- **CSS** — Styles the application with custom layouts, colors, typography, and responsive design.  
+- **CSS Variables** — Used for managing a consistent color palette and font settings across the project.  
+- **CSS Flexbox** — Provides flexible and responsive layouts for dashboard components and forms.  
+- **Bootstrap 5** — Delivers responsive design and pre-built components like modals, buttons, and form controls.  
+- **JavaScript (Vanilla)** — Handles task logic, dynamic updates, progress bar animations, conditional UI rendering, and dashboard interactions.  
+- **jQuery** — Simplifies DOM manipulation, event handling, and animations (used in some legacy interactions).  
+- **Django** — The backend framework powering the app, managing templates, routes, models, and authentication.  
+- **PostgreSQL** — Relational database used in production for storing tasks, water/sleep tracking data, and user profiles reliably and securely.  
+- **Git** — Version control for tracking changes and managing development history.  
+- **GitHub** — Hosts the repository and enables collaboration and deployment.  
+- **Font Awesome** — Provides vector-based icons for buttons, navigation, and UI feedback.  
+- **Google Fonts** — Integrates `"Instrument Serif"` for typography consistency.  
+- **Visual Studio Code** — Code editor for development with extensions for Django, Git, and formatting.  
+- **Coolors** — Assisted in creating a harmonious and professional color palette.  
+- **Image Optimization Tools** — Used to compress and resize static images for faster page loading.  
+- **Cloudinary API** — Manages media storage, optimization, and delivery for user-uploaded images.  
+- **PEP8CI** — [pep8ci.herokuapp.com](https://pep8ci.herokuapp.com/) for Python PEP 8 compliance checks.  
+- **Python Formatter & Beautifier** — [codebeautify.org/python-formatter-beautifier](https://codebeautify.org/python-formatter-beautifier) for clean and consistent code formatting.  
+- **W3C HTML Validator** — [validator.w3.org](https://validator.w3.org/) for validating HTML markup.  
+- **W3C CSS Validator** — [jigsaw.w3.org/css-validator](https://jigsaw.w3.org/css-validator/) for validating CSS stylesheets.  
+
 
 ## Testing 
 ### User stories tasting:
@@ -391,21 +397,7 @@ The website was tested on the following browsers: Chrome, Mozilla Firefox, Micro
 
 The website was checked with Responsive Website Design Tester.
 
-- **Main Page:**
 
-![Main Page Responsiveness]()
-
-- **Meet Characters Chapter:**
-
-![Meet Characters Chapter Responsiveness]()
-
-- **Story Chapters:**
-
-![Chapter Responsiveness]()
-
-- **Puzzle Game:**
-
-![Puzzle Game Responsiveness]()
 
 ### Validator Testing 
 
@@ -427,7 +419,9 @@ Some functions (e.g. openTaskModal, updateCounter, saveDescription, editDescript
 
    ![Script.js](documentation/js-validator.png)
  
+##### Python
 
+   ![Python](documentation/python-validation.pdf)
 ## Bugs
 
 ### Solved Bugs
