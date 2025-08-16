@@ -257,3 +257,20 @@ document.addEventListener('DOMContentLoaded', () => {
         img.addEventListener('click', () => input.click());
     }
 });
+
+/**
+ * Opening Instructions modal.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    const trigger = document.getElementById('help-trigger');
+    const modalElement = document.getElementById('InstModal');
+
+    if (trigger && modalElement && window.bootstrap) {
+        const instModal = new bootstrap.Modal(modalElement);
+
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            instModal.show();
+        });
+    }
+});
