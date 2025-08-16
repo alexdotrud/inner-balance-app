@@ -269,7 +269,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const instModal = new bootstrap.Modal(modalElement);
 
         trigger.addEventListener('click', (e) => {
-            e.preventDefault();
             instModal.show();
         });
     }

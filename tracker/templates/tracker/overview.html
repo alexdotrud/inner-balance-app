@@ -130,36 +130,36 @@
                 <button type="button" class="btn btn-outline-secondary custom-btn modal-closing"
                     data-bs-dismiss="modal">Close</button>
             </div>
-
         </div>
+    </div>
+</div>
 
-        <!-- Instructions Modal -->
-        <div class="modal fade" id="InstModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
+<!-- Instructions Modal -->
+<div class="modal fade" id="InstModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
 
-                    <div class="modal-header">
-                        <h3 id="modal-title" class="modal-title">Instructions</h3>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+            <div class="modal-header">
+                <h3 id="modal-title" class="modal-title">Instructions</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-                    <div class="modal-body" id="modal-content">
-                        <p>Quick tips:</p>
-                        <ul>
-                            <li>You can change your <strong>sleep</strong> and <strong>water</strong> goals on your
-                                <a href="{% url 'profiles:profile' %}">Profile</a> page.</li>
-                            <li>To save your <strong>sleep</strong> and <strong>water</strong> info, press the
-                                <strong>Save</strong> button.</li>
-                            <li>Tasks are saved automatically every time you check or uncheck a checkbox.</li>
-                            <li>To <strong>edit</strong> or <strong>delete</strong> a task, click the task to open its
-                                actions.</li>
-                            <li>The overview <strong>resets each day</strong> (fresh day = fresh checklist).</li>
-                            <li>The <strong>progress bar</strong> updates instantly as you check/uncheck tasks.</li>
-                        </ul>
-                    </div>
-
-                </div>
+            <div class="modal-body" id="modal-content">
+                <p>Quick tips:</p>
+                <ol>
+                    <li>You can change your <strong>sleep</strong> and <strong>water</strong> goals on your
+                        <a href="{% url 'profiles:profile' %}" class="custom-link">Profile</a> page.</li>
+                    <li>To save your <strong>sleep</strong> and <strong>water</strong> info, press the
+                        <strong>Save</strong> button.</li>
+                    <li>Tasks are saved automatically every time you check or uncheck a checkbox.</li>
+                    <li>To <strong>edit</strong> or <strong>delete</strong> a task, click the task to open its
+                        actions.</li>
+                    <li>The overview <strong>resets each day</strong> (fresh day = fresh checklist).</li>
+                    <li>The <strong>progress bar</strong> updates instantly as you check/uncheck tasks.</li>
+                </ol>
             </div>
         </div>
-        {% endif %}
-        {% endblock %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}
