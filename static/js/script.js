@@ -1,7 +1,4 @@
-const isLoggedIn = "{{ user.is_authenticated|yesno:'true,false' }}" === "true";
-const LoggedParagraph = document.getElementById("sign-p")
-const LoggedHeading = document.getElementById("sign-h")
-
+/* global bootstrap */
 /**
  * Modal opening function
  */
@@ -108,7 +105,7 @@ if (document.getElementById("task")) {
 
     // Re-run every time a checkbox changes
     checkboxes.forEach(cb => cb.addEventListener("change", Motivation));
-};
+}
 
 /**
  * Runs waterSleepMotivation function if goald on page exist and every time input changes.
@@ -197,7 +194,7 @@ function saveDescription(e) {
         paragraph.classList.add("is-hidden");
         editBtn.classList.add("is-hidden");
     });
-};
+}
 
 /**
  * Changes area back to textarea to allow changes.

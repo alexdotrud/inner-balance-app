@@ -15,24 +15,25 @@ from django.core.exceptions import ValidationError
 
 class OverviewView(LoginRequiredMixin, TemplateView):
     """
-    Shows daily overview, resets counters if needed, and handles quick task creation.
+    Show daily overview, resets counters if needed,handles quick task creation.
     """
-    template_name = 'tracker/overview.html'
-    
+
+    template_name = "tracker/overview.html"
+
     # Sending data to template
     def get_context_data(self, **kwargs):
         profile = reset_tasks_if_needed(self.request.user)
         tasks = Task.objects.filter(user=self.request.user)
         return {
-            'tasks': tasks,
-            'task_count': tasks.count(),
-            'task_form': TaskForm(user=self.request.user),
-            'water_count': profile.water_intake,
-            'water_goal': profile.water_goal,
-            'sleep_count': profile.sleep_hours,
-            'sleep_goal': profile.sleep_goal,
+            "tasks": tasks,
+            "task_count": tasks.count(),
+            "task_form": TaskForm(user=self.request.user),
+            "water_count": profile.water_intake,
+            "water_goal": profile.water_goal,
+            "sleep_count": profile.sleep_hours,
+            "sleep_goal": profile.sleep_goal,
         }
-    
+
     # If form submitted -redirects to overview.
     def post(self, request):
         form = TaskForm(request.POST, user=request.user)
@@ -42,9 +43,11 @@ class OverviewView(LoginRequiredMixin, TemplateView):
             try:
                 task.save()
             except IntegrityError:
-                messages.error(request, "You already have a task with this title.")
-        return redirect('tracker:overview')
-    
+                messages.error(
+                    request,
+                    "You already have a task with this title.",
+                )
+        return redirect("tracker:overview")
 
 
 def add_task(request):
@@ -76,12 +79,12 @@ def update_water_sleep(request):
     Updates current day's water intake and sleep hours for the logged-in user.
     Handles both GET and POST requests, validating input values.
     """
-    if request.method == 'POST':
+    if request.method == "POST":
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
-        
+
         raw_water = (request.POST.get("water") or "").replace(",", ".")
         raw_sleep = (request.POST.get("sleep") or "").replace(",", ".")
-    
+
         try:
             if raw_water.strip():
                 profile.water_intake = float(raw_water)
@@ -92,16 +95,18 @@ def update_water_sleep(request):
             profile.save()
             messages.success(request, "Progress updated.")
         except (ValueError, ValidationError):
-            messages.error(request, "Invalid intake value. Please check the limits.")
-
+            messages.error(
+                    request,
+                    "Invalid intake value. Please check the limits."
+                )
 
         profile.save()
-        return redirect('tracker:overview')
-    
+        return redirect("tracker:overview")
+
 
 def reset_tasks_if_needed(user):
     """
-    Resets all tasks and counters if the date has changed since last reset. Once per day.
+    Resets all tasks and counters if the date has changed since last reset.
     """
     today = timezone.now().date()
 
@@ -114,46 +119,51 @@ def reset_tasks_if_needed(user):
         profile.water_intake = 0
         profile.sleep_hours = 0.0
         profile.save()
-        
+
     return profile
-    
+
 
 def update_tasks(request):
     """
     Marks tasks as completed/incomplete based on submitted checkboxes.
-    Each checkbox corresponds to a task, and the task's completion status is updated accordingly.
     """
-    if request.method == 'POST':
+    if request.method == "POST":
         tasks = Task.objects.filter(user=request.user)
-        checked_ids = {int(key.split('_')[1]) for key in request.POST if key.startswith('task_')}
+        checked_ids = {
+            int(key.split("_")[1])
+            for key in request.POST
+            if key.startswith("task_")
+        }
 
         for task in tasks:
             task.is_completed = task.id in checked_ids
             task.save()
 
-    return redirect('tracker:overview')
+    return redirect("tracker:overview")
 
 
 class TaskListView(ListView):
     """
     Displays all tasks for the logged-in user.
     """
+
     model = Task
-    template_name = 'tracker/tasks.html'
+    template_name = "tracker/tasks.html"
 
 
 class TaskCreateView(SuccessMessageMixin, CreateView):
     """
     Creates a new task for the logged-in user.
     """
+
     model = Task
     form_class = TaskForm
-    template_name = 'tracker/task_form.html'
-    success_message = 'Task added!'
+    template_name = "tracker/task_form.html"
+    success_message = "Task added!"
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['user'] = self.request.user
+        kwargs["user"] = self.request.user
         return kwargs
 
     def form_valid(self, form):
@@ -161,7 +171,7 @@ class TaskCreateView(SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('tracker:overview')
+        return reverse_lazy("tracker:overview")
 
     # No need to pass user in initial anymore
 
@@ -170,35 +180,37 @@ class TaskUpdateView(SuccessMessageMixin, UpdateView):
     """
     Updates an existing task owned by the logged-in user.
     """
+
     model = Task
     form_class = TaskForm
-    template_name = 'tracker/task_form.html'
-    success_message = 'Task updated!'
-    
-    #obly the author can edit his tasks
+    template_name = "tracker/task_form.html"
+    success_message = "Task updated!"
+
+    # obly the author can edit his tasks
     def get_queryset(self):
         return Task.objects.filter(user=self.request.user)
-    
+
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['user'] = self.request.user
+        kwargs["user"] = self.request.user
         return kwargs
 
     def get_success_url(self):
-        return reverse_lazy('tracker:overview')
-    
+        return reverse_lazy("tracker:overview")
+
     # No need to pass user in initial anymore
-    
+
 
 class TaskDeleteView(SuccessMessageMixin, DeleteView):
     """
     Deletes an existing task owned by the logged-in user.
     """
-    model = Task
-    template_name = 'tracker/task_confirm_delete.html'
-    success_url = reverse_lazy('tracker:overview')
-    success_message = 'Task Deleted!'
 
-    #obly the author can edit his tasks
+    model = Task
+    template_name = "tracker/task_confirm_delete.html"
+    success_url = reverse_lazy("tracker:overview")
+    success_message = "Task Deleted!"
+
+    # obly the author can edit his tasks
     def get_queryset(self):
         return Task.objects.filter(user=self.request.user)

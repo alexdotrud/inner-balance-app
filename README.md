@@ -411,22 +411,22 @@ The website was checked with Responsive Website Design Tester.
 
 #### HTML 
 
-
-  - **Index.html:** 
-
-  ![Index.html]()
+![Html](documentation/html-validation.pdf)
 
 #### CSS
 
   - **Style.css:**
 
-  ![Style.css]()
+  ![Style.css](documentation/css-validator.png)
 
 ##### JS
 
   - **Script.js:**
 
-   ![Script.js]()
+Some functions (e.g. openTaskModal, updateCounter, saveDescription, editDescription) are called directly from Django templates via onclick attributes, so linters may incorrectly flag them as unused.
+
+   ![Script.js](documentation/js-validator.png)
+ 
 
 ## Bugs
 

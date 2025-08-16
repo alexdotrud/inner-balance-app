@@ -5,6 +5,7 @@ from .models import UserProfile
 from django.core.exceptions import ValidationError
 from .forms import ProfileForm, AvatarForm
 
+
 @login_required
 def profile_view(request):
     """
@@ -18,8 +19,13 @@ def profile_view(request):
         # Handle goals first
         if "save-goals" in request.POST:
             # normalize commas to dots for EU keyboards
-            raw_water = (request.POST.get("water_goal") or "").replace(",", ".")
-            raw_sleep = (request.POST.get("sleep_goal") or "").replace(",", ".")
+            raw_water = (
+               request.POST.get("water_goal") or ""
+               ).replace(",", ".")
+
+            raw_sleep = (
+               request.POST.get("sleep_goal") or ""
+               ).replace(",", ".")
 
             try:
                 if raw_water.strip():
@@ -31,7 +37,9 @@ def profile_view(request):
                 profile.save()
                 messages.success(request, "Goals updated.")
             except (ValueError, ValidationError):
-                messages.error(request, "Goal should not be less than 1 or more than 20.")
+                messages.error(
+                    request, "Goal should not be less than 1 or more than 20."
+                )
             return redirect("profiles:profile")
 
         # Then handle description
@@ -40,21 +48,30 @@ def profile_view(request):
             profile.save()
             messages.success(request, "Description updated.")
             return redirect("profiles:profile")
-        
-    avatar_url = profile.avatar.url if profile.avatar and profile.avatar.name != "images/avatar.png" else None
 
-    return render(request, "profiles/my_profile.html", {
-        "username": request.user.username,
-        "description": profile.description,
-        "water_intake": profile.water_intake,
-        "sleep_hours": profile.sleep_hours,
-        "water_goal": profile.water_goal,
-        "sleep_goal": profile.sleep_goal,
-        "member_since": request.user.date_joined,
-        "form": form,
-        "avatar_url": avatar_url,
-        "profile": profile,
-    })
+    avatar_url = (
+        profile.avatar.url
+        if profile.avatar and profile.avatar.name != "images/avatar.png"
+        else None
+    )
+
+    return render(
+        request,
+        "profiles/my_profile.html",
+        {
+            "username": request.user.username,
+            "description": profile.description,
+            "water_intake": profile.water_intake,
+            "sleep_hours": profile.sleep_hours,
+            "water_goal": profile.water_goal,
+            "sleep_goal": profile.sleep_goal,
+            "member_since": request.user.date_joined,
+            "form": form,
+            "avatar_url": avatar_url,
+            "profile": profile,
+        },
+    )
+
 
 @login_required
 def profile_avatar_view(request):
@@ -96,25 +113,29 @@ def populate_profile_on_signup(request, user, **kwargs):
 
     profile.save()
 
+
 def update_water_sleep(request):
     """
     Updates current day's water intake and sleep hours for the logged-in user.
     Handles both GET and POST requests, validating input values."""
-    if request.method == 'POST':
-          profile, _ = UserProfile.objects.get_or_create(user=request.user)
+    if request.method == "POST":
+        profile, _ = UserProfile.objects.get_or_create(user=request.user)
 
-          raw_water = (request.POST.get('water') or "").replace(",", ".")
-          raw_sleep = (request.POST.get('sleep') or "").replace(",", ".")
+        raw_water = (request.POST.get("water") or "").replace(",", ".")
+        raw_sleep = (request.POST.get("sleep") or "").replace(",", ".")
     try:
         if raw_water.strip():
-                profile.water_intake = float(raw_water)
+            profile.water_intake = float(raw_water)
         if raw_sleep.strip():
-                profile.sleep_hours = float(raw_sleep)
+            profile.sleep_hours = float(raw_sleep)
 
         profile.full_clean()
         profile.save()
         messages.success(request, "Progress updated.")
     except (ValueError, ValidationError):
-        messages.error(request, "Invalid intake value. Please check the limits.")
+        messages.error(
+            request,
+            "Invalid intake value."
+            "Please check the limits.")
 
-    return redirect('tracker:overview')
+    return redirect("tracker:overview")
