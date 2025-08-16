@@ -11,6 +11,9 @@
     <div class="welcome-block">
         <h1 class="title">Overview</h1>
         <p class="welcome-user">Welcome back, {{ user.first_name|default:user.username }}!</p>
+
+        <button id="help-trigger" class="instruction" title="Help"> ❔ Instructions
+        </button>
     </div>
 
     <!-- Task List -->
@@ -128,6 +131,30 @@
                     data-bs-dismiss="modal">Close</button>
             </div>
 
+        </div>
+
+        <!-- Instructions Modal -->
+        <div class="modal fade" id="InstModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h3 id="modal-title" class="modal-title">Instructions/h3>
+                    </div>
+                    <p>Quick tips:</p>
+                    <ul>
+                        <li>You can change your <strong>sleep</strong> and <strong>water</strong> goals on your
+                            <a href="{% url profiles:profile' %}">Profile</a> page.</li>
+                        <li>To save your <strong>sleep</strong> and <strong>water</strong> info, you need to press the
+                            <strong>Save</strong> button.</li>
+                        <li>Tasks are saved automatically every time you check or uncheck a checkbox.</li>
+                        <li>To <strong>edit</strong> or <strong>delete</strong> a task, click the task to open its
+                            actions.</li>
+                        <li>The overview <strong>resets each day</strong> (fresh day = fresh checklist).</li>
+                        <li>The <strong>progress bar</strong> updates instantly as you check/uncheck tasks.</li>
+                    </ul>
+                </div>
+            </div>
         </div>
         {% endif %}
         {% endblock %}
