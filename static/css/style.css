@@ -340,14 +340,9 @@ footer i {
     text-decoration: none;
 }
 
-.list-group-item a:hover {
-    transform: scale(1.2);
-    transition: transform 0.3s ease;
-}
-
-#task i:hover {
-    transform: scale(1.2);
-    transition: transform 0.3s ease;
+.list-group-item:hover {
+    background-color: #99e0ba85;
+    cursor: pointer;
 }
 
 .add {
@@ -594,8 +589,8 @@ footer i {
     background: rgba(255, 255, 255, 0.5);
     border-radius: 16px;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-    width: 60%;
-    max-width: 1000px;
+    width: 90%;
+    max-width: 800px;
     margin: 2rem auto;
 }
 
@@ -724,7 +719,9 @@ footer i {
     margin: 0 auto;
 }
 
-.logout-container .custom-btn {
+.logout-container .custom-btn,
+.create-tasks .custom-btn {
+    text-align: center;
     width: 100%;
     max-width: 280px;
     display: block;
@@ -755,6 +752,10 @@ footer i {
 .custom-link:hover,
 .custom-link:focus {
     color: var(--secondary-color);
+}
+
+a .custom-btn {
+    margin: 0.5rem;
 }
 
 .arrow-link i {

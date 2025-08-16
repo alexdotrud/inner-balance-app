@@ -40,11 +40,11 @@
                             {{ task.title }}
                         </span>
                     </li>
-                    {% endfor %}
-                    <div class="add-task">
-                        <a href="{% url 'tracker:task_create' %}" class="custom-btn"> + Add</a>
-                    </div>
                 </ul>
+                {% endfor %}
+                <div class="add-task">
+                    <a href="{% url 'tracker:task_create' %}" class="custom-btn"> + Add</a>
+                </div>
             </div>
         </form>
     </div>
