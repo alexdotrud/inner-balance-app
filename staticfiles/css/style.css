@@ -130,6 +130,7 @@ h3 {
     align-items: center;
     scroll-margin-top: 100px;
     max-width: 1000px;
+    margin: 2rem auto;
 }
 
 .banner-text {
@@ -180,7 +181,7 @@ footer i {
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
-    margin: 0 auto;
+    margin: 2rem auto;
     padding: 3rem 0;
     gap: 3rem;
     border-radius: 8px;
@@ -200,6 +201,10 @@ footer i {
     flex-direction: column;
     justify-content: center;
     align-self: center;
+}
+
+.welcome-block p {
+    margin-bottom: 2rem;
 }
 
 .delete-container,
@@ -227,6 +232,23 @@ footer i {
 #flash-messages .alert {
     position: relative;
     padding-right: 2rem;
+}
+
+.instruction {
+    max-width: fit-content;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    background: #fff;
+    border: 1px solid var(--secondary-color);
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.instruction:hover {
+    border-color: var(--secondary-color);
+    box-shadow: 0 6px 12px var(--primary-color);
 }
 
 /* Motivation */
@@ -340,14 +362,9 @@ footer i {
     text-decoration: none;
 }
 
-.list-group-item a:hover {
-    transform: scale(1.2);
-    transition: transform 0.3s ease;
-}
-
-#task i:hover {
-    transform: scale(1.2);
-    transition: transform 0.3s ease;
+.list-group-item:hover {
+    background-color: #99e0ba85;
+    cursor: pointer;
 }
 
 .add {
@@ -474,12 +491,27 @@ footer i {
     z-index: 10;
 }
 
+#InstModal .modal-content {
+    max-width: 800px;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1.5px solid rgba(92, 219, 151, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+    font-family: var(--primary-font);
+    color: var(--primary-color);
+    background-color: var(--highlight-color);
+    border: 1.5px solid var(--secondary-color);
+
+}
+
+
 /* My Profile Styles */
 
 #profile-container {
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    margin: 2rem auto;
     border-radius: 8px;
     text-align: center;
     padding: 3rem 0;
@@ -594,8 +626,8 @@ footer i {
     background: rgba(255, 255, 255, 0.5);
     border-radius: 16px;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-    width: 60%;
-    max-width: 1000px;
+    width: 90%;
+    max-width: 800px;
     margin: 2rem auto;
 }
 
@@ -724,7 +756,9 @@ footer i {
     margin: 0 auto;
 }
 
-.logout-container .custom-btn {
+.logout-container .custom-btn,
+.create-tasks .custom-btn {
+    text-align: center;
     width: 100%;
     max-width: 280px;
     display: block;
@@ -747,6 +781,10 @@ footer i {
     right: 0.5rem;
 }
 
+.modal-header .btn-close {
+    padding: 1rem;
+}
+
 /* Custom Links Styles */
 .custom-link {
     color: var(--highlight-color-dark);
@@ -755,6 +793,10 @@ footer i {
 .custom-link:hover,
 .custom-link:focus {
     color: var(--secondary-color);
+}
+
+a .custom-btn {
+    margin: 0.5rem;
 }
 
 .arrow-link i {

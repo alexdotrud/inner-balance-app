@@ -102,17 +102,13 @@ function waterSleepMotivation() {
 /**
  * Runs Motivation function  if chekboxes exist and every time checkbox is clicked.
  */
-document.addEventListener("DOMContentLoaded", function () {
+if (document.getElementById("task")) {
     const checkboxes = document.querySelectorAll(".custom-checkbox");
+    Motivation();
 
-    if (checkboxes.length > 0) {
-        // Run once on page load
-        Motivation();
-
-        // Re-run every time a checkbox changes
-        checkboxes.forEach(cb => cb.addEventListener("change", Motivation));
-    }
-});
+    // Re-run every time a checkbox changes
+    checkboxes.forEach(cb => cb.addEventListener("change", Motivation));
+};
 
 /**
  * Runs waterSleepMotivation function if goald on page exist and every time input changes.
@@ -259,5 +255,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('avatar-input');
     if (img && input) {
         img.addEventListener('click', () => input.click());
+    }
+});
+
+/**
+ * Opening Instructions modal.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    const trigger = document.getElementById('help-trigger');
+    const modalElement = document.getElementById('InstModal');
+
+    if (trigger && modalElement && window.bootstrap) {
+        const instModal = new bootstrap.Modal(modalElement);
+
+        trigger.addEventListener('click', (e) => {
+            instModal.show();
+        });
     }
 });
