@@ -12,8 +12,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(
         upload_to=avatar_upload_path,
-        blank=True, null=True,
-        default="images/avatar.png",
+        blank=True, null=True
     )
     last_reset = models.DateField(default=now)
     water_intake = models.FloatField(
