@@ -130,6 +130,7 @@ h3 {
     align-items: center;
     scroll-margin-top: 100px;
     max-width: 1000px;
+    margin: 2rem auto;
 }
 
 .banner-text {
@@ -180,7 +181,7 @@ footer i {
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
-    margin: 0 auto;
+    margin: 2rem auto;
     padding: 3rem 0;
     gap: 3rem;
     border-radius: 8px;
@@ -200,6 +201,10 @@ footer i {
     flex-direction: column;
     justify-content: center;
     align-self: center;
+}
+
+.welcome-block p {
+    margin-bottom: 2rem;
 }
 
 .delete-container,
@@ -506,7 +511,7 @@ footer i {
 #profile-container {
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    margin: 2rem auto;
     border-radius: 8px;
     text-align: center;
     padding: 3rem 0;
@@ -774,6 +779,10 @@ footer i {
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
+}
+
+.modal-header .btn-close {
+    padding: 1rem;
 }
 
 /* Custom Links Styles */
