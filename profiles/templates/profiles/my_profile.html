@@ -18,7 +18,7 @@
         </div>
 
         <aside class="profile__avatar">
-            {% if profile.avatar and profile.avatar.name != 'images/avatar.png' %}
+            {% if profile.avatar %}
             <img src="{{ profile.avatar.url }}" alt="Avatar" id="avatar-img" class="avatar">
             {% else %}
             <img src="{% static 'images/avatar.png' %}" alt="Avatar" id="avatar-img" class="avatar">
