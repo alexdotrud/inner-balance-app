@@ -36,10 +36,11 @@
                     {% for task in tasks %}
                     <li class="list-group-item">
                         <input type="checkbox" name="task_{{ task.id }}" class="custom-checkbox"
-                            onchange="document.getElementById('task-form').submit();"
+                            aria-label="{{ task.title }}" onchange="document.getElementById('task-form').submit();"
                             {% if task.is_completed %}checked{% endif %}>
-                        <span class="task-title"
-                            onclick="openTaskModal('{{ task.id }}','{{ task.title|escapejs }}', '{{ task.description|escapejs }}')">
+                        <span class="task-title" onclick="openTaskModal('{{ task.id }}',
+                            '{{ task.title|escapejs }}',
+                             '{{ task.description|escapejs }}')">
                             {{ task.title }}
                         </span>
                     </li>
@@ -67,11 +68,13 @@
             {% csrf_token %}
             <div class="counter">
                 <i class="fa-solid fa-glass-water"></i>
-                <button type="button" onclick="updateCounter('water', -0.5)"><i class="fa-solid fa-minus"></i></button>
+                <button type="button" aria-label="Decrease water" onclick="updateCounter('water', -0.5)"><i
+                        class="fa-solid fa-minus"></i></button>
                 <input type="hidden" name="water" id="water-input" value="{{ water_count|default:0 }}">
                 <span id="water-count">{{ water_count|default:0 }}</span>
                 / <span id="water-goal">{{ water_goal }}</span>
-                <button type="button" onclick="updateCounter('water', 0.5)"><i class="fa-solid fa-plus"></i></button>
+                <button type="button" aria-label="Increase water" onclick="updateCounter('water', 0.5)"><i
+                        class="fa-solid fa-plus"></i></button>
             </div>
             <button type="submit" class="custom-btn">Save</button>
         </form>
@@ -93,11 +96,13 @@
             {% csrf_token %}
             <div class="counter">
                 <i class="fa-solid fa-moon"></i>
-                <button type="button" onclick="updateCounter('sleep', -0.5)"><i class="fa-solid fa-minus"></i></button>
+                <button type="button" aria-label="Decrease sleep" onclick="updateCounter('sleep', -0.5)"><i
+                        class="fa-solid fa-minus"></i></button>
                 <input type="hidden" name="sleep" id="sleep-input" value="{{ sleep_count|default:0 }}">
                 <span id="sleep-count">{{ sleep_count|default:0 }}</span>
                 / <span id="sleep-goal">{{ sleep_goal }}</span>
-                <button type="button" onclick="updateCounter('sleep', 0.5)"><i class="fa-solid fa-plus"></i></button>
+                <button type="button" aria-label="Increase sleep" onclick="updateCounter('sleep', 0.5)"><i
+                        class="fa-solid fa-plus"></i></button>
             </div>
             <button type="submit" class="custom-btn">Save</button>
         </form>
@@ -105,12 +110,12 @@
 </div>
 
 <!-- Task Opening Modal -->
-<div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+<div class="modal fade" id="taskModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <div class="modal-header">
-                <h3 id="modal-title" class="modal-title">Task Title</h3>
+                <h3 class="modal-title">Task Title</h3>
             </div>
 
             <div class="modal-body">
@@ -119,7 +124,8 @@
 
             <div class="modal-choices">
                 <div class="modal-dropdown">
-                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-label="Task actions menu">
                         <i class="fa-solid fa-bars"></i>
                     </button>
                     <ul class="dropdown-menu">
@@ -135,12 +141,12 @@
 </div>
 
 <!-- Instructions Modal -->
-<div class="modal fade" id="InstModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+<div class="modal fade" id="InstModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
             <div class="modal-header">
-                <h3 id="modal-title" class="modal-title">Instructions</h3>
+                <h3 class="modal-title">Instructions</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
