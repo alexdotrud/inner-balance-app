@@ -100,17 +100,35 @@ function waterSleepMotivation() {
 }
 
 /**
- * Runs Motivation function every time checkbox is clicked.
+ * Runs Motivation function  if chekboxes exist and every time checkbox is clicked.
  */
 document.addEventListener("DOMContentLoaded", function () {
-    Motivation();
+    const checkboxes = document.querySelectorAll(".custom-checkbox");
 
-    // Re-run every time checkbox is clicked
-    document.querySelectorAll(".custom-checkbox").forEach(function (checkbox) {
-        checkbox.addEventListener("change", Motivation);
-    });
+    if (checkboxes.length > 0) {
+        // Run once on page load
+        Motivation();
 
-    waterSleepMotivation();
+        // Re-run every time a checkbox changes
+        checkboxes.forEach(cb => cb.addEventListener("change", Motivation));
+    }
+});
+
+/**
+ * Runs waterSleepMotivation function if goald on page exist and every time input changes.
+ */
+document.addEventListener("DOMContentLoaded", function () {
+    const hasWaterSleep = document.getElementById("water-goal") || document.getElementById("sleep-goal");
+
+    if (hasWaterSleep) {
+        // Run once on page load
+        waterSleepMotivation();
+
+        // Optional: re-run whenever user updates inputs
+        document.querySelectorAll("#sleep-input, #water-input").forEach(el => {
+            el.addEventListener("input", waterSleepMotivation);
+        });
+    }
 });
 
 /**
@@ -208,5 +226,38 @@ function editDescription() {
 document.addEventListener("DOMContentLoaded", function () {
     if (window.location.pathname === "/") {
         document.getElementById("main-container").style.backgroundImage = "none";
+    }
+});
+
+/**
+ * Handles avatar image preview before uploading
+ */
+document.addEventListener("DOMContentLoaded", function () {
+    const avatarInput = document.getElementById("avatar-input");
+    const avatarImage = document.getElementById("avatar-img");
+
+    if (avatarInput && avatarImage) {
+        avatarInput.addEventListener("change", function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    avatarImage.src = e.target.result;
+                    avatarImage.style.objectPosition = "center top";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+});
+
+/**
+ * Runs function to open file input when avatar image is clicked.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    const img = document.getElementById('avatar-img');
+    const input = document.getElementById('avatar-input');
+    if (img && input) {
+        img.addEventListener('click', () => input.click());
     }
 });
