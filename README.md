@@ -147,12 +147,12 @@ This project was planned and developed using Agile methodology to stay organised
 
 **Wireframes:**
 
-![INNER BALANCE Wireframes](documentation/wireframes.png)
+![INNER BALANCE Wireframes](documentation/)
 
 **Project Plan:**
 The original concept for INNER BALANCE was to create a fully-featured wellness tracking application with multiple modules (tasks, water intake, sleep tracking, and motivational feedback). The focus shifted towards building a **clean, minimal, and functional app** that delivers the essential daily tracking experience while laying the foundation for future features like priority setting, reminders, and analytics.
 
-![INNER BALANCE Plan](documentation/project-plan.png)
+![INNER BALANCE Plan](documentation/)
 
 ## Features
 
@@ -161,8 +161,8 @@ The original concept for INNER BALANCE was to create a fully-featured wellness t
 - Links to Dashboard, Profile, and Logout for easy navigation.  
 - Navigation adapts for mobile with a compact menu.
 
-![Navbar Desktop](documentation/navbar-desktop.png)  
-![Navbar Mobile](documentation/navbar-mobile.png)  
+![Navbar Desktop](documentation/)  
+![Navbar Mobile](documentation/)  
 
 ### Overview
 - Central hub showing all daily wellness stats and tools.  
@@ -172,7 +172,18 @@ The original concept for INNER BALANCE was to create a fully-featured wellness t
   - **Sleep Hours Tracker** with progress bar.  
   - Motivational feedback messages based on progress.  
 
-![overview](documentation/dashboard.png)  
+![overview](documentation/)  
+
+### Profile Page
+- Personalized page where each user can view and manage their profile.  
+- Displays:
+  - **Username** at the top with a welcome message.  
+  - **Member since** date showing account creation time.  
+  - **Profile Avatar** (with support for user-uploaded images).  
+  - **Custom Description and Goals** field to let users personalize their wellness journey.  
+- Encourages users to make the page their own while staying aligned with the INNER BALANCE theme.
+
+![Profile Page](documentation/)  
 
 ### Task Management
 - Create, edit, and delete personalized daily wellness tasks.  
@@ -180,7 +191,7 @@ The original concept for INNER BALANCE was to create a fully-featured wellness t
 - Completed tasks are visually distinct (e.g., faded or crossed out).  
 - Future feature: set task priority levels.  
 
-![Tasks](documentation/tasks.png)  
+![Tasks](documentation/)  
 
 ### Water Intake Tracking
 - Set a daily water goal in liters.  
@@ -188,7 +199,7 @@ The original concept for INNER BALANCE was to create a fully-featured wellness t
 - Progress bar updates dynamically.  
 - Motivational messages encourage meeting daily hydration goals.  
 
-![Water Tracker](documentation/water-tracker.png)  
+![Water Tracker](documentation/)  
 
 ### Sleep Tracking
 - Set a daily sleep goal in hours.  
@@ -196,13 +207,13 @@ The original concept for INNER BALANCE was to create a fully-featured wellness t
 - Progress bar shows completion percentage.  
 - Feedback messages promote healthy rest habits.  
 
-![Sleep Tracker](documentation/sleep-tracker.png)  
+![Sleep Tracker](documentation/)  
 
 ### Motivational Feedback
 - Displays encouraging messages based on task completion and goal progress.  
 - Different messages appear for high performance vs. low completion.  
 
-![Motivation](documentation/motivation.png)  
+![Motivation](documentation/)  
 
 ### Daily Reset (Automatic)
 - At the start of each day:
@@ -214,7 +225,7 @@ The original concept for INNER BALANCE was to create a fully-featured wellness t
 ### Footer
 - Displays project credits and copyright.  
 
-![Footer](documentation/footer.png)  
+![Footer](documentation/)  
 
 ### 404 Error Handling (Defensive Design)
 - Friendly error page matching INNER BALANCE branding.  
@@ -222,7 +233,7 @@ The original concept for INNER BALANCE was to create a fully-featured wellness t
 - Helps guide lost users back to the main workflow.  
 - Non-authenticated users cannot access dashboard or profile pages.
 
-![Error Page](documentation/error-page.png)  
+![Error Page](documentation/)  
 
 ## UX Design
 The design of INNER BALANCE focuses on **minimalism, clarity, and motivation**.  
@@ -236,7 +247,7 @@ The aim is to keep the interface clean and distraction-free while still engaging
 - **Highlight Color (Dark):** `#2D4739` — A deep green for contrast elements, hover effects, and secondary emphasis.
 
 
-![Color Scheme](documentation/color-scheme.png)  
+![Color Scheme](documentation/)  
 
 ### Fonts
 - **Primary Font:** `"Instrument Serif", serif` — Elegant yet readable, adding a touch of sophistication to the minimalist UI.
@@ -474,7 +485,7 @@ The following features and improvements could be done for INNER BALANCE to enhan
 - **Goal Setup at Registration:** Add the ability for users to set their daily water intake and sleep goals during the sign-up process, ensuring a personalized dashboard from day one.
 
 ## Deployment
-[Live project can be found here!](https://alexdotrud.github.io/jungles-story/)
+[Live project can be found here!]()
 
 The project was deployed to **Heroku** using GitHub for version control and automatic deployment.  
 The following steps were used to deploy the project:
