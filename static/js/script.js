@@ -39,7 +39,7 @@ function Motivation() {
     if (totalTasks === 0) {
         message = "📋 No tasks yet!";
     } else if (percentage >= 100) {
-        message = "🎉 Amazing day! All tasks done!";
+        message = "🎉 Amazing day! Everything is done!";
     } else if (percentage >= 80) {
         message = "🔥 You're doing a good job!";
     } else if (percentage >= 50) {
@@ -164,11 +164,22 @@ function updateCounter(type, delta = 0.5, min = 0, max = 20) {
     nextTenths = Math.max(min * 10, Math.min(max * 10, nextTenths));
 
     const next = nextTenths / 10;
-    inputEl.value = next;
-    countEl.textContent = Number.isInteger(next) ? next.toFixed(0) : next.toFixed(1);
+    if (next !== current) {
+        inputEl.value = next;
+        countEl.textContent = Number.isInteger(next) ? next.toFixed(0) : next.toFixed(1);
 
-    waterSleepMotivation();
+        // enable the save button
+        const btn = document.getElementById(`${type}-save-btn`);
+        if (btn) {
+            btn.disabled = false;
+            btn.classList.add("enabled");
+        }
+
+
+        waterSleepMotivation();
+    }
 }
+
 
 /**
  * Saves description. Changes area from textarea to paragraph.

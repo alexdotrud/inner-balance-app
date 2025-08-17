@@ -164,10 +164,20 @@ function updateCounter(type, delta = 0.5, min = 0, max = 20) {
     nextTenths = Math.max(min * 10, Math.min(max * 10, nextTenths));
 
     const next = nextTenths / 10;
-    inputEl.value = next;
-    countEl.textContent = Number.isInteger(next) ? next.toFixed(0) : next.toFixed(1);
+    if (next !== current) {
+        inputEl.value = next;
+        countEl.textContent = Number.isInteger(next) ? next.toFixed(0) : next.toFixed(1);
 
-    waterSleepMotivation();
+        // enable the save button
+        const btn = document.getElementById(`${type}-save-btn`);
+        if (btn) {
+            btn.disabled = false;
+            btn.classList.add("enabled");
+        }
+
+
+        waterSleepMotivation();
+    }
 }
 
 /**
