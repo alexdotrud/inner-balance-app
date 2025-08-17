@@ -18,7 +18,8 @@
             {% endif %}
             <button class="custom-btn delete-btn" type="submit">{% trans "Sign Out" %}</button>
         </form>
-        <a href="{% url 'tracker:overview' %}" class="custom-btn">{% trans "Cancel and stay" %}</a>
+        <a href="{% url 'tracker:overview' %}" class="custom-btn"
+            aria-label="Link to Overview page">{% trans "Cancel and stay" %}</a>
     </div>
 </div>
 {% endblock %}

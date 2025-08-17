@@ -46,10 +46,12 @@
         </ul>
         {% if not user.is_authenticated %}
         <h3 id="sign-h">Ready to join?</h3>
-        <p id="sign-p"><a href="{% url 'account_signup' %}" class="signup-link custom-link">Sign up</a> if you want
+        <p id="sign-p"><a href="{% url 'account_signup' %}" class="signup-link custom-link"
+                aria-label="Signup link">Sign up</a> if you want
             to register
             or
-            <a href="{% url 'account_login' %}" class="login-link custom-link">log in</a> if you already have an
+            <a href="{% url 'account_login' %}" class="login-link custom-link" aria-label="Login link">log in</a> if you
+            already have an
             account.
             {% endif %}
             {% if redirect_field_value %}
