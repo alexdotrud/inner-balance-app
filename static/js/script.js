@@ -307,3 +307,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+/**
+ * Hides messages after 15 seconds.
+ */
+$(document).ready(function () {
+    $(".error-message, .error-list, .success-message").delay(15000).fadeOut(400);
+});
