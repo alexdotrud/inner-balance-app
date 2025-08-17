@@ -87,9 +87,7 @@ h3 {
     color: var(--primary-color);
 }
 
-
 /* Home Page styles */
-
 .banner-section {
     background-image: url('../images/banner.jpg');
     background-size: cover;
@@ -178,7 +176,6 @@ h3 {
 }
 
 /* Overview styles*/
-
 #overview-container {
     display: grid;
     grid-template-columns: 1fr;
@@ -301,7 +298,6 @@ h3 {
 }
 
 /* Task, Water, Sleep Cards Styles */
-
 .tracker-card {
     width: 90%;
     max-width: 1000px;
@@ -381,7 +377,6 @@ h3 {
     min-width: 25px;
     height: 25px;
     margin-right: 10px;
-
 }
 
 .custom-checkbox:checked+.task-title {
@@ -512,12 +507,9 @@ h3 {
     color: var(--primary-color);
     background-color: var(--highlight-color);
     border: 1.5px solid var(--secondary-color);
-
 }
 
-
 /* My Profile Styles */
-
 #profile-container {
     display: flex;
     flex-direction: column;
@@ -623,7 +615,6 @@ h3 {
 }
 
 /* Login Page Styles */
-
 .login-container,
 .signup-container,
 .logout-container,
@@ -645,7 +636,6 @@ h3 {
     list-style: none;
     padding: 0;
 }
-
 
 .signup-container h2,
 .logout-container h2,
@@ -718,7 +708,6 @@ h3 {
 
 
 /* Custom Buttons Styles */
-
 .nav-btn {
     font-size: 1.3rem;
     margin: 0 1rem;
@@ -802,11 +791,6 @@ button:disabled {
     cursor: not-allowed;
 }
 
-button.enabled {
-    background-color: crimson;
-    color: white;
-}
-
 /* Custom Links Styles */
 .custom-link {
     color: var(--highlight-color-dark);
@@ -835,7 +819,6 @@ a .custom-btn {
 }
 
 /*Styles for Big Screens */
-
 @media screen and (min-width:992px) {
     #overview-container {
         grid-template-columns: repeat(2, minmax(360px, 1fr));

@@ -172,7 +172,6 @@ function updateCounter(type, delta = 0.5, min = 0, max = 20) {
         const btn = document.getElementById(`${type}-save-btn`);
         if (btn) {
             btn.disabled = false;
-            btn.classList.add("enabled");
         }
 
 
@@ -266,7 +265,6 @@ document.addEventListener("DOMContentLoaded", function () {
         avatarInput.addEventListener("change", function () {
             if (this.files && this.files.length > 0) {
                 avatarBtn.disabled = false;
-                avatarBtn.classList.add("enabled");
             }
         });
     }
@@ -306,7 +304,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("#water_goal, #sleep_goal").forEach(input => {
         input.addEventListener("input", () => {
             goalsBtn.disabled = false;
-            goalsBtn.classList.add("enabled");
         });
     });
 });
