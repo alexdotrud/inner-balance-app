@@ -46,7 +46,8 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'home' %}">
-                    <img src="{% static 'images/logo.png' %}" class="logo" alt="Inner Balance logo">
+                    <img src="{% static 'images/logo.png' %}" class="logo" alt="Inner Balance logo"
+                        aria-label="Inner Balance logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,26 +57,31 @@
                     <ul class="navbar-nav ms-auto">
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link nav-btn" href="{% url 'home' %}">Homepage</a>
+                            <a class="nav-link nav-btn" href="{% url 'home' %}" aria-label="Homepage link">Homepage</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-btn" href="{% url 'tracker:overview' %}">Overview</a>
+                            <a class="nav-link nav-btn" href="{% url 'tracker:overview' %}"
+                                aria-label="Overview page link">Overview</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-btn" href="{% url 'profiles:profile' %}">My Profile</a>
+                            <a class="nav-link nav-btn" href="{% url 'profiles:profile' %}"
+                                aria-label="My Profile page link">My Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-btn" href="{% url 'account_logout' %}">Logout</a>
+                            <a class="nav-link nav-btn" href="{% url 'account_logout' %}"
+                                aria-label="Logout page link">Logout</a>
                         </li>
                         {% else %}
                         <li class="nav-item">
-                            <a class="nav-link nav-btn" href="{% url 'home' %}">Homepage</a>
+                            <a class="nav-link nav-btn" href="{% url 'home' %}" aria-label="Homepage link">Homepage</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-btn" href="{% url 'account_login' %}">Login</a>
+                            <a class="nav-link nav-btn" href="{% url 'account_login' %}"
+                                aria-label="Login page link">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-btn" href="{% url 'account_signup' %}">Sign Up</a>
+                            <a class="nav-link nav-btn" href="{% url 'account_signup' %}"
+                                aria-label="Signup page link">Sign Up</a>
                         </li>
                         {% endif %}
                     </ul>
