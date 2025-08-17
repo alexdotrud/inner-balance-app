@@ -256,6 +256,23 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /**
+ * Enables the save button when an avatar image is selected.
+ */
+document.addEventListener("DOMContentLoaded", function () {
+    const avatarInput = document.getElementById("avatar-input");
+    const avatarBtn = document.getElementById("avatar-save-btn");
+
+    if (avatarInput && avatarBtn) {
+        avatarInput.addEventListener("change", function () {
+            if (this.files && this.files.length > 0) {
+                avatarBtn.disabled = false;
+                avatarBtn.classList.add("enabled");
+            }
+        });
+    }
+});
+
+/**
  * Runs function to open file input when avatar image is clicked.
  */
 document.addEventListener('DOMContentLoaded', () => {
