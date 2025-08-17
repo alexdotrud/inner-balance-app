@@ -298,3 +298,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+/**
+ * Enables the save button when water or sleep goal inputs change.
+ */
+document.addEventListener("DOMContentLoaded", () => {
+    const goalsBtn = document.getElementById("goals-save-btn");
+    document.querySelectorAll("#water_goal, #sleep_goal").forEach(input => {
+        input.addEventListener("input", () => {
+            goalsBtn.disabled = false;
+            goalsBtn.classList.add("enabled");
+        });
+    });
+});
