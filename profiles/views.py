@@ -38,7 +38,8 @@ def profile_view(request):
                 messages.success(request, "Goals updated.")
             except (ValueError, ValidationError):
                 messages.error(
-                    request, "Goal should not be less than 1 or more than 20."
+                    request, "Goal should not be less than 1 or more than 20.",
+                    extra_tags="goals"
                 )
             return redirect("profiles:profile")
 
@@ -83,7 +84,8 @@ def profile_avatar_view(request):
 
     if request.method == "POST":
         if "avatar" not in request.FILES:
-            messages.error(request, "Please choose an image to upload.")
+            messages.error(request, "Please choose an image to upload.",
+                           extra_tags="avatar")
             return redirect("profiles:profile")
 
         form = AvatarForm(request.POST, request.FILES, instance=profile)
@@ -91,7 +93,8 @@ def profile_avatar_view(request):
             form.save()
             messages.success(request, "Avatar updated.")
         else:
-            messages.error(request, "Invalid image. Check file size/type.")
+            messages.error(request, "Invalid image. Check file size/type.",
+                           extra_tags="avatar")
     return redirect("profiles:profile")
 
 
