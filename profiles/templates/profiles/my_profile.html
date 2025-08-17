@@ -26,7 +26,7 @@
 
             {% if messages %}
             {% for message in messages %}
-            {% if message.level_tag == 'error' %}
+            {% if 'avatar' in message.tags %}
             <p class="error-message">{{ message }}</p>
             {% endif %}
             {% endfor %}
@@ -68,6 +68,13 @@
         <!-- Goals block -->
         <div class="motivation">
             <p class="motivation-text">Your Goals:</p>
+            {% if messages %}
+            {% for message in messages %}
+            {% if 'goals' in message.tags %}
+            <p class="error-message">{{ message }}</p>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
             <div class="list-group">
                 <div class="list-group-item">
                     <label for="water_goal">💧 Water goal (glasses)</label>
