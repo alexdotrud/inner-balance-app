@@ -39,7 +39,7 @@ function Motivation() {
     if (totalTasks === 0) {
         message = "📋 No tasks yet!";
     } else if (percentage >= 100) {
-        message = "🎉 Amazing day! All tasks done!";
+        message = "🎉 Amazing day! Everything is done!";
     } else if (percentage >= 80) {
         message = "🔥 You're doing a good job!";
     } else if (percentage >= 50) {

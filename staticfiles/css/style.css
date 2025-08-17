@@ -169,10 +169,14 @@ h3 {
     padding: 0;
 }
 
-footer i {
+.footer-icons i {
     color: var(--primary-color);
     font-size: 2rem;
     margin: 0 0.5rem;
+}
+
+.footer-icons i:hover {
+    color: var(--secondary-color);
 }
 
 /* Overview styles*/

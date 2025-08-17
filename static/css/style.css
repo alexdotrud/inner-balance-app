@@ -8,7 +8,6 @@
     /*eucalyptus color */
     --highlight-color-dark: #2D4739;
     /* deep green color */
-
 }
 
 /* General Styles */
@@ -60,7 +59,6 @@ footer {
     background-color: var(--highlight-color);
     border-top: 1px solid rgba(83, 87, 83, 0.58);
     color: var(--primary-color);
-    z-index: 1;
 }
 
 h1,
@@ -169,10 +167,14 @@ h3 {
     padding: 0;
 }
 
-footer i {
+.footer-icons i {
     color: var(--primary-color);
     font-size: 2rem;
     margin: 0 0.5rem;
+}
+
+.footer-icons i:hover {
+    color: var(--secondary-color);
 }
 
 /* Overview styles*/
@@ -330,6 +332,11 @@ footer i {
     text-overflow: ellipsis;
 }
 
+.task-title:hover {
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
 .list-group {
     width: 100%;
     max-width: 500px;
@@ -360,11 +367,6 @@ footer i {
 .list-group-item a {
     font-size: 1.5rem;
     text-decoration: none;
-}
-
-.list-group-item:hover {
-    background-color: #99e0ba85;
-    cursor: pointer;
 }
 
 .add {
