@@ -54,7 +54,7 @@ The project aims to:
 
 **Acceptance Criteria:**
 - A sign-up form is available with fields for username and password.  
-- On successful registration, I’m redirected to the login page.  
+- On successful registration, I’m redirected to the overview page.  
 - An error message appears if passwords don’t match or if the username already exists.  
 
 
@@ -62,11 +62,10 @@ The project aims to:
 **As a returning user**, I want to log in to my account **so that I can securely access my personalized wellness dashboard and saved data**.
 
 **Acceptance Criteria:**
-- The login form includes fields for username/email and password.  
-- If credentials are correct, I am redirected to the dashboard.  
+- The login form includes fields for username and password.  
+- If credentials are correct, I am redirected to the overview.  
 - If credentials are incorrect, an error message is displayed (e.g., *"Invalid email or password"*).  
 - Users who are not logged in cannot access protected pages (e.g., dashboard, profile).  
-- A "Forgot Password?" link is available for password resets.  
 - The user remains logged in during the session until they log out or become inactive.  
 
 
@@ -74,20 +73,18 @@ The project aims to:
 **As a logged-in user**, I want to create my own personalized daily wellness tasks **so that I can track them every day**.
 
 **Acceptance Criteria:**
-- After first login (or via dashboard), the user is prompted to create a daily task list.  
-- A new task can be added by entering a title (e.g., *"Drink 2L water"*, *"Meditate 10 minutes"*).  
+- A new task can be added by entering a title and description.  
 - Tasks can be edited or deleted after creation.  
 - The system validates that task names are not empty.  
-- A user can create multiple tasks in one session.  
-- Tasks are saved in the user's profile and displayed in their daily dashboard.  
+- A user can create multiple tasks in one session.   
 
 
 ### 4. Marking Tasks as Completed
 **As a user**, I want to mark tasks as completed **so that I can track my progress and focus on remaining tasks**.
 
 **Acceptance Criteria:**
-- Each task has a checkbox or toggle for completion.  
-- Completed tasks are visually distinct (e.g., crossed out or faded).  
+- Each task has a checkbox for completion.  
+- Completed tasks are visually distinct (crossed out).  
 - The user can toggle completion status on and off.  
 
 
@@ -95,8 +92,7 @@ The project aims to:
 **As a user**, I want to receive positive feedback when I do well **so that I stay motivated**.
 
 **Acceptance Criteria:**
-- If I complete 80% or more of my tasks, a motivational message appears.  
-- If I complete less, a different type of message appears to encourage me to improve.  
+For every task completion procentage, there is a custom message.
 
 
 ### 6. Water Intake Tracking
@@ -127,7 +123,6 @@ This project was planned and developed using Agile methodology to stay organised
   These helped define the scope and ensured that each feature met the intended user needs.
   Each user story was given a **priority label** — *Must Have*, *Should Have*, or *Could Have* — to help focus development on the most critical features first.
 
-
 - **Project Planning**:  
   A GitHub Projects Kanban board was used with columns for **To Do**, **In Progress**, **Done** and **Feature Improvements**.  
   This allowed tracking of progress at a glance and made it easy to prioritise tasks.
@@ -147,7 +142,9 @@ This project was planned and developed using Agile methodology to stay organised
 
 **Wireframes:**
 
-![INNER BALANCE Wireframes](documentation/)
+![Homepage Wireframes](documentation/homepage-wireframe.png)
+![Profile Page Wireframes](documentation/profile-wireframe.png)
+![Overview page Wireframes](documentation/overview-wireframe.png)
 
 **Project Plan:**
 The original concept for INNER BALANCE was to create a fully-featured wellness tracking application with multiple modules (tasks, water intake, sleep tracking, and motivational feedback). The focus shifted towards building a **clean, minimal, and functional app** that delivers the essential daily tracking experience while laying the foundation for future features like priority setting, reminders, and analytics.
