@@ -255,25 +255,16 @@ All trackers reference the user via foreign keys to keep data scoped per account
 ![Sleep Tracker input](documentation/sleep-intake.png) 
 
 
-### Daily Reset (Automatic)
-- At the start of each day:
-  - All tasks are reset to incomplete.  
-  - Water intake resets to 0.  
-  - Sleep hours reset to 0.  
-- This ensures the dashboard is fresh each day.  
-
 ### Footer
 - Displays project credits and copyright.  
 
-![Footer](documentation/)  
+![Footer](documentation/footer.png)  
 
 ### 404 Error Handling (Defensive Design)
 - Friendly error page matching INNER BALANCE branding.  
-- Suggests returning to the dashboard or logging in.  
-- Helps guide lost users back to the main workflow.  
-- Non-authenticated users cannot access dashboard or profile pages.
+- Suggests returning to the homepage.
 
-![Error Page](documentation/)  
+![Error Page](documentation/error-page.png)  
 
 ## UX Design
 The design of INNER BALANCE focuses on **minimalism, clarity, and motivation**.  
@@ -281,16 +272,16 @@ The aim is to keep the interface clean and distraction-free while still engaging
 
 ### Colors and Theme
 **Color Scheme:**
-- **Primary Color:** `#442818` — A rich brown that conveys stability and grounding, used for headings, primary buttons, and key UI elements.
-- **Secondary Color:** `#7e533b` — A warm, earthy brown that complements the primary color and provides visual hierarchy.
-- **Highlight Color:** `#c2d2c2` — A soft eucalyptus green used for accents, highlights, and subtle emphasis.
-- **Highlight Color (Dark):** `#2D4739` — A deep green for contrast elements, hover effects, and secondary emphasis.
+- **Primary Color:** #442818 -  A rich brown that conveys stability and grounding, used for headings, primary buttons, and key UI elements.
+- **Secondary Color:** #7e533b - A warm, earthy brown that complements the primary color and provides visual hierarchy.
+- **Highlight Color:** #c2d2c2 - A soft eucalyptus green used for accents, highlights, and subtle emphasis.
+- **Highlight Color (Dark):** #2D4739 - A deep green for contrast elements, hover effects, and secondary emphasis.
 
 
-![Color Scheme](documentation/)  
+![Color Scheme](documentation/colors.png)  
 
 ### Fonts
-- **Primary Font:** `"Instrument Serif", serif` — Elegant yet readable, adding a touch of sophistication to the minimalist UI.
+- **Primary Font:** "Instrument Serif", serif - Elegant yet readable, adding a touch of sophistication to the minimalist UI.
 
 ### Effects and Interactions
 INNER BALANCE uses a mix of subtle animations, dynamic feedback, and conditional rendering to create an engaging yet minimal wellness tracking experience.
@@ -308,12 +299,11 @@ INNER BALANCE uses a mix of subtle animations, dynamic feedback, and conditional
   - Arrow icon flips direction when toggled for intuitive interaction.
 
 - **Modal Popups:**
-  - Clicking edit or view on a task opens a modal with task details.
+  - Clicking on a task opens a modal with task details.
   - Modals allow in-place editing without leaving the dashboard.
 
 - **Live Counters:**
-  - Water intake and sleep tracking update in real time.
-  - Plus/minus buttons instantly adjust counts without a page reload.
+  - Water intake and sleep tracking update with plus and minus buttons.
 
 - **Form Validation Feedback:**
   - Task creation checks for empty names before saving.
@@ -321,7 +311,7 @@ INNER BALANCE uses a mix of subtle animations, dynamic feedback, and conditional
 
 - **Conditional UI Changes:**
   - Sign-up prompts are hidden for logged-in users.
-  - Dashboard modules adjust automatically based on whether data exists.
+  - Buttons are disabled if there is no changes to save.
 
 - **Subtle Hover Effects:**
   - Buttons, icons, and interactive elements slightly change color or scale on hover to indicate interactivity.
@@ -333,10 +323,16 @@ INNER BALANCE uses a mix of subtle animations, dynamic feedback, and conditional
 - Adequate contrast between text and background.  
 - Large, clickable buttons for mobile use.  
 - Font sizes optimized for all devices.
+- Use of `aria-label` attributes for interactive elements (buttons, links, forms) to support screen readers.  
+- Hover and focus effects on interactive components for better visibility and feedback. 
 
 ### Responsiveness
 - Fully responsive design adapting to desktop, tablet, and mobile layouts.  
 - Dashboard elements stack vertically on small screens for ease of use.
+
+![Homepage](documentation/homepage.png)
+![Overview Page](documentation/overview-page.png)  
+![Profile Page](documentation/profile-page.png)  
 
 ## Technologies Used
 
