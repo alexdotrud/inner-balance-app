@@ -12,6 +12,7 @@ INNER BALANCE is a personal wellness tracker built with **Django**, **Bootstrap*
 - [User Stories](#user-stories)  
 - [Agile Methods](#agile-methods)
 - [Design Choices](#design-choices)  
+- [Database Schema](#database-schema)
 - [Features](#features)  
 - [UX Design](#ux-design)  
 - [Technologies Used](#technologies-used)  
@@ -149,7 +150,39 @@ This project was planned and developed using Agile methodology to stay organised
 **Project Plan:**
 The original concept for INNER BALANCE was to create a fully-featured wellness tracking application with multiple modules (tasks, water intake, sleep tracking, and motivational feedback). The focus shifted towards building a **clean, minimal, and functional app** that delivers the essential daily tracking experience while laying the foundation for future features like priority setting, reminders, and analytics.
 
-![INNER BALANCE Plan](documentation/)
+![INNER BALANCE Plan](documentation/project-plan.png)
+
+## Database Schema
+
+The data model centers on the authenticated **User** and extends it with wellness-specific entities for tasks, hydration, sleep, and motivational feedback.  
+All trackers reference the user via foreign keys to keep data scoped per account and easy to query.
+
+**Database schema was designed using [dbdiagram.io](https://dbdiagram.io). Overview of all DB models:**
+
+![INNER BALANCE Database Scheme](documentation/database.png)
+
+- **Users**  
+  Core authentication table storing username, email, password, and creation timestamp.  
+  Acts as the primary owner for all wellness data.  
+
+- **Profiles**  
+  One-to-one extension of `Users` that stores additional information such as description, personal goals, and avatar metadata.  
+
+- **Tasks**  
+  Daily checklist items linked to a user.  
+  Each task has a title, description, completion status, and the date it belongs to (enables daily resets).  
+
+- **Sleep**  
+  Per-day sleep tracking linked to a user.  
+  Includes `goal_hours`, `actual_hours`, and a computed `success_percentage` used for progress tracking and motivational feedback.  
+
+- **Water**  
+  Per-day hydration tracking linked to a user.  
+  Includes `goal_liters`, `actual_liters`, and a computed `success_percentage` for visual progress and messages.  
+
+- **Motivational Messages**  
+  Context-aware messages tied to a user and optionally associated with a specific task, sleep record, or water record.  
+  Stores message text and a `condition` describing when it should display (e.g., *“≥80% complete”*).  
 
 ## Features
 
@@ -158,18 +191,27 @@ The original concept for INNER BALANCE was to create a fully-featured wellness t
 - Links to Dashboard, Profile, and Logout for easy navigation.  
 - Navigation adapts for mobile with a compact menu.
 
-![Navbar Desktop](documentation/)  
-![Navbar Mobile](documentation/)  
+![Navbar Desktop](documentation/navbar-pc.png)  
+![Navbar Mobile](documentation/navbar.png)  
 
-### Overview
+### Homepage  
+
+- Welcomes users with a motivational banner (*“ORGANIZE YOUR DAY”*), a brief app introduction, and a benefits list.  
+- Highlights INNER BALANCE’s focus on **simple daily tracking, habit building, and balance**, while guiding visitors to 
+**sign up or log in** with clear calls to action.  
+![Homepage Banner](documentation/banner.png)  
+![Introduction and benefits list](documentation/intro-list.png)  
+
+### Overview Page
 - Central hub showing all daily wellness stats and tools.  
 - Displays:
-  - **Daily Task List** with checkboxes to mark completion.  
+  - **Daily Task List** with checkboxes to mark completion and profress bar.  
   - **Water Intake Tracker** with progress bar.  
   - **Sleep Hours Tracker** with progress bar.  
-  - Motivational feedback messages based on progress.  
 
-![overview](documentation/)  
+![Task tracker](documentation/task.png)  
+![Water tracker](documentation/water.png)  
+![Sleep tracker](documentation/sleep.png)  
 
 ### Profile Page
 - Personalized page where each user can view and manage their profile.  
@@ -180,7 +222,9 @@ The original concept for INNER BALANCE was to create a fully-featured wellness t
   - **Custom Description and Goals** field to let users personalize their wellness journey.  
 - Encourages users to make the page their own while staying aligned with the INNER BALANCE theme.
 
-![Profile Page](documentation/)  
+![Avatar section](documentation/avatar.png)  
+![Description section](documentation/description.png)  
+![Goals section](documentation/goals.png)  
 
 ### Task Management
 - Create, edit, and delete personalized daily wellness tasks.  
@@ -188,7 +232,9 @@ The original concept for INNER BALANCE was to create a fully-featured wellness t
 - Completed tasks are visually distinct (e.g., faded or crossed out).  
 - Future feature: set task priority levels.  
 
-![Tasks](documentation/)  
+![Tasks progress bar](documentation/progress-bar.png)  
+![Tasks edit/delete functionality](documentation/edit-delete.png)  
+
 
 ### Water Intake Tracking
 - Set a daily water goal in liters.  
@@ -196,7 +242,8 @@ The original concept for INNER BALANCE was to create a fully-featured wellness t
 - Progress bar updates dynamically.  
 - Motivational messages encourage meeting daily hydration goals.  
 
-![Water Tracker](documentation/)  
+![Water Progress Bar](documentation/water-progress.png)  
+![Water Tracker input](documentation/water-input.png) 
 
 ### Sleep Tracking
 - Set a daily sleep goal in hours.  
@@ -204,13 +251,9 @@ The original concept for INNER BALANCE was to create a fully-featured wellness t
 - Progress bar shows completion percentage.  
 - Feedback messages promote healthy rest habits.  
 
-![Sleep Tracker](documentation/)  
+![Sleep Progress Bar](documentation/sleep-progress.png)  
+![Sleep Tracker input](documentation/sleep-intake.png) 
 
-### Motivational Feedback
-- Displays encouraging messages based on task completion and goal progress.  
-- Different messages appear for high performance vs. low completion.  
-
-![Motivation](documentation/)  
 
 ### Daily Reset (Automatic)
 - At the start of each day:
