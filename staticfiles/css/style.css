@@ -8,7 +8,6 @@
     /*eucalyptus color */
     --highlight-color-dark: #2D4739;
     /* deep green color */
-
 }
 
 /* General Styles */
@@ -60,7 +59,6 @@ footer {
     background-color: var(--highlight-color);
     border-top: 1px solid rgba(83, 87, 83, 0.58);
     color: var(--primary-color);
-    z-index: 1;
 }
 
 h1,
@@ -89,9 +87,7 @@ h3 {
     color: var(--primary-color);
 }
 
-
 /* Home Page styles */
-
 .banner-section {
     background-image: url('../images/banner.jpg');
     background-size: cover;
@@ -180,7 +176,6 @@ h3 {
 }
 
 /* Overview styles*/
-
 #overview-container {
     display: grid;
     grid-template-columns: 1fr;
@@ -256,7 +251,6 @@ h3 {
 }
 
 /* Motivation */
-
 .motivation {
     background-color: #f4f9f4;
     border: 1.5px solid #5cdb9785;
@@ -304,7 +298,6 @@ h3 {
 }
 
 /* Task, Water, Sleep Cards Styles */
-
 .tracker-card {
     width: 90%;
     max-width: 1000px;
@@ -332,6 +325,11 @@ h3 {
     max-width: 25rem;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.task-title:hover {
+    cursor: pointer;
+    color: var(--secondary-color);
 }
 
 .list-group {
@@ -366,11 +364,6 @@ h3 {
     text-decoration: none;
 }
 
-.list-group-item:hover {
-    background-color: #99e0ba85;
-    cursor: pointer;
-}
-
 .add {
     text-align: right;
 }
@@ -384,7 +377,6 @@ h3 {
     min-width: 25px;
     height: 25px;
     margin-right: 10px;
-
 }
 
 .custom-checkbox:checked+.task-title {
@@ -401,6 +393,15 @@ h3 {
     font-size: 1rem;
     height: 2.5rem;
     max-width: 6rem;
+}
+
+.counter button {
+    color: rgb(14, 149, 207);
+    border: none;
+}
+
+.counter button:hover {
+    color: var(--secondary-color);
 }
 
 /* Delete/Edit Pages Styles */
@@ -506,12 +507,9 @@ h3 {
     color: var(--primary-color);
     background-color: var(--highlight-color);
     border: 1.5px solid var(--secondary-color);
-
 }
 
-
 /* My Profile Styles */
-
 #profile-container {
     display: flex;
     flex-direction: column;
@@ -617,7 +615,6 @@ h3 {
 }
 
 /* Login Page Styles */
-
 .login-container,
 .signup-container,
 .logout-container,
@@ -639,7 +636,6 @@ h3 {
     list-style: none;
     padding: 0;
 }
-
 
 .signup-container h2,
 .logout-container h2,
@@ -712,7 +708,6 @@ h3 {
 
 
 /* Custom Buttons Styles */
-
 .nav-btn {
     font-size: 1.3rem;
     margin: 0 1rem;
@@ -790,6 +785,12 @@ h3 {
     padding: 1rem;
 }
 
+button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
 /* Custom Links Styles */
 .custom-link {
     color: var(--highlight-color-dark);
@@ -818,7 +819,6 @@ a .custom-btn {
 }
 
 /*Styles for Big Screens */
-
 @media screen and (min-width:992px) {
     #overview-container {
         grid-template-columns: repeat(2, minmax(360px, 1fr));

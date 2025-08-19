@@ -336,19 +336,26 @@ INNER BALANCE uses a mix of subtle animations, dynamic feedback, and conditional
 
 ## Technologies Used
 
+### Languages  
 - **HTML** — Structures the content of the application, including forms, navigation, and dashboard elements.  
 - **CSS** — Styles the application with custom layouts, colors, typography, and responsive design.  
 - **CSS Variables** — Used for managing a consistent color palette and font settings across the project.  
 - **CSS Flexbox** — Provides flexible and responsive layouts for dashboard components and forms.  
-- **Bootstrap 5** — Delivers responsive design and pre-built components like modals, buttons, and form controls.  
 - **JavaScript (Vanilla)** — Handles task logic, dynamic updates, progress bar animations, conditional UI rendering, and dashboard interactions.  
 - **jQuery** — Simplifies DOM manipulation, event handling, and animations (used in some legacy interactions).  
+
+### Frameworks & Libraries  
+- **Bootstrap 5** — Delivers responsive design and pre-built components like modals, buttons, and form controls.  
 - **Django** — The backend framework powering the app, managing templates, routes, models, and authentication.  
-- **PostgreSQL** — Relational database used in production for storing tasks, water/sleep tracking data, and user profiles reliably and securely.  
-- **Git** — Version control for tracking changes and managing development history.  
-- **GitHub** — Hosts the repository and enables collaboration and deployment.  
 - **Font Awesome** — Provides vector-based icons for buttons, navigation, and UI feedback.  
 - **Google Fonts** — Integrates `"Instrument Serif"` for typography consistency.  
+
+### Databases  
+- **PostgreSQL** — Relational database used in production for storing tasks, water/sleep tracking data, and user profiles reliably and securely.  
+
+### Other Tools & Services  
+- **Git** — Version control for tracking changes and managing development history.  
+- **GitHub** — Hosts the repository and enables collaboration and deployment.  
 - **Visual Studio Code** — Code editor for development with extensions for Django, Git, and formatting.  
 - **Coolors** — Assisted in creating a harmonious and professional color palette.  
 - **Image Optimization Tools** — Used to compress and resize static images for faster page loading.  
@@ -357,6 +364,7 @@ INNER BALANCE uses a mix of subtle animations, dynamic feedback, and conditional
 - **Python Formatter & Beautifier** — [codebeautify.org/python-formatter-beautifier](https://codebeautify.org/python-formatter-beautifier) for clean and consistent code formatting.  
 - **W3C HTML Validator** — [validator.w3.org](https://validator.w3.org/) for validating HTML markup.  
 - **W3C CSS Validator** — [jigsaw.w3.org/css-validator](https://jigsaw.w3.org/css-validator/) for validating CSS stylesheets.  
+👉 This will look super professional in your README.
 
 
 ## Testing 
@@ -422,7 +430,7 @@ INNER BALANCE uses a mix of subtle animations, dynamic feedback, and conditional
 
 #### Lighthouse Report:
 
-![Lighthouse]()
+[Lighthouse report](documentation/lighthouse.pdf)
 
 ### Compatibility
 In order to confirm the correct functionality, responsiveness, and appearance:
@@ -450,13 +458,13 @@ The website was checked with Responsive Website Design Tester.
 
 #### HTML 
 
-![Html](documentation/html-validation.pdf)
+[Html](documentation/html-validation.pdf)
 
 #### CSS
 
   - **Style.css:**
 
-  ![Style.css](documentation/css-validator.png)
+![Style.css](documentation/css-validator.png)
 
 ##### JS
 
@@ -464,11 +472,12 @@ The website was checked with Responsive Website Design Tester.
 
 Some functions (e.g. openTaskModal, updateCounter, saveDescription, editDescription) are called directly from Django templates via onclick attributes, so linters may incorrectly flag them as unused.
 
-   ![Script.js](documentation/js-validator.png)
+![Script.js](documentation/js-validator.png)
  
 ##### Python
 
-   ![Python](documentation/python-validation.pdf)
+[Python](documentation/python-validation.pdf)
+
 ## Bugs
 
 ### Solved Bugs
@@ -616,3 +625,6 @@ To fork the repository:
 - **Am I Responsive?**: Used to create Image for different screens (https://ui.dev/amiresponsive?url=https://alexdotrud.github.io/jungles-story/).
 - **Responsive Website Design Tester** : Used to test responsivness of the website (https://responsivetesttool.com/).
 - **Master Django & Python for Web Development** : Used fo learning more about django (https://www.youtube.com/watch?v=D584Rm9VLLc).
+- **DB Diagram Tool** – [dbdiagram.io](https://dbdiagram.io/) for designing and visualizing the database structure.  
+- **Project Color Palette** – [Coolors Palette](https://coolors.co/442818-7e533b-c2d2c2-2d4739) used for consistent styling and theme.  
+- **Responsive Viewer Chrome Extension** – Chrome extension used to quickly check responsive layouts on different devices.  

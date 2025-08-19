@@ -39,7 +39,7 @@ function Motivation() {
     if (totalTasks === 0) {
         message = "📋 No tasks yet!";
     } else if (percentage >= 100) {
-        message = "🎉 Amazing day! All tasks done!";
+        message = "🎉 Amazing day! Everything is done!";
     } else if (percentage >= 80) {
         message = "🔥 You're doing a good job!";
     } else if (percentage >= 50) {
@@ -164,11 +164,21 @@ function updateCounter(type, delta = 0.5, min = 0, max = 20) {
     nextTenths = Math.max(min * 10, Math.min(max * 10, nextTenths));
 
     const next = nextTenths / 10;
-    inputEl.value = next;
-    countEl.textContent = Number.isInteger(next) ? next.toFixed(0) : next.toFixed(1);
+    if (next !== current) {
+        inputEl.value = next;
+        countEl.textContent = Number.isInteger(next) ? next.toFixed(0) : next.toFixed(1);
 
-    waterSleepMotivation();
+        // enable the save button
+        const btn = document.getElementById(`${type}-save-btn`);
+        if (btn) {
+            btn.disabled = false;
+        }
+
+
+        waterSleepMotivation();
+    }
 }
+
 
 /**
  * Saves description. Changes area from textarea to paragraph.
@@ -245,6 +255,22 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /**
+ * Enables the save button when an avatar image is selected.
+ */
+document.addEventListener("DOMContentLoaded", function () {
+    const avatarInput = document.getElementById("avatar-input");
+    const avatarBtn = document.getElementById("avatar-save-btn");
+
+    if (avatarInput && avatarBtn) {
+        avatarInput.addEventListener("change", function () {
+            if (this.files && this.files.length > 0) {
+                avatarBtn.disabled = false;
+            }
+        });
+    }
+});
+
+/**
  * Runs function to open file input when avatar image is clicked.
  */
 document.addEventListener('DOMContentLoaded', () => {
@@ -269,4 +295,22 @@ document.addEventListener('DOMContentLoaded', () => {
             instModal.show();
         });
     }
+});
+/**
+ * Enables the save button when water or sleep goal inputs change.
+ */
+document.addEventListener("DOMContentLoaded", () => {
+    const goalsBtn = document.getElementById("goals-save-btn");
+    document.querySelectorAll("#water_goal, #sleep_goal").forEach(input => {
+        input.addEventListener("input", () => {
+            goalsBtn.disabled = false;
+        });
+    });
+});
+
+/**
+ * Hides messages after 15 seconds.
+ */
+$(document).ready(function () {
+    $(".error-message, .error-list, .success-message").delay(15000).fadeOut(400);
 });
