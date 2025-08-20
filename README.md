@@ -1,5 +1,5 @@
 # **INNER BALANCE**
-![Project on different screens]()
+![Project homepage on different screens](documentation/responsive.png)
 
 [View live project here!]()
 
@@ -21,7 +21,7 @@ INNER BALANCE is a personal wellness tracker built with **Django**, **Bootstrap*
 - [Future Changes](#future-changes)
 - [Deployment](#deployment)  
 - [Setup Instructions](#setup-instructions)  
-- [Cloning and Forking](#cloning-and-forking)
+- [Cloning, Forking and Version Control](#cloning-forking-and-version-control)
 - [Credits](#credits)  
 
 ## User Goals
@@ -161,28 +161,19 @@ All trackers reference the user via foreign keys to keep data scoped per account
 
 ![INNER BALANCE Database Scheme](documentation/database.png)
 
-- **Users**  
-  Core authentication table storing username, email, password, and creation timestamp.  
-  Acts as the primary owner for all wellness data.  
+**One-to-One**
+- User ↔ Profile  
 
-- **Profiles**  
-  One-to-one extension of `Users` that stores additional information such as description, personal goals, and avatar metadata.  
+**One-to-Many**
+- User → Tasks  
+- User → Sleep Records  
+- User → Water Records  
+- User → Motivational Messages  
 
-- **Tasks**  
-  Daily checklist items linked to a user.  
-  Each task has a title, description, completion status, and the date it belongs to (enables daily resets).  
-
-- **Sleep**  
-  Per-day sleep tracking linked to a user.  
-  Includes `goal_hours`, `actual_hours`, and a computed `success_percentage` used for progress tracking and motivational feedback.  
-
-- **Water**  
-  Per-day hydration tracking linked to a user.  
-  Includes `goal_liters`, `actual_liters`, and a computed `success_percentage` for visual progress and messages.  
-
-- **Motivational Messages**  
-  Context-aware messages tied to a user and optionally associated with a specific task, sleep record, or water record.  
-  Stores message text and a `condition` describing when it should display (e.g., *“≥80% complete”*).  
+**Optional Contextual Links**
+- Motivational Messages → Tasks  
+- Motivational Messages → Sleep Records  
+- Motivational Messages → Water Records  
 
 ## Features
 
@@ -330,10 +321,6 @@ INNER BALANCE uses a mix of subtle animations, dynamic feedback, and conditional
 - Fully responsive design adapting to desktop, tablet, and mobile layouts.  
 - Dashboard elements stack vertically on small screens for ease of use.
 
-![Homepage](documentation/homepage.png)
-![Overview Page](documentation/overview-page.png)  
-![Profile Page](documentation/profile-page.png)  
-
 ## Technologies Used
 
 ### Languages  
@@ -368,7 +355,7 @@ INNER BALANCE uses a mix of subtle animations, dynamic feedback, and conditional
 
 
 ## Testing 
-### User stories tasting:
+### User stories testing:
 
 | **Test Description**                                                        | **Result** | **Status** |
 |------------------------------------------------------------------------------|------------|------------|
@@ -438,20 +425,23 @@ In order to confirm the correct functionality, responsiveness, and appearance:
 The website was tested on the following browsers: Chrome, Mozilla Firefox, Microsoft Edge.
 - **Chrome:**  
 
-![Chrome]()
+[Chrome test](documentation/chrome-test.mp4)
 
 - **Mozilla Firefox:**
 
-![Mazilla Firefox>]()
+[Mozilla Firefox test](documentation/mozilla-test.mp4)
 
 - **Microsoft Edge:**
 
-![Microsoft Edge]()
+[Microsoft Edge test](documentation/edge-test.mp4)
 
 ### Responsiveness
 
-The website was checked with Responsive Website Design Tester.
+The website was checked with Responsive Viewer extension in Google Chrome.
 
+![Homepage](documentation/homepage.png)
+![Overview Page](documentation/overview-page.png)  
+![Profile Page](documentation/profile-page.png)  
 
 
 ### Validator Testing 
@@ -532,74 +522,114 @@ The following features and improvements could be done for INNER BALANCE to enhan
 ## Deployment
 [Live project can be found here!]()
 
-The project was deployed to **Heroku** using GitHub for version control and automatic deployment.  
-The following steps were used to deploy the project:
+### Deployment via Heroku Website (Manual)
 
-1. Create a new Heroku app in the Heroku dashboard.
-2. Connect the app to the GitHub repository and enable **Automatic Deploys** from the `main` branch.
-3. Add the **Heroku PostgreSQL** add-on as the production database.
-4. Set up environment variables in **Heroku Config Vars** (e.g., `SECRET_KEY`, `DEBUG`, `DATABASE_URL`).
-5. Push the code to GitHub to trigger deployment to Heroku.
-6. After deployment, run migrations and create a superuser from the Heroku console:
-   ```bash
-   python manage.py migrate
-   python manage.py createsuperuser
+Manually deploying to Heroku gives you full control over when and what you release, making it simpler, safer, and easier to debug without needing complex CI/CD pipelines.
 
-## Setup Instructions
+1. **Log in to Heroku**  
+   - Visit [Heroku](https://www.heroku.com/) and log in to your account.  
 
-To set up the project locally or in Gitpod, follow these steps:
+2. **Create a New App**  
+   - Navigate to the **Dashboard** and click **New > Create New App**.  
+   - Enter a name for your app (e.g., `gg-ez-api`) and choose your region.  
 
-1. **Open in Gitpod**:  
-    Navigate to your GitHub repository and prefix the URL with `gitpod.io/#`. For example:  
-    `https://gitpod.io/#https://github.com/yourusername/inner-balance-app`
+3. **Check Your Requirements**  
+   - Ensure you have a `requirements.txt` with all dependencies:  
+     ```bash
+     pip freeze > requirements.txt
+     ```  
 
-2. **Install dependencies**:  
-    In the terminal, run:  
-    ```bash
-    pip install -r requirements.txt
-    ```
+4. **Add a Procfile**  
+   - In your project root, create a `Procfile` with:  
+     ```
+     web: gunicorn project.wsgi
+     ```  
 
-3. **Set up the database**:  
-    Create a PostgreSQL database and update the `DATABASE_URL` in your environment variables.
+5. **Check Your Requirements**  
+   - Ensure you have a `requirements.txt` with all dependencies:  
+     ```bash
+     pip freeze > requirements.txt
+     ```  
 
-4. **Run migrations**:  
-    ```bash
-    python manage.py migrate
-    ```
+6. **Connect Your GitHub Repository**  
+   - Go to the **Deploy** tab in your app settings.  
+   - Under **Deployment Method**, select **GitHub**.  
+   - Search for your repository and connect it.  
 
-5. **Create a superuser for admin access**:  
-    ```bash
-    python manage.py createsuperuser
-    ```
+7. **Enable Automatic Deploys (Optional)**  
+   - Once your repository is connected, you can enable **Automatic Deploys** from the main branch to streamline future updates.  
 
-6. **Run the development server**:  
-    ```bash
-    python3 manage.py runserver 0.0.0.0:8000
-    ```
+8. **Manually Deploy the App**  
+   - Scroll down to the **Manual Deploy** section and click **Deploy Branch** to deploy your app.  
 
-7. **Access the application**:  
-    Open the URL provided in the terminal to view your application.
+9. **Set Environment Variables**  
+   - Go to the **Settings** tab and click **Reveal Config Vars**.  
+   - Add all required variables (e.g., `SECRET_KEY`, `DATABASE_URL`).  
 
-## Cloning and forking
+10. **Run Migrations**  
+   - Open the **More > Run Console** option in the top-right corner.  
+   - Run the following commands:  
+     ```bash
+     python manage.py makemigrations
+     python manage.py migrate
+     python manage.py createsuperuser
+     python manage.py collectstatic --noinput
+     ``` 
+
+### Security
+
+Several measures were taken to ensure secure development and deployment:  
+- **Environment Variables**: Sensitive values such as `SECRET_KEY`, `DATABASE_URL`, and API keys were stored in Heroku Config Vars and never pushed to GitHub.  
+- **Debug Mode**: `DEBUG = False` in production to prevent exposing sensitive information.  
+- **Allowed Hosts**: Restricted to Heroku and localhost during development.  
+- **User Authentication**: Django’s built-in authentication system manages user accounts, password hashing, and session security.  
+- **Form Validation**: Input fields were validated both client-side and server-side to prevent incorrect or malicious data entry.
+
+### **Testing the Deployment**
+
+- Access your app using the Heroku URL:
+  ```
+  https://your-app-name.herokuapp.com
+  ```
+- Verify the following:
+  - All API endpoints respond correctly.
+  - Media uploads work via Cloudinary.
+  - The app is fully functional and free of errors.
+
+## Cloning, forking and Version control
 
 ### Cloning
 
 To clone the repository:
 
-- On GitHub.com, navigate to the main page of the repository.
-- Above the list of files, click **Code**.
-- Copy the URL for the repository.
-- Type `git clone`, and then paste the URL you copied earlier.
-- Press **Enter** to create your local clone.
+- On GitHub.com, navigate to the main page of the repository.  
+- Above the list of files, click **Code**.  
+- Copy the URL for the repository.  
+- Type `git clone`, and then paste the URL you copied earlier.  
+- Press **Enter** to create your local clone.  
+- Move into the newly created project directory:  
+  ```bash
+  cd your-repository-name
+  ```
 
 ### Forking
 
 To fork the repository:
 
-- On GitHub.com, navigate to the main page of the repository.
-- In the top-right corner of the page, click **Fork**.
-- Under "Owner," select the dropdown menu and click an owner for the forked repository.
-- Click **Create Fork**.
+- On GitHub.com, navigate to the main page of the repository.  
+- In the top-right corner of the page, click **Fork**.  
+- Under "Owner," select the dropdown menu and choose where to create the fork.  
+- Click **Create Fork**.  
+- Once created, clone your fork locally.
+
+### Version Control
+
+The project was developed using Git for version control and GitHub for remote storage.  
+- Development was done in small, frequent commits to make progress traceable and manageable.  
+- Commit messages were written to be descriptive and meaningful (e.g., *"Fix bug in progress bar update"* instead of *"Update file"*).  
+- Branching was used for new features and bug fixes, which were merged back into the main branch after testing.  
+This ensured clear project history and easier debugging when issues occurred.
+
 
 ## Credits
 
@@ -622,7 +652,6 @@ To fork the repository:
 - **Chrome DevTools Lighthouse**: Used to test and improve web performance (https://developer.chrome.com/docs/lighthouse/performance/).
 - **Figma** : Used for creating plan for the project. (https://www.figma.com/)
 - **Code Institute**: Used for learning web development techniques and improving skills through the full stack developer program (https://www.codeinstitute.net/).
-- **Am I Responsive?**: Used to create Image for different screens (https://ui.dev/amiresponsive?url=https://alexdotrud.github.io/jungles-story/).
 - **Responsive Website Design Tester** : Used to test responsivness of the website (https://responsivetesttool.com/).
 - **Master Django & Python for Web Development** : Used fo learning more about django (https://www.youtube.com/watch?v=D584Rm9VLLc).
 - **DB Diagram Tool** – [dbdiagram.io](https://dbdiagram.io/) for designing and visualizing the database structure.  
