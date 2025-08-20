@@ -5,8 +5,11 @@ from tracker.models import Task
 
 
 class TaskModelTest(TestCase):
+    """Tests for the Task model, including string representation and slug creation."""
     def setUp(self):
-        self.user = User.objects.create_user(username="tester", password="password")
+        self.user = User.objects.create_user(username="tester",
+                                             password="password"
+                                             )
         self.task = Task.objects.create(user=self.user, title="My Task")
 
     # Test the string representation of Task
@@ -18,6 +21,9 @@ class TaskModelTest(TestCase):
         self.assertTrue(self.task.slug.startswith("tester-my-task"))
 
 class OverviewViewTest(TestCase):
+    """
+    Tests for the tracker overview view, including access control and template rendering.
+    """
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user(username="tester", password="password")
