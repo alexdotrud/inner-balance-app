@@ -309,8 +309,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /**
- * Hides messages after 15 seconds.
+ * Hides messages after 10 seconds.
  */
 $(document).ready(function () {
-    $(".error-message, .error-list, .success-message").delay(15000).fadeOut(400);
+    $("#flash-messages .alert, .errorlist, .error-message").delay(10000).fadeOut(400);
 });
