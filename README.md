@@ -1,7 +1,7 @@
 # **INNER BALANCE**
 ![Project homepage on different screens](documentation/responsive.png)
 
-[View live project here!]()
+[View live project here!](https://inner-balance-2e2102527edc.herokuapp.com/)
 
 INNER BALANCE is a personal wellness tracker built with **Django**, **Bootstrap**, and **JavaScript** and database. Track daily tasks, water intake, and sleep hours, see progress bars with motivational messages, and get an automatic daily reset so every day starts clean.
 
@@ -196,7 +196,7 @@ All trackers reference the user via foreign keys to keep data scoped per account
 ### Overview Page
 - Central hub showing all daily wellness stats and tools.  
 - Displays:
-  - **Daily Task List** with checkboxes to mark completion and profress bar.  
+  - **Daily Task List** with checkboxes to mark completion and progress bar.  
   - **Water Intake Tracker** with progress bar.  
   - **Sleep Hours Tracker** with progress bar.  
 
@@ -520,7 +520,7 @@ The following features and improvements could be done for INNER BALANCE to enhan
 - **Goal Setup at Registration:** Add the ability for users to set their daily water intake and sleep goals during the sign-up process, ensuring a personalized dashboard from day one.
 
 ## Deployment
-[Live project can be found here!]()
+[Live project can be found here!](https://inner-balance-2e2102527edc.herokuapp.com/)
 
 ### Deployment via Heroku Website (Manual)
 
