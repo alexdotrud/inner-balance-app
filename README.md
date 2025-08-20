@@ -425,15 +425,15 @@ In order to confirm the correct functionality, responsiveness, and appearance:
 The website was tested on the following browsers: Chrome, Mozilla Firefox, Microsoft Edge.
 - **Chrome:**  
 
-[Chrome test](documentation/chrome-test.mp4)
+[Chrome test](documentation/chrome-test.gif)
 
 - **Mozilla Firefox:**
 
-[Mozilla Firefox test](documentation/mozilla-test.mp4)
+[Mozilla Firefox test](documentation/mazilla-test.gif)
 
 - **Microsoft Edge:**
 
-[Microsoft Edge test](documentation/edge-test.mp4)
+[Microsoft Edge test](documentation/edge-test.gif)
 
 ### Responsiveness
 
@@ -531,7 +531,7 @@ Manually deploying to Heroku gives you full control over when and what you relea
 
 2. **Create a New App**  
    - Navigate to the **Dashboard** and click **New > Create New App**.  
-   - Enter a name for your app (e.g., `gg-ez-api`) and choose your region.  
+   - Enter a name for your app (e.g., `gg-ez-api`) and choose your region.
 
 3. **Check Your Requirements**  
    - Ensure you have a `requirements.txt` with all dependencies:  
