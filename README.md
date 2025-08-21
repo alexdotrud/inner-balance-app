@@ -3,7 +3,7 @@
 
 [View live project here!](https://inner-balance-2e2102527edc.herokuapp.com/)
 
-INNER BALANCE is a personal wellness tracker built with **Django**, **Bootstrap**, and **JavaScript** and database. Track daily tasks, water intake, and sleep hours, see progress bars with motivational messages, and get an automatic daily reset so every day starts clean.
+INNER BALANCE is a personal wellness tracker built with **Django**, **Bootstrap**, **JavaScript** and database. Track daily tasks, water intake, and sleep hours, see progress bars with motivational messages, and get an automatic daily reset so every day starts clean.
 
 ## Content:
 - [User Goals](#user-goals)  
@@ -137,7 +137,7 @@ This project was planned and developed using Agile methodology to stay organised
 **Project Planning Screenshots**  
 
 ![GitHub Projects Board - To Do, In Progress, Done and Fututre improvements](documentation/todo-list.png)  
-![Example User Stories](documentation/task.png)
+![Example User Stories](documentation/task-planning.png)
 
 ## Design Choices
 
@@ -247,7 +247,7 @@ All trackers reference the user via foreign keys to keep data scoped per account
 
 
 ### Footer
-- Displays project credits and copyright.  
+- Displays project credits, copyright and links to Github, LinkedIn pages.  
 
 ![Footer](documentation/footer.png)  
 
@@ -447,15 +447,15 @@ In order to confirm the correct functionality, responsiveness, and appearance:
 The website was tested on the following browsers: Chrome, Mozilla Firefox, Microsoft Edge.
 - **Chrome:**  
 
-[Chrome test](documentation/chrome-test.gif)
+![Chrome test](documentation/chrome-test.gif)
 
 - **Mozilla Firefox:**
 
-[Mozilla Firefox test](documentation/mazilla-test.gif)
+![Mozilla Firefox test](documentation/mazilla-test.gif)
 
 - **Microsoft Edge:**
 
-[Microsoft Edge test](documentation/edge-test.gif)
+![Microsoft Edge test](documentation/edge-test.gif)
 
 ### Responsiveness
 
