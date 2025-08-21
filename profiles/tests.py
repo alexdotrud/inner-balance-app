@@ -7,7 +7,7 @@ from profiles.models import UserProfile
 
 
 class ProfileAvatarTest(TestCase):
-    """Test that the profile page renders correctly and includes avatar functionality."""
+    """Test that the profile page renders and includes avatar functionality."""
 
     def setUp(self):
         self.user = User.objects.create_user("tester", password="pass123")
@@ -27,7 +27,10 @@ class ProfileGoalUpdateTest(TestCase):
     """Test that updating goals in UserProfile saves correctly."""
 
     def setUp(self):
-        self.user = User.objects.create_user(username="tester", password="password")
+        self.user = User.objects.create_user(
+            username="tester",
+            password="password"
+    )
         self.profile = UserProfile.objects.create(
             user=self.user, water_goal=8, sleep_goal=8
         )
