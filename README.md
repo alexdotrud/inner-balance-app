@@ -355,7 +355,29 @@ INNER BALANCE uses a mix of subtle animations, dynamic feedback, and conditional
 
 
 ## Testing 
-### User stories testing:
+
+Automatic tests are included for the main apps:
+
+- **Tracker app**  
+  - Task model: string representation and slug creation  
+  - Overview view: access control (redirects if not logged in) and template rendering  
+
+- **Profiles app**  
+  - Profile page: renders with avatar (uploaded or fallback)  
+  - Goals: updating water/sleep goals saves correctly and validates input  
+
+Run all tests with:
+
+```bash
+python manage.py test tracker
+```
+
+```bash
+python manage.py test profiles
+```
+
+
+### Manual user stories testing:
 
 | **Test Description**                                                        | **Result** | **Status** |
 |------------------------------------------------------------------------------|------------|------------|

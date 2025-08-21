@@ -300,6 +300,7 @@ h3 {
 /* Task, Water, Sleep Cards Styles */
 .tracker-card {
     width: 90%;
+    min-width: 350px;
     max-width: 1000px;
     border-radius: 20px;
     padding: 1rem;
@@ -309,7 +310,7 @@ h3 {
 }
 
 #task {
-    width: 90%;
+    width: 100%;
     padding: 1rem;
     margin: 1.5rem auto;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -334,7 +335,8 @@ h3 {
 
 .list-group {
     width: 100%;
-    max-width: 500px;
+    max-width: 100%;
+    display: block;
     list-style: none;
     padding: 0;
     margin: 2rem auto;
