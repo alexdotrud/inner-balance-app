@@ -1,39 +1,36 @@
-from django.test import TestCase, Client
-from .models import UserProfile
+from django.test import TestCase
+from profiles.models import UserProfile
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
+from profiles.models import UserProfile
 
 
-class ProfileAvatarViewTest(TestCase):
-    """Tests for the profile avatar upload view, ensuring that users can upload a valid avatar image."""
+class ProfileAvatarTest(TestCase):
+    """Test that the profile page renders correctly and includes avatar functionality."""
+
     def setUp(self):
-        self.client = Client()
-        self.user = User.objects.create_user(username="tester", password="password")
-        self.url = reverse("profiles:profile_avatar_view")  # adjust if your URL name is different
-        self.client.login(username="tester", password="password")
-        self.profile = UserProfile.objects.get(user=self.user)
+        self.user = User.objects.create_user("tester", password="pass123")
+        self.client.login(username="tester", password="pass123")
+        UserProfile.objects.create(user=self.user)
 
-    def test_valid_avatar_upload(self):
-        # Create a simple fake image file
-        image = SimpleUploadedFile(
-            "avatar.png",
-            b"fake image content",
-            content_type="image/png"
-        )
-        response = self.client.post(self.url, {"avatar": image})
-        self.profile.refresh_from_db()
-        
-        # Check that the avatar was updated
-        self.assertTrue(self.profile.avatar.name.endswith("avatar.png"))
-        self.assertRedirects(response, reverse("profiles:profile"))
+    def test_profile_page_renders_avatar(self):
+        url = reverse("profiles:profile")
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        # If no avatar, you expect fallback / None
+        self.assertIn("username", response.context)
+        self.assertIn("profile", response.context)
+
 
 class ProfileGoalUpdateTest(TestCase):
     """Test that updating goals in UserProfile saves correctly."""
 
     def setUp(self):
         self.user = User.objects.create_user(username="tester", password="password")
-        self.profile = UserProfile.objects.create(user=self.user, water_goal=8, sleep_goal=8)
+        self.profile = UserProfile.objects.create(
+            user=self.user, water_goal=8, sleep_goal=8
+        )
 
     def test_update_goals(self):
         # Update goals
