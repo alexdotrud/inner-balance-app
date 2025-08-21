@@ -11,6 +11,7 @@ def avatar_upload_path(instance, filename):
 
 
 class UserProfile(models.Model):
+    """ User profile model to store additional user information like avatar, goals, and daily reset. """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(
        upload_to=avatar_upload_path,

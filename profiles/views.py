@@ -99,9 +99,7 @@ def profile_avatar_view(request):
 
 
 def populate_profile_on_signup(request, user, **kwargs):
-    """
-    Sets default values for water and sleep goals when a new user signs up.
-    """
+    """ Sets default values for water and sleep goals. """
     profile, _ = UserProfile.objects.get_or_create(user=user)
 
     raw_water = (request.POST.get("water_goal") or "").replace(",", ".")
@@ -120,7 +118,8 @@ def populate_profile_on_signup(request, user, **kwargs):
 def update_water_sleep(request):
     """
     Updates current day's water intake and sleep hours for the logged-in user.
-    Handles both GET and POST requests, validating input values."""
+    Handles both GET and POST requests, validating input values.
+    """
     if request.method == "POST":
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
 

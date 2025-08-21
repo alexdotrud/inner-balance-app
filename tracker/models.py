@@ -5,10 +5,15 @@ from django.utils.timezone import now
 
 
 class DailyReset(models.Model):
+    """ Represents a daily reset. Stores the date of the last reset."""
     last_reset = models.DateField(default=now)
 
 
 class Task(models.Model):
+    """ 
+    Stores a user's task. 
+    Stores title, description, completion status, creation time, and an auto-generated slug for task. 
+    """
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,

@@ -14,10 +14,7 @@ from django.core.exceptions import ValidationError
 
 
 class OverviewView(LoginRequiredMixin, TemplateView):
-    """
-    Show daily overview, resets counters if needed,handles quick task creation.
-    """
-
+    """ Show daily overview, resets counters, handles quick task creation. """
     template_name = "tracker/overview.html"
 
     # Sending data to template
@@ -105,9 +102,7 @@ def update_water_sleep(request):
 
 
 def reset_tasks_if_needed(user):
-    """
-    Resets all tasks and counters if the date has changed since last reset.
-    """
+    """ Resets tasks and counters if the date has changed since last reset."""
     today = timezone.now().date()
 
     # creating new database row with reset data
@@ -124,9 +119,7 @@ def reset_tasks_if_needed(user):
 
 
 def update_tasks(request):
-    """
-    Marks tasks as completed/incomplete based on submitted checkboxes.
-    """
+    """ Marks tasks as completed/incomplete based on submitted checkboxes."""
     if request.method == "POST":
         tasks = Task.objects.filter(user=request.user)
         checked_ids = {
@@ -143,18 +136,14 @@ def update_tasks(request):
 
 
 class TaskListView(ListView):
-    """
-    Displays all tasks for the logged-in user.
-    """
+    """ Displays all tasks for the logged-in user. """
 
     model = Task
     template_name = "tracker/tasks.html"
 
 
 class TaskCreateView(SuccessMessageMixin, CreateView):
-    """
-    Creates a new task for the logged-in user.
-    """
+    """ Creates a new task for the logged-in user. """
 
     model = Task
     form_class = TaskForm
@@ -180,7 +169,6 @@ class TaskUpdateView(SuccessMessageMixin, UpdateView):
     """
     Updates an existing task owned by the logged-in user.
     """
-
     model = Task
     form_class = TaskForm
     template_name = "tracker/task_form.html"
@@ -202,10 +190,7 @@ class TaskUpdateView(SuccessMessageMixin, UpdateView):
 
 
 class TaskDeleteView(SuccessMessageMixin, DeleteView):
-    """
-    Deletes an existing task owned by the logged-in user.
-    """
-
+    """ Deletes an existing task owned by the logged-in user."""
     model = Task
     template_name = "tracker/task_confirm_delete.html"
     success_url = reverse_lazy("tracker:overview")

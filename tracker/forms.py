@@ -8,10 +8,7 @@ User = get_user_model()
 
 
 class TaskForm(forms.ModelForm):
-    """
-    Form for adding task on overview page. Check if input is empty or too long.
-    """
-
+    """ Form for adding task on overview page. Check if input is valid. """
     class Meta:
         model = Task
         fields = ["title", "description"]
@@ -62,10 +59,7 @@ class TaskForm(forms.ModelForm):
 
 
 class CustomSignupForm(SignupForm):
-    """
-    Custom Sign up form to validate username length and uniqueness.
-    """
-
+    """ Custom Sign up form to validate username length and uniqueness. """
     def clean_username(self):
         username = (self.cleaned_data.get("username") or "").strip()
 
