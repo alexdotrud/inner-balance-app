@@ -425,6 +425,8 @@ h3 {
 .delete-choices,
 .create-choices {
     margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .create-tasks h2,
