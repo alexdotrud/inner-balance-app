@@ -2,8 +2,8 @@ from django.test import TestCase
 from profiles.models import UserProfile
 from django.contrib.auth.models import User
 from django.urls import reverse
-from django.core.files.uploadedfile import SimpleUploadedFile
-from profiles.models import UserProfile
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
 class ProfileAvatarTest(TestCase):

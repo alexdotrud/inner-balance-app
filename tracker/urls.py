@@ -11,7 +11,7 @@ from .views import (
 app_name = "tracker"
 
 urlpatterns = [
-    path("overview", OverviewView.as_view(), name="overview"),
+    path("overview/", OverviewView.as_view(), name="overview"),
     path("tasks/", TaskListView.as_view(), name="task_list"),
     path("task/create/", TaskCreateView.as_view(), name="task_create"),
     path(
