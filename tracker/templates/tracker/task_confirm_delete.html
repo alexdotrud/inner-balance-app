@@ -7,12 +7,12 @@
     <h2>Delete Task</h2>
     <p>Are you sure you want to delete the task: <strong>{{ object.title }}</strong>?</p>
 
-    <div class="delete-choices">
-        <form method="post">
-            {% csrf_token %}
-            <button type="submit" class="custom-btn delete-btn">Yes, delete</button>
-            <a href="{% url 'tracker:overview' %}" class="custom-btn" aria-label="Link to Overview page">Cancel</a>
-        </form>
-    </div>
+    <div class="delete-choices"></div>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="custom-btn delete-btn">Yes, delete</button>
+    </form>
+    <a href="{% url 'tracker:overview' %}" class="custom-btn" aria-label="Link to Overview page">Cancel</a>
+</div>
 </div>
 {% endblock %}
